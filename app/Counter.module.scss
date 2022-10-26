@@ -1,0 +1,21 @@
+.counter {
+  padding:40px;
+
+  background-color: red;
+  animation: flow 5s ease infinite forwards;
+  transition: color .2s ease-in-out;
+}
+
+@keyframes flow {
+  0% {
+    background-color: aqua;
+  }
+
+  20% {
+    background-color: brown;
+  }
+
+  80% {
+    background-color: chartreuse;
+  }
+}

@@ -1,0 +1,13 @@
+.nav{
+  display: flex;
+  flex-direction: row;
+  list-style: none;
+  li{
+    margin:4px;
+    background-color:pink;
+    &:selected{
+      background-color:aqua;
+    }
+
+  }
+}

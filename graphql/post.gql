@@ -1,0 +1,28 @@
+#import "./fragments/ImageFragment.graphql"
+
+query AllPosts {
+  posts: allPosts{
+    id
+    title
+    slug
+    image {
+      ...ImageFragment
+    }
+    content(markdown: false)
+  }
+}
+
+query Post($slug: String) {
+	post(filter: {slug: { eq: $slug }}) {
+		id
+    slug
+    title
+    content(markdown: false)
+    image {
+      ...ImageFragment
+    }
+    structuredContent {
+      blocks
+    }
+	}
+}

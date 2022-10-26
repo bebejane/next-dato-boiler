@@ -1,0 +1,7 @@
+#import "./fragments/SiteFragment.graphql"
+
+query Site {
+	site: _site {
+		...SiteFragment
+	}
+}
