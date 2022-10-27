@@ -2,7 +2,7 @@ import s from './layout.module.scss'
 import { apiQuery } from 'dato-nextjs-utils/api';
 
 
-import { AllPostsDocument } from '/graphql';
+import { AllPostsDocument } from '../lib/graphql';
 import { useEffect } from 'react';
 
 export type LayoutProps = { 

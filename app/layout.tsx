@@ -1,33 +1,27 @@
 import s from './layout.module.scss'
-import { use } from 'react';
-import { apiQuery } from '/lib/api';
-import { AllPostsDocument } from '/graphql';
-//import { DatoMarkdown } from 'dato-nextjs-utils/components';
+import Navbar from '/app/Navbar';
+import { Suspense } from "react";
+import Loading from './loading';
 
 export type LayoutProps = { 
   children: React.ReactNode
 }
 
-export const revalidate = 60;
+export const revalidate = 30*1000;
 
 export default async function RootLayout({ children } : LayoutProps) {
 
-  const data = await apiQuery(AllPostsDocument, {})
-  console.log(data)
-  const posts = []
+  console.log('layout load')
+
   return (
     <html lang="en">
       <head>
         <title>Boiler</title>
       </head>
       <body>
-        <nav>
-          <ul className={s.nav}>
-            {posts.map((p, key) => 
-              <li key={key}>{p.title}</li>
-            )}
-          </ul>
-        </nav>
+        <Suspense fallback={<Loading/>}>
+          <Navbar/>
+        </Suspense>
         {children}
       </body>
     </html>
