@@ -2,6 +2,7 @@ import s from './layout.module.scss'
 import Navbar from '/app/Navbar';
 import { Suspense } from "react";
 import Loading from './loading';
+//import { DatoMarkdown } from 'dato-nextjs-utils/components';
 
 export type LayoutProps = { 
   children: React.ReactNode
@@ -22,6 +23,7 @@ export default async function RootLayout({ children } : LayoutProps) {
         <Suspense fallback={<Loading/>}>
           <Navbar/>
         </Suspense>
+    
         {children}
       </body>
     </html>

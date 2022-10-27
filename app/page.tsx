@@ -8,7 +8,7 @@ export default async function Page() {
   const date = new Date()
   console.log('page load');
   const { posts } = await apiQuery(AllPostsDocument, {})
-  const ms = await sleep(5000)
+  //const ms = await sleep(5000)
   console.log(posts.length);
   
   return (
