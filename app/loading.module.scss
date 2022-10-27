@@ -9,4 +9,11 @@
   height: 100%;
   background-color: azure;
   color: black;
+  opacity: 0;
+  animation: show 0s .1s ease-in-out forwards;
+  @keyframes show {
+    to{
+      opacity: 1;
+    }
+  }
 }

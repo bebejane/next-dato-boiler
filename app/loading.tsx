@@ -1,8 +1,6 @@
 import s from './loading.module.scss'
 
-const Loading = () => {
-  console.log('loading');
-  
+const Loading = async () => {
   return <p className={s.l}>Loading...</p>
 };
 
