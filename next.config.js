@@ -11,7 +11,11 @@ const nextConfig = {
   },
   experimental: {
     scrollRestoration: true,
-    appDir:true
+    appDir:true,
+    esmExternals: 'loose'
+  },
+  sassOptions:{
+    includePaths: ['./app', './pages']
   },
   webpack: (config, {webpack}) => {
     config.module.rules.push({
@@ -24,15 +28,6 @@ const nextConfig = {
       issuer: /\.[jt]sx?$/,
       use: ['@svgr/webpack'],
     })
-    config.plugins.push(
-      new webpack.NormalModuleReplacementPlugin(new RegExp(/\.js$/), function (
-        /** @type {{ request: string }} */
-        resource,
-      ) {
-        resource.request = resource.request.replace('.js', '');
-      }),
-    );
-    config.resolve.fallback = { fs: false, dns:false, net:false };
     return config;
   },
   

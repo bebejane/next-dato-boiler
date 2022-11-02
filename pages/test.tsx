@@ -1,6 +1,6 @@
 import s from './layout.module.scss'
 import { apiQuery } from 'dato-nextjs-utils/api';
-
+import { DatoMarkdown } from 'dato-nextjs-utils/components';
 
 import { AllPostsDocument } from '../lib/graphql';
 import { useEffect } from 'react';
@@ -21,7 +21,7 @@ export default function RootLayout({ children } : LayoutProps) {
   
   return (
     
-    <div>hej</div>
+    <DatoMarkdown>hej</DatoMarkdown>
   );
 }
 

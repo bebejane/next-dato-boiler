@@ -1,20 +1,23 @@
-import Counter from "./Counter";
-import { apiQuery } from '/lib/api';
+import { apiQuery } from 'dato-nextjs-utils/api';
 import { AllPostsDocument } from '../lib/graphql';
+import Counter from '/app/Counter';
+import { DatoMarkdown } from 'dato-nextjs-utils/components';
 import { sleep } from "/app/utils";
 
 export default async function Page() {
   
-  const date = new Date()
   console.log('page load');
   const { posts } = await apiQuery(AllPostsDocument, {})
-  //const ms = await sleep(5000)
-  console.log(posts.length);
   
   return (
     <>
       <h1>Hola</h1>
-      <Counter title={'hej'} date={date.toString()}/>
+      <Counter date={new Date()} title={'counter'} />
+      <DatoMarkdown>
+        Markdonw text is here
+        here her
+        er
+      </DatoMarkdown>
     </>
   );
 }

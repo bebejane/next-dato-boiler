@@ -1,5 +1,5 @@
-import { apiQuery } from '/lib/api';
-import DatoMarkdown from '/lib/components/DatoMarkdown';
+import { apiQuery } from 'dato-nextjs-utils/api';
+import { DatoMarkdown } from 'dato-nextjs-utils/components';
 import { AllPostsDocument, PostDocument } from '../../lib/graphql';
 import { usePathname } from 'next/navigation';
 import { sleep } from '/app/utils';

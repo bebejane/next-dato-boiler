@@ -1,7 +1,5 @@
+'use client'
 import s from './loading.module.scss'
-
-const Loading = async () => {
+export default function Loader() {
   return <p className={s.l}>Loading...</p>
 };
-
-export default Loading;
