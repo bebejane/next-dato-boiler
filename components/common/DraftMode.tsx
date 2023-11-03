@@ -1,7 +1,7 @@
 'use client'
 
 import s from './DraftMode.module.scss'
-import { redirect, usePathname } from 'next/navigation'
+import { usePathname } from 'next/navigation'
 import { disableDraftMode } from '@app/datocms/preview/exit/action'
 
 export default function DraftMode({ draftMode }) {
