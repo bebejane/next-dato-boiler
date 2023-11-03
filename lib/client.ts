@@ -11,7 +11,8 @@ export type ApiQueryOptions = {
   excludeInvalid?: boolean;
   visualEditingBaseUrl?: string | null;
   revalidate?: number | null;
-  tags?: string[]
+  tags?: string[],
+  generateTags?: boolean
 };
 
 const defaultApiQueryOptions: ApiQueryOptions = {
@@ -19,13 +20,17 @@ const defaultApiQueryOptions: ApiQueryOptions = {
   includeDrafts: false,
   excludeInvalid: false,
   visualEditingBaseUrl: null,
-  revalidate: null,
-  tags: []
+  revalidate: parseInt(process.env.REVALIDATE_TIME),
+  tags: [],
+  generateTags: true
 };
 
 export async function apiQuery<T>(query: DocumentNode, options: ApiQueryOptions = defaultApiQueryOptions) {
 
-  const dedupeOptions = {
+  options = { ...defaultApiQueryOptions, ...options }
+
+  const queryName = (query.definitions?.[0] as any).name?.value as string
+  const dedupeOptions: DedupeOptions = {
     body: JSON.stringify({ query: print(query), variables: options.variables }) as string,
     includeDrafts: options.includeDrafts,
     excludeInvalid: options.excludeInvalid,
@@ -34,11 +39,11 @@ export async function apiQuery<T>(query: DocumentNode, options: ApiQueryOptions 
     tags: options.tags
   }
 
-  const res = await dedupedFetch(dedupeOptions);
-
+  const tags = options.generateTags ? await generateIdTags(dedupeOptions, options.tags) : options.tags
+  //console.log(queryName, options, tags)
   const { data } = await dedupedFetch({
     ...dedupeOptions,
-    tags: generateIdTags(res, options.tags)
+    tags
   });
 
   return data as T;
@@ -116,7 +121,14 @@ const dedupedFetch = cache(
   },
 );
 
-const generateIdTags = (data: any, tags: string[]): string[] => {
+const generateIdTags = async (dedupeOptions: DedupeOptions, tags: string[]): Promise<string[]> => {
+
+  /*
+  const body = JSON.parse(dedupeOptions.body)
+  body.variables._test = Date.now()
+  const data = await dedupedFetch({ ...dedupeOptions, body: JSON.stringify(body) });
+  */
+  const data = await dedupedFetch(dedupeOptions);
   const allTags: string[] = []
   for (let { key, value } of deepIterator(data))
     key === 'id' && allTags.push(value)

@@ -8,7 +8,7 @@ import { draftMode } from 'next/headers'
 
 export default async function Home() {
 
-  const { posts } = await apiQuery<AllPostsQuery>(AllPostsDocument, { revalidate: 60, includeDrafts: draftMode().isEnabled });
+  const { posts } = await apiQuery<AllPostsQuery>(AllPostsDocument, { revalidate: 5, includeDrafts: draftMode().isEnabled });
 
   return (
     <div className={s.container}>
