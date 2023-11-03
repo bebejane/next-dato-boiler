@@ -1,31 +1,32 @@
-import s from './layout.module.scss'
-import Navbar from '/app/Navbar';
-import { Suspense } from "react";
-import Loading from './loading';
+import '/styles/index.scss'
+import { DatoAdminLink } from '/components';
+import { apiQuery } from '/lib/client';
+import { GlobalDocument } from '/graphql';
+import { Metadata } from 'next';
+import { Icon } from 'react-datocms/seo';
 
-export type LayoutProps = { 
+export type LayoutProps = {
   children: React.ReactNode
 }
 
-export const revalidate = 30000;
-
-export default async function RootLayout({ children } : LayoutProps) {
-
-  console.log('layout load')
+export default async function RootLayout({ children }: LayoutProps) {
 
   return (
     <html lang="en">
-      <head>
-        <title>Boiler</title>
-      </head>
-      <body>
-        <Suspense fallback={<Loading/>}>
-          <Navbar/>
-        </Suspense>
+      <body id="root">
         {children}
-        
+        <DatoAdminLink />
       </body>
     </html>
   );
 }
 
+export async function generateMetadata({ params }) {
+  const { site: { globalSeo, favicon } } = await apiQuery<GlobalQuery>(GlobalDocument);
+  return {
+    title: globalSeo.siteName,
+    description: globalSeo.fallbackSeo.description,
+    image: globalSeo.fallbackSeo.image?.url,
+    icons: favicon.map(({ attributes: { rel, sizes, type, href: url } }) => ({ rel, url, sizes, type })) as Icon[],
+  } as Metadata
+}

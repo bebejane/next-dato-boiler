@@ -1,0 +1,12 @@
+{
+  "typescript.tsdk": "./node_modules/typescript/lib",
+  "typescript.enablePromptUseWorkspaceTsdk": true,
+  "files.exclude": {
+    "node_modules": true,
+    ".vscode": true,
+    ".next": true,
+    "@types": true,
+    "pages": true
+  },
+  "workspace.isHidden": true
+}

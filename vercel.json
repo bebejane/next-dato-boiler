@@ -1,5 +1,12 @@
 {
-  "github":{
-    "silent":true
-  }
+	"github": {
+		"silent": true,
+		"enabled": true
+	},
+	"crons": [
+		{
+			"path": "/api/backup?max=2",
+			"schedule": "0 22 * * *"
+		}
+	]
 }

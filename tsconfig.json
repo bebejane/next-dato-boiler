@@ -13,7 +13,6 @@
     "noEmit": true,
     "incremental": true,
     "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
     "module": "esnext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
@@ -21,8 +20,18 @@
     "jsx": "preserve",
     "baseUrl": ".",
     "paths": {
-      "lib/*": ["/lib"],
-      "/*": ["*"]
+      "components/*": [
+        "/components"
+      ],
+      "graphql/*": [
+        "/graphql"
+      ],
+      "lib/*": [
+        "/lib"
+      ],
+      "/*": [
+        "*"
+      ]
     },
     "plugins": [
       {
@@ -30,7 +39,9 @@
       }
     ]
   },
-  "typeRoots": ["./@types"],
+  "typeRoots": [
+    "./@types"
+  ],
   "include": [
     "next-env.d.ts",
     "**/*.ts",

@@ -1,23 +1,28 @@
-import { apiQuery } from 'dato-nextjs-utils/api';
-import { AllPostsDocument } from '../lib/graphql';
-import Counter from '/app/Counter';
-import { DatoMarkdown } from 'dato-nextjs-utils/components';
-import { sleep } from "/app/utils";
+'use server'
 
-export default async function Page() {
-  
-  console.log('page load');
-  const { posts } = await apiQuery(AllPostsDocument, {})
-  
+import s from './page.module.scss'
+import Link from "next/link"
+import { apiQuery } from '/lib/client';
+import { AllPostsDocument } from '/graphql';
+import { draftMode } from 'next/headers'
+
+export default async function Home() {
+
+  const { posts } = await apiQuery<AllPostsQuery>(AllPostsDocument, { revalidate: 60, includeDrafts: draftMode().isEnabled });
+
   return (
-    <>
-      <h1>Hola</h1>
-      <Counter date={new Date()} title={'counter'} />
-      <DatoMarkdown>
-        Markdonw text is here
-        here her
-        er
-      </DatoMarkdown>
-    </>
-  );
+    <div className={s.container}>
+      <h1>Posts</h1>
+      <ul>
+        {posts.map(post => (
+          <li key={post.id}>
+            <Link href={`/posts/${post.slug}`}>
+              {post.title} {post.updatedAt}
+            </Link>
+          </li>
+        ))}
+      </ul>
+      {posts.length === 0 && 'No posts yet...'}
+    </div>
+  )
 }
