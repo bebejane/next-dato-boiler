@@ -40,7 +40,7 @@ export async function apiQuery<T>(query: DocumentNode, options: ApiQueryOptions 
   }
 
   const tags = options.generateTags ? await generateIdTags(dedupeOptions, options.tags) : options.tags
-  console.log(queryName, options.revalidate, tags)
+  //console.log(queryName, options.revalidate, tags)
 
   const { data } = await dedupedFetch({
     ...dedupeOptions,

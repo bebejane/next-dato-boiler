@@ -10,13 +10,7 @@ export async function GET(request: Request) {
 
   if (secret !== process.env.DATOCMS_PREVIEW_SECRET || !slug)
     return new Response('Invalid token', { status: 401 })
-
+  console.log(slug, secret)
   draftMode().enable()
-
-  setTimeout(() => {
-    draftMode().disable()
-    console.log('disable draft mode')
-  }, 5000)
-
   redirect(slug)
 }

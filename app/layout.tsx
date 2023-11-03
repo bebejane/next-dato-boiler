@@ -3,6 +3,7 @@ import { DatoAdminLink } from '@components';
 import { apiQuery } from '@lib/client';
 import { GlobalDocument } from '@graphql';
 import { Metadata } from 'next';
+import { draftMode } from 'next/headers';
 import { Icon } from 'next/dist/lib/metadata/types/metadata-types';
 
 export type LayoutProps = {
@@ -10,12 +11,13 @@ export type LayoutProps = {
 }
 
 export default async function RootLayout({ children }: LayoutProps) {
-
+  const previewMode = draftMode().isEnabled
+  console.log('previewMode', previewMode)
   return (
     <html lang="en">
       <body id="root">
         {children}
-        <DatoAdminLink />
+        <DatoAdminLink previewMode={previewMode} />
       </body>
     </html>
   );
