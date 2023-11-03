@@ -27,7 +27,7 @@ const defaultApiQueryOptions: ApiQueryOptions = {
 
 export async function apiQuery<T>(query: DocumentNode, options: ApiQueryOptions = defaultApiQueryOptions) {
 
-  options = { ...defaultApiQueryOptions, ...options, revalidate: 0 }
+  options = { ...defaultApiQueryOptions, ...options }
 
   const queryName = (query.definitions?.[0] as any).name?.value as string
   const dedupeOptions: DedupeOptions = {

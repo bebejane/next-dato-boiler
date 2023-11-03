@@ -8,7 +8,7 @@ import { DatoMarkdown as Markdown } from 'dato-nextjs-utils/components';
 import { draftMode } from 'next/headers'
 
 export async function generateStaticParams() {
-  const { posts } = await apiQuery<AllPostsQuery>(AllPostsDocument);
+  const { posts } = await apiQuery<AllPostsQuery>(AllPostsDocument, { revalidate: 120, generateTags: false });
 
   return posts.map((post) => ({
     post: post.slug,
@@ -19,7 +19,7 @@ export default async function Post({ params }: { params: { post: string, id: str
 
   const { post } = await apiQuery<PostQuery>(PostDocument, {
     variables: { slug: params.post },
-    revalidate: 30,
+    revalidate: 120,
     includeDrafts: draftMode().isEnabled
   });
 
