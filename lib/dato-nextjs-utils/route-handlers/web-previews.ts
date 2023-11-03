@@ -25,7 +25,7 @@ export default async function webPreviews(req: NextRequest, generatePreviewUrl: 
   let baseUrl = process.env.NEXT_PUBLIC_SITE_URL || process.env.SITE_URL
   const isExternal = path?.startsWith('https://')
 
-  if (isExternal) {
+  if (isExternal && path) {
     const url = new URL(path)
     baseUrl = url.origin
     path = url.pathname

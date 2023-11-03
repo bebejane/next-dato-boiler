@@ -2,8 +2,8 @@
 
 import s from './page.module.scss'
 import { notFound } from 'next/navigation';
-import { apiQuery } from '/lib/client';
-import { AllPostsDocument, PostDocument } from '/graphql';
+import { apiQuery } from '@lib/client';
+import { AllPostsDocument, PostDocument } from '@graphql';
 import { DatoMarkdown as Markdown } from 'dato-nextjs-utils/components';
 import { draftMode } from 'next/headers'
 
@@ -15,7 +15,7 @@ export async function generateStaticParams() {
   }))
 }
 
-export default async function Post({ params }: { params: { post: string } }) {
+export default async function Post({ params }: { params: { post: string, id: string } }) {
 
   const { post } = await apiQuery<PostQuery>(PostDocument, {
     variables: { slug: params.post },

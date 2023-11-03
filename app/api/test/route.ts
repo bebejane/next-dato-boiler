@@ -1,5 +1,5 @@
-import test from '/lib/dato-nextjs-utils/route-handlers/test'
-import cors from '/lib/dato-nextjs-utils/route-handlers/cors'
+import test from '@lib/dato-nextjs-utils/route-handlers/test'
+import cors from '@lib/dato-nextjs-utils/route-handlers/cors'
 
 export const runtime = "edge"
 

@@ -1,18 +1,14 @@
 import { revalidatePath } from "next/cache";
 
-export default async function withRevalidate(req: Request, callback: (record: any, revalidate: (paths: string[]) => Promise<Response>) => Promise<Response>) {
-
-  if (req.method === 'GET' && new URLSearchParams(req.url.split('?')?.[1]).get('ping'))
-    return new Response('ok', { status: 200 })
+export default async function revalidate(req: Request, callback: (record: any, revalidate: (paths: string[]) => Promise<Response>) => Promise<Response>) {
 
   if (!basicAuth(req))
     return new Response('unauthorized', { status: 401 })
 
-  const payload = await req.json();
+  const payload = await req.json() as { entity: any, related_entities: any[], event_type: string };
 
   if (!payload || !payload?.entity)
     return new Response('Payload empty or missing entity', { status: 400 })
-
 
   const { entity, related_entities, event_type } = payload
   const model = related_entities.find(({ id }) => id === entity.relationships?.item_type?.data?.id)
