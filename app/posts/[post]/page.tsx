@@ -19,7 +19,6 @@ export default async function Post({ params }: { params: { post: string, id: str
 
   const { post } = await apiQuery<PostQuery>(PostDocument, {
     variables: { slug: params.post },
-
     includeDrafts: draftMode().isEnabled
   });
 
