@@ -1,0 +1,32 @@
+.draftMode {
+  position: fixed;
+  top: 0;
+  right: 0;
+  margin: 5px;
+  padding: 5px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: rgb(240, 240, 240);
+  border: 1px solid rgb(240, 240, 240);
+  cursor: pointer;
+
+  &:hover {
+    background-color: rgb(230, 230, 230);
+    border: 1px solid rgb(230, 230, 230);
+  }
+
+  img {}
+
+  div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 2px;
+    color: #000;
+    font-size: 0.5em;
+    text-transform: uppercase;
+  }
+}

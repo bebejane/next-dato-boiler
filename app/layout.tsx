@@ -1,5 +1,5 @@
 import '@styles/index.scss'
-import { DatoAdminLink } from '@components';
+import { DraftMode } from '@components';
 import { apiQuery } from '@lib/client';
 import { GlobalDocument } from '@graphql';
 import { Metadata } from 'next';
@@ -11,13 +11,11 @@ export type LayoutProps = {
 }
 
 export default async function RootLayout({ children }: LayoutProps) {
-  const previewMode = draftMode().isEnabled
-  console.log('previewMode', previewMode)
   return (
     <html lang="en">
       <body id="root">
         {children}
-        <DatoAdminLink previewMode={previewMode} />
+        <DraftMode draftMode={draftMode().isEnabled} />
       </body>
     </html>
   );
