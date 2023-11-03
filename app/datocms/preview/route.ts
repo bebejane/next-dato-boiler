@@ -12,5 +12,11 @@ export async function GET(request: Request) {
     return new Response('Invalid token', { status: 401 })
 
   draftMode().enable()
+
+  setTimeout(() => {
+    draftMode().disable()
+    console.log('disable draft mode')
+  }, 5000)
+
   redirect(slug)
 }
