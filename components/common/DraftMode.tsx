@@ -6,6 +6,7 @@ import { usePathname } from 'next/navigation'
 export default function DraftMode({ draftMode }) {
 
   const pathname = usePathname()
+
   if (!draftMode) return null
 
   return (
