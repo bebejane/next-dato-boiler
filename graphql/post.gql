@@ -5,6 +5,10 @@ query AllPosts($first: IntType = 10, $skip: IntType = 0) {
 		title
 		createdAt
 		updatedAt
+		author {
+			id
+			name
+		}
 	}
 	pagination: _allPostsMeta {
 		count
@@ -22,5 +26,9 @@ query Post($slug: String!) {
 		content(markdown: false)
 		createdAt
 		updatedAt
+		author {
+			id
+			name
+		}
 	}
 }
