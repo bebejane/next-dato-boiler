@@ -33,7 +33,7 @@ export default async function webPreviews(req: NextRequest, generatePreviewUrl: 
 
   if (path) {
     previewLinks.push({ label: 'Live', url: `${baseUrl}${path}` })
-    previewLinks.push({ label: 'Preview', url: `${baseUrl}/api/preview?slug=${path}&secret=${process.env.DATOCMS_PREVIEW_SECRET}` })
+    previewLinks.push({ label: 'Preview', url: `${baseUrl}/datocms/preview?slug=${path}&secret=${process.env.DATOCMS_PREVIEW_SECRET}` })
   }
 
   return new Response(JSON.stringify({ previewLinks }), {
