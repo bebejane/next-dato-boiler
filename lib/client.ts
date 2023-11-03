@@ -14,56 +14,64 @@ export type ApiQueryOptions = {
   tags?: string[]
 };
 
-export async function apiQuery<T>(
-  query: DocumentNode,
-  options: ApiQueryOptions = {
-    variables: {},
-    includeDrafts: false,
-    excludeInvalid: false,
-    visualEditingBaseUrl: null,
-    revalidate: null,
-    tags: []
-  }) {
+const defaultApiQueryOptions: ApiQueryOptions = {
+  variables: {},
+  includeDrafts: false,
+  excludeInvalid: false,
+  visualEditingBaseUrl: null,
+  revalidate: null,
+  tags: []
+};
 
-  const {
-    variables,
-    includeDrafts,
-    excludeInvalid,
-    visualEditingBaseUrl,
-    revalidate,
-    tags
-  } = options;
+export async function apiQuery<T>(query: DocumentNode, options: ApiQueryOptions = defaultApiQueryOptions) {
 
-  const body = JSON.stringify({ query: print(query), variables }) as string
-  const res = await dedupedFetch(
-    body,
-    includeDrafts,
-    excludeInvalid,
-    visualEditingBaseUrl,
-    revalidate
-  );
+  const dedupeOptions = {
+    body: JSON.stringify({ query: print(query), variables: options.variables }) as string,
+    includeDrafts: options.includeDrafts,
+    excludeInvalid: options.excludeInvalid,
+    visualEditingBaseUrl: options.visualEditingBaseUrl,
+    revalidate: options.revalidate,
+    tags: options.tags
+  }
 
-  const { data } = await dedupedFetch(
-    body,
-    includeDrafts,
-    excludeInvalid,
-    visualEditingBaseUrl,
-    revalidate,
-    generateIdTags(res, tags)
-  );
+  const res = await dedupedFetch(dedupeOptions);
+
+  const { data } = await dedupedFetch({
+    ...dedupeOptions,
+    tags: generateIdTags(res, options.tags)
+  });
 
   return data as T;
 }
 
+type DedupeOptions = {
+  body: string;
+  includeDrafts: boolean;
+  excludeInvalid: boolean;
+  visualEditingBaseUrl: string | null;
+  revalidate?: number | null;
+  tags?: string[]
+}
+
+const defaultDedupeOptions: DedupeOptions = {
+  body: '',
+  includeDrafts: false,
+  excludeInvalid: false,
+  visualEditingBaseUrl: null,
+  revalidate: null,
+  tags: []
+}
+
 const dedupedFetch = cache(
-  async (
-    body,
-    includeDrafts = false,
-    excludeInvalid = false,
-    visualEditingBaseUrl = null,
-    revalidate = null,
-    tags = []
-  ) => {
+  async (options: DedupeOptions = defaultDedupeOptions) => {
+    const {
+      body,
+      includeDrafts,
+      excludeInvalid,
+      visualEditingBaseUrl,
+      revalidate,
+      tags
+    } = options;
 
     const headers = {
       'Authorization': `Bearer ${process.env.DATOCMS_API_TOKEN}`,
