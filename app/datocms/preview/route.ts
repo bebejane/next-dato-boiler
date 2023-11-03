@@ -13,6 +13,7 @@ export async function GET(request: Request) {
     return new Response('Invalid token', { status: 401 })
 
   draftMode().enable()
+  console.log(cookies().get('__prerender_bypass').value)
   cookies().set('__prerender_bypass', cookies().get('__prerender_bypass').value, { maxAge: 5 })
   redirect(slug)
 }
