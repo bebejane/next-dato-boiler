@@ -11,13 +11,14 @@ export type LayoutProps = {
 }
 
 export default async function RootLayout({ children }: LayoutProps) {
+
   return (
     <html lang="en">
-      <body id="root">
+      <body id="root" >
         {children}
         <DraftMode draftMode={draftMode().isEnabled} />
       </body>
-    </html>
+    </html >
   );
 }
 
