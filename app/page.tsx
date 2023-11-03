@@ -17,7 +17,7 @@ export default async function Home() {
         {posts.map(post => (
           <li key={post.id}>
             <Link href={`/posts/${post.slug}`}>
-              {post.title} {post.updatedAt}
+              {post.title} {post.updatedAt} {post.author.name}
             </Link>
           </li>
         ))}

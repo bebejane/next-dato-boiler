@@ -30,6 +30,9 @@ export default async function Post({ params }: { params: { post: string, id: str
     <div className={s.container}>
       <h1>{post.title}</h1>
       <Markdown>{post.content}</Markdown>
+      <p>
+        {post.author.name}
+      </p>
     </div>
   )
 }
