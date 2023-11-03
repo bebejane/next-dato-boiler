@@ -1,0 +1,6 @@
+query Start {
+	start {
+		id
+		headline
+	}
+}
