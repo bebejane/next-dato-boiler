@@ -22,7 +22,7 @@ export default async function RootLayout({ children }: LayoutProps) {
 }
 
 export async function generateMetadata() {
-  const { site: { globalSeo, favicon } } = await apiQuery<GlobalQuery>(GlobalDocument, { revalidate: 120, generateTags: false });
+  const { site: { globalSeo, favicon } } = await apiQuery<GlobalQuery>(GlobalDocument, { generateTags: false });
   return {
     title: globalSeo?.siteName,
     description: globalSeo?.fallbackSeo?.description,
