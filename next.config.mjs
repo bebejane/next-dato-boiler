@@ -17,14 +17,6 @@ const nextConfig = {
 	devIndicators: {
 		buildActivity: false,
 	},
-	webpack: (config, ctx) => {
-		config.module.rules.push({
-			test: /\.(graphql|gql)$/,
-			exclude: /node_modules/,
-			loader: "graphql-tag/loader",
-		});
-		return config;
-	},
 	async headers() {
 		return [
 			{

@@ -3,6 +3,7 @@
 import type { DocumentNode } from 'graphql';
 import { print } from 'graphql';
 import { cache } from 'react';
+import deepIterator from 'deep-iterator';
 
 export type ApiQueryOptions = {
   variables?: Record<string, any>;
@@ -34,13 +35,21 @@ export async function apiQuery<T>(
   } = options;
 
   const body = JSON.stringify({ query: print(query), variables }) as string
+  const res = await dedupedFetch(
+    body,
+    includeDrafts,
+    excludeInvalid,
+    visualEditingBaseUrl,
+    revalidate
+  );
+
   const { data } = await dedupedFetch(
     body,
     includeDrafts,
     excludeInvalid,
     visualEditingBaseUrl,
     revalidate,
-    tags
+    generateIdTags(res, tags)
   );
 
   return data as T;
@@ -99,3 +108,11 @@ const dedupedFetch = cache(
   },
 );
 
+const generateIdTags = (data: any, tags: string[]): string[] => {
+  const allTags: string[] = []
+  for (let { key, value } of deepIterator(data))
+    key === 'id' && allTags.push(value)
+  allTags.push.apply(allTags, tags)
+  return allTags
+
+}
