@@ -3,7 +3,10 @@
 import type { DocumentNode } from 'graphql';
 import { print } from 'graphql';
 import { cache } from 'react';
+import { buildClient } from '@datocms/cma-client-browser';
 import deepIterator from 'deep-iterator';
+
+const client = buildClient({ apiToken: process.env.DATOCMS_API_TOKEN });
 
 export type ApiQueryOptions = {
   variables?: Record<string, any>;
@@ -40,15 +43,13 @@ export async function apiQuery<T>(query: DocumentNode, options: ApiQueryOptions 
     queryId
   }
 
-  const tags = options.generateTags ? await generateIdTags(dedupeOptions, options.tags) : options.tags
 
-  //console.log(queryId, options.revalidate, tags)
+  const tags = options.generateTags ? await generateIdTags(dedupeOptions, options.tags) : options.tags
 
   const { data } = await dedupedFetch({
     ...dedupeOptions,
     tags
   });
-
   return data as T;
 }
 
@@ -105,7 +106,7 @@ const dedupedFetch = cache(async (options: DedupeOptions) => {
   if (tags?.length > 0)
     next['tags'] = tags
 
-  console.log('query', queryId, next)
+  //console.log('query', queryId, next)
   const response = await fetch('https://graphql.datocms.com/', {
     method: 'POST',
     headers,

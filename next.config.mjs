@@ -25,7 +25,7 @@ const nextConfig = {
 	async headers() {
 		return [
 			{
-				source: "/datocms/web-previews",
+				source: "/api/web-previews",
 				headers: [
 					{ key: "Access-Control-Allow-Credentials", value: "true" },
 					{ key: "Access-Control-Allow-Origin", value: "*" },
@@ -38,7 +38,7 @@ const nextConfig = {
 				],
 			},
 			{
-				source: "/datocms/backup",
+				source: "/api/backup",
 				headers: [
 					{ key: "Access-Control-Allow-Credentials", value: "true" },
 					{ key: "Access-Control-Allow-Origin", value: "*" }, // replace this your actual origin

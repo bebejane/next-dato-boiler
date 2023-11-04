@@ -1,7 +1,7 @@
 import basicAuth from './basic-auth';
 
 import { Client, buildClient } from '@datocms/cma-client-browser';
-import { ItemType } from '@datocms/cma-client/dist/types/generated/SimpleSchemaTypes.js';
+
 
 const tests = async (req: Request): Promise<Response> => {
   return await basicAuth(req, async (req: Request) => {
@@ -132,7 +132,7 @@ export const testResultsToHtml = (results: TestResult[]) => {
   `
 }
 
-const testWebPreviewsEndpoint = async (itemType: ItemType, client: Client): Promise<PreviewLink[]> => {
+const testWebPreviewsEndpoint = async (itemType: any, client: Client): Promise<PreviewLink[]> => {
 
   const item = (await client.items.list({ filter: { type: itemType.api_key } }))[0]
   const res = await fetch(`${baseApiUrl}/web-previews`, {
@@ -158,7 +158,7 @@ const testWebPreviewsEndpoint = async (itemType: ItemType, client: Client): Prom
 
 }
 
-const testRevalidateEndpoint = async (itemType: ItemType, client: Client): Promise<RevalidateResponse> => {
+const testRevalidateEndpoint = async (itemType: any, client: Client): Promise<RevalidateResponse> => {
 
   const item = (await client.items.list({ filter: { type: itemType.api_key } }))[0]
   const res = await fetch(`${baseApiUrl}/revalidate`, {
