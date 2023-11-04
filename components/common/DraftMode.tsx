@@ -23,16 +23,16 @@ export default function DraftMode({ draftMode, listenUrl }: DraftModeProps) {
 
   useEffect(() => {
     if (!listenUrl) return
-
+    let updates = 0;
     console.log('listenUrl', listenUrl)
     const eventSource = new EventSource(listenUrl)
     eventSource.addEventListener("open", () => {
       console.log("connected to channel!");
     });
     eventSource.addEventListener("update", (event) => {
-      const result = JSON.parse(event.data);
       console.log(event)
-      //router.refresh()
+      if (++updates > 1) router.refresh()
+
     });
     return () => {
       eventSource.close()
