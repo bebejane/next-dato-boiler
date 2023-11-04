@@ -1,7 +1,7 @@
 'use server'
 
 import '@styles/index.scss'
-import { DraftMode, NavBar } from '@components';
+import { NavBar } from '@components';
 import { apiQuery } from '@lib/client';
 import { GlobalDocument } from '@graphql';
 import { Metadata } from 'next';
@@ -20,7 +20,6 @@ export default async function RootLayout({ children }: LayoutProps) {
         <main>
           {children}
         </main>
-        <DraftMode draftMode={false} />
       </body>
     </html >
   );

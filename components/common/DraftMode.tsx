@@ -3,8 +3,14 @@
 import s from './DraftMode.module.scss'
 import { usePathname } from 'next/navigation'
 import { disableDraftMode } from '@app/api/draft/exit/action'
+import { useEffect } from 'react'
 
-export default function DraftMode({ draftMode }) {
+export type DraftModeProps = {
+  draftMode: boolean
+  listenUrl?: string
+}
+
+export default function DraftMode({ draftMode, listenUrl }: DraftModeProps) {
 
   const pathname = usePathname()
 
@@ -12,6 +18,23 @@ export default function DraftMode({ draftMode }) {
     console.log('disable draft mode')
     disableDraftMode(pathname)
   }
+
+  useEffect(() => {
+    if (!listenUrl) return
+
+    console.log('listenUrl', listenUrl)
+    const eventSource = new EventSource(listenUrl)
+    eventSource.onmessage = (e) => {
+      console.log('eventSource.onmessage', e)
+      if (e.data === 'exit') {
+        window.location.reload()
+      }
+    }
+    return () => {
+      eventSource.close()
+    }
+
+  }, [listenUrl])
 
   if (!draftMode) return null
 

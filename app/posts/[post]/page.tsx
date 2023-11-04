@@ -6,6 +6,7 @@ import { apiQuery } from '@lib/client';
 import { AllPostsDocument, PostDocument } from '@graphql';
 import { DatoMarkdown as Markdown } from 'dato-nextjs-utils/components';
 import { draftMode } from 'next/headers'
+import { DraftMode } from '@components';
 import BackgroundColor from './BackgroundColor';
 
 export async function generateStaticParams() {
@@ -18,7 +19,7 @@ export async function generateStaticParams() {
 
 export default async function Post({ params }: { params: { post: string, id: string } }) {
 
-  const { post } = await apiQuery<PostQuery, PostQueryVariables>(PostDocument, {
+  const { post, listenUrl } = await apiQuery<PostQuery, PostQueryVariables>(PostDocument, {
     variables: { slug: params.post },
     includeDrafts: draftMode().isEnabled
   });
@@ -36,6 +37,7 @@ export default async function Post({ params }: { params: { post: string, id: str
         </p>
       </div>
       <BackgroundColor color={post.background?.hex} />
+      <DraftMode draftMode={draftMode().isEnabled} listenUrl={listenUrl} />
     </>
   )
 }

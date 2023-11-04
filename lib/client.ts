@@ -19,7 +19,6 @@ export type ApiQueryOptions<V> = {
 };
 
 const defaultApiQueryOptions = {
-  //variables: {},
   includeDrafts: false,
   excludeInvalid: false,
   visualEditingBaseUrl: null,
@@ -28,7 +27,7 @@ const defaultApiQueryOptions = {
   generateTags: true
 };
 
-export async function apiQuery<T, V>(query: DocumentNode, options: ApiQueryOptions<V>) {
+export async function apiQuery<T, V>(query: DocumentNode, options: ApiQueryOptions<V>): Promise<T & { listenUrl: string | null }> {
 
   options = { ...defaultApiQueryOptions, ...options }
 
@@ -43,17 +42,15 @@ export async function apiQuery<T, V>(query: DocumentNode, options: ApiQueryOptio
     queryId
   }
 
-
   const tags = options.generateTags ? await generateIdTags(dedupeOptions, options.tags) : options.tags
+  const res = options.includeDrafts ? await dedupedFetch({ ...dedupeOptions, url: 'https://graphql-listen.datocms.com/preview' }) : {}
+  const { data } = await dedupedFetch({ ...dedupeOptions, tags });
 
-  const { data } = await dedupedFetch({
-    ...dedupeOptions,
-    tags
-  });
-  return data as T;
+  return { ...data, listenUrl: res.url ?? null }
 }
 
-type DedupeOptions = {
+export type DedupeOptions = {
+  url?: string
   body: string;
   includeDrafts: boolean;
   excludeInvalid: boolean;
@@ -63,18 +60,9 @@ type DedupeOptions = {
   queryId: string
 }
 
-const defaultDedupeOptions: DedupeOptions = {
-  body: '',
-  includeDrafts: false,
-  excludeInvalid: false,
-  visualEditingBaseUrl: null,
-  revalidate: null,
-  tags: [],
-  queryId: ''
-}
-
 const dedupedFetch = cache(async (options: DedupeOptions) => {
   const {
+    url,
     body,
     includeDrafts,
     excludeInvalid,
@@ -107,7 +95,7 @@ const dedupedFetch = cache(async (options: DedupeOptions) => {
     next['tags'] = tags
 
   //console.log('query', queryId, next)
-  const response = await fetch('https://graphql.datocms.com/', {
+  const response = await fetch(url ?? 'https://graphql.datocms.com/', {
     method: 'POST',
     headers,
     body,
@@ -125,8 +113,7 @@ const dedupedFetch = cache(async (options: DedupeOptions) => {
   }
 
   return responseBody;
-},
-);
+})
 
 const generateIdTags = async (dedupeOptions: DedupeOptions, tags: string[]): Promise<string[]> => {
 
