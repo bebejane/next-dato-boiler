@@ -9,7 +9,7 @@ import { draftMode } from 'next/headers'
 import BackgroundColor from './BackgroundColor';
 
 export async function generateStaticParams() {
-  const { posts } = await apiQuery<AllPostsQuery>(AllPostsDocument, { generateTags: false });
+  const { posts } = await apiQuery<AllPostsQuery, AllPostsQueryVariables>(AllPostsDocument, { generateTags: false });
 
   return posts.map((post) => ({
     post: post.slug,
@@ -18,7 +18,7 @@ export async function generateStaticParams() {
 
 export default async function Post({ params }: { params: { post: string, id: string } }) {
 
-  const { post } = await apiQuery<PostQuery>(PostDocument, {
+  const { post } = await apiQuery<PostQuery, PostQueryVariables>(PostDocument, {
     variables: { slug: params.post },
     includeDrafts: draftMode().isEnabled
   });

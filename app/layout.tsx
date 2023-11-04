@@ -1,9 +1,10 @@
+'use server'
+
 import '@styles/index.scss'
-import { DraftMode } from '@components';
+import { DraftMode, NavBar } from '@components';
 import { apiQuery } from '@lib/client';
 import { GlobalDocument } from '@graphql';
 import { Metadata } from 'next';
-import { draftMode } from 'next/headers';
 import { Icon } from 'next/dist/lib/metadata/types/metadata-types';
 
 export type LayoutProps = {
@@ -15,7 +16,10 @@ export default async function RootLayout({ children }: LayoutProps) {
   return (
     <html lang="en">
       <body id="root" >
-        {children}
+        <NavBar />
+        <main>
+          {children}
+        </main>
         <DraftMode draftMode={false} />
       </body>
     </html >
@@ -23,7 +27,7 @@ export default async function RootLayout({ children }: LayoutProps) {
 }
 
 export async function generateMetadata() {
-  const { site: { globalSeo, favicon } } = await apiQuery<GlobalQuery>(GlobalDocument, { generateTags: false });
+  const { site: { globalSeo, favicon } } = await apiQuery<GlobalQuery, GlobalQueryVariables>(GlobalDocument, { generateTags: false });
   return {
     title: globalSeo?.siteName,
     description: globalSeo?.fallbackSeo?.description,

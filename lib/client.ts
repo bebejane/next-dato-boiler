@@ -8,8 +8,8 @@ import deepIterator from 'deep-iterator';
 
 const client = buildClient({ apiToken: process.env.DATOCMS_API_TOKEN });
 
-export type ApiQueryOptions = {
-  variables?: Record<string, any>;
+export type ApiQueryOptions<V> = {
+  variables?: V;
   includeDrafts?: boolean;
   excludeInvalid?: boolean;
   visualEditingBaseUrl?: string | null;
@@ -18,8 +18,8 @@ export type ApiQueryOptions = {
   generateTags?: boolean
 };
 
-const defaultApiQueryOptions: ApiQueryOptions = {
-  variables: {},
+const defaultApiQueryOptions = {
+  //variables: {},
   includeDrafts: false,
   excludeInvalid: false,
   visualEditingBaseUrl: null,
@@ -28,7 +28,7 @@ const defaultApiQueryOptions: ApiQueryOptions = {
   generateTags: true
 };
 
-export async function apiQuery<T>(query: DocumentNode, options: ApiQueryOptions = defaultApiQueryOptions) {
+export async function apiQuery<T, V>(query: DocumentNode, options: ApiQueryOptions<V>) {
 
   options = { ...defaultApiQueryOptions, ...options }
 
@@ -130,11 +130,6 @@ const dedupedFetch = cache(async (options: DedupeOptions) => {
 
 const generateIdTags = async (dedupeOptions: DedupeOptions, tags: string[]): Promise<string[]> => {
 
-  /*
-  const body = JSON.parse(dedupeOptions.body)
-  body.variables._test = Date.now()
-  const data = await dedupedFetch({ ...dedupeOptions, body: JSON.stringify(body) });
-  */
   const data = await dedupedFetch(dedupeOptions);
   const allTags: string[] = []
   for (let { key, value } of deepIterator(data))
