@@ -29,19 +29,21 @@ export async function apiQuery<T>(query: DocumentNode, options: ApiQueryOptions 
 
   options = { ...defaultApiQueryOptions, ...options }
 
-  const queryName = (query.definitions?.[0] as any).name?.value as string
+  const queryId = (query.definitions?.[0] as any).name?.value as string
   const dedupeOptions: DedupeOptions = {
     body: JSON.stringify({ query: print(query), variables: options.variables }) as string,
     includeDrafts: options.includeDrafts,
     excludeInvalid: options.excludeInvalid,
     visualEditingBaseUrl: options.visualEditingBaseUrl,
     revalidate: options.revalidate,
-    tags: options.tags
+    tags: options.tags,
+    queryId
   }
 
   const tags = options.generateTags ? await generateIdTags(dedupeOptions, options.tags) : options.tags
-  console.log(queryName, options.revalidate, tags)
-  console.log(typeof window === 'undefined' ? 'server' : 'client')
+
+  //console.log(queryId, options.revalidate, tags)
+
   const { data } = await dedupedFetch({
     ...dedupeOptions,
     tags
@@ -57,6 +59,7 @@ type DedupeOptions = {
   visualEditingBaseUrl: string | null;
   revalidate?: number | null;
   tags?: string[]
+  queryId: string
 }
 
 const defaultDedupeOptions: DedupeOptions = {
@@ -65,61 +68,63 @@ const defaultDedupeOptions: DedupeOptions = {
   excludeInvalid: false,
   visualEditingBaseUrl: null,
   revalidate: null,
-  tags: []
+  tags: [],
+  queryId: ''
 }
 
-const dedupedFetch = cache(
-  async (options: DedupeOptions = defaultDedupeOptions) => {
-    const {
-      body,
-      includeDrafts,
-      excludeInvalid,
-      visualEditingBaseUrl,
-      revalidate,
-      tags
-    } = options;
+const dedupedFetch = cache(async (options: DedupeOptions) => {
+  const {
+    body,
+    includeDrafts,
+    excludeInvalid,
+    visualEditingBaseUrl,
+    revalidate,
+    tags,
+    queryId
+  } = options;
 
-    const headers = {
-      'Authorization': `Bearer ${process.env.DATOCMS_API_TOKEN}`,
-      ...(includeDrafts ? { 'X-Include-Drafts': 'true' } : {}),
-      ...(excludeInvalid ? { 'X-Exclude-Invalid': 'true' } : {}),
-      ...(visualEditingBaseUrl
-        ? {
-          'X-Visual-Editing': 'vercel-v1',
-          'X-Base-Editing-Url': visualEditingBaseUrl,
-        }
-        : {}),
-      ...(process.env.DATOCMS_ENVIRONMENT
-        ? { 'X-Environment': process.env.DATOCMS_ENVIRONMENT }
-        : {}),
-    } as unknown as HeadersInit
+  const headers = {
+    'Authorization': `Bearer ${process.env.DATOCMS_API_TOKEN}`,
+    ...(includeDrafts ? { 'X-Include-Drafts': 'true' } : {}),
+    ...(excludeInvalid ? { 'X-Exclude-Invalid': 'true' } : {}),
+    ...(visualEditingBaseUrl
+      ? {
+        'X-Visual-Editing': 'vercel-v1',
+        'X-Base-Editing-Url': visualEditingBaseUrl,
+      }
+      : {}),
+    ...(process.env.DATOCMS_ENVIRONMENT
+      ? { 'X-Environment': process.env.DATOCMS_ENVIRONMENT }
+      : {}),
+  } as unknown as HeadersInit
 
-    const next: { revalidate?: number, tags?: string[] } = {}
+  const next: { revalidate?: number, tags?: string[] } = {}
 
-    if (revalidate !== null)
-      next['revalidate'] = revalidate
-    if (tags?.length > 0)
-      next['tags'] = tags
+  if (revalidate !== null)
+    next['revalidate'] = revalidate
+  if (tags?.length > 0)
+    next['tags'] = tags
 
-    const response = await fetch('https://graphql.datocms.com/', {
-      method: 'POST',
-      headers,
-      body,
-      next,
-    });
+  console.log('query', queryId, next)
+  const response = await fetch('https://graphql.datocms.com/', {
+    method: 'POST',
+    headers,
+    body,
+    next,
+  });
 
-    const responseBody = await response.json();
+  const responseBody = await response.json();
 
-    if (!response.ok) {
-      throw new Error(
-        `${response.status} ${response.statusText}: ${JSON.stringify(
-          responseBody,
-        )}`,
-      );
-    }
+  if (!response.ok) {
+    throw new Error(
+      `${response.status} ${response.statusText}: ${JSON.stringify(
+        responseBody,
+      )}`,
+    );
+  }
 
-    return responseBody;
-  },
+  return responseBody;
+},
 );
 
 const generateIdTags = async (dedupeOptions: DedupeOptions, tags: string[]): Promise<string[]> => {
