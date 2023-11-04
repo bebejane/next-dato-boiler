@@ -20,7 +20,7 @@ export async function GET(request: Request) {
     sameSite: 'none',
     secure: true,
     path: '/',
-    maxAge: 5
+    maxAge: 2
   })
 
   redirect(slug)

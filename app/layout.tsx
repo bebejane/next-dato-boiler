@@ -11,7 +11,7 @@ export type LayoutProps = {
 }
 
 export default async function RootLayout({ children }: LayoutProps) {
-
+  console.log('hej')
   return (
     <html lang="en">
       <body id="root" >
