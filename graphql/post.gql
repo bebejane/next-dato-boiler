@@ -24,6 +24,9 @@ query Post($slug: String!) {
 			...ImageFragment
 		}
 		content(markdown: false)
+		background {
+			hex
+		}
 		createdAt
 		updatedAt
 		author {
