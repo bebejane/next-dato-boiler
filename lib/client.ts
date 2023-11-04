@@ -37,7 +37,7 @@ export async function apiQuery<T, V>(query: DocumentNode, options: ApiQueryOptio
     includeDrafts: options.includeDrafts,
     excludeInvalid: options.excludeInvalid,
     visualEditingBaseUrl: options.visualEditingBaseUrl,
-    revalidate: options.revalidate,
+    revalidate: options.includeDrafts ? 0 : options.revalidate,
     tags: options.tags,
     queryId
   }
