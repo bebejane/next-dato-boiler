@@ -38,19 +38,16 @@ export async function apiQuery<T>(query: DocumentNode, options: ApiQueryOptions 
     revalidate: options.revalidate,
     tags: options.tags
   }
-
   const tags = options.generateTags ? await generateIdTags(dedupeOptions, options.tags) : options.tags
   //console.log(queryName, options.revalidate, tags)
-
-  const { data } = await dedupedFetch({
-    ...dedupeOptions,
-    tags
-  });
+  //console.log(typeof window === 'undefined' ? 'server' : 'client')
+  const { data } = await dedupedFetch({ ...dedupeOptions, tags });
 
   return data as T;
 }
 
 type DedupeOptions = {
+  url?: string;
   body: string;
   includeDrafts: boolean;
   excludeInvalid: boolean;
@@ -60,6 +57,7 @@ type DedupeOptions = {
 }
 
 const defaultDedupeOptions: DedupeOptions = {
+  url: 'https://graphql.datocms.com',
   body: '',
   includeDrafts: false,
   excludeInvalid: false,
@@ -69,15 +67,16 @@ const defaultDedupeOptions: DedupeOptions = {
 }
 
 const dedupedFetch = cache(
-  async (options: DedupeOptions = defaultDedupeOptions) => {
+  async (options: DedupeOptions) => {
     const {
+      url,
       body,
       includeDrafts,
       excludeInvalid,
       visualEditingBaseUrl,
       revalidate,
       tags
-    } = options;
+    } = { ...defaultDedupeOptions, ...options };
 
     const headers = {
       'Authorization': `Bearer ${process.env.DATOCMS_API_TOKEN}`,
@@ -101,7 +100,7 @@ const dedupedFetch = cache(
     if (tags?.length > 0)
       next['tags'] = tags
 
-    const response = await fetch('https://graphql.datocms.com/', {
+    const response = await fetch(url, {
       method: 'POST',
       headers,
       body,

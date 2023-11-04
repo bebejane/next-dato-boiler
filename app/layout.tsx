@@ -16,7 +16,7 @@ export default async function RootLayout({ children }: LayoutProps) {
     <html lang="en">
       <body id="root" >
         {children}
-        <DraftMode draftMode={draftMode().isEnabled} />
+        <DraftMode draftMode={false} />
       </body>
     </html >
   );

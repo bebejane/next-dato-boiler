@@ -1,3 +1,5 @@
+import s from './loading.module.scss'
+
 export default function Loading() {
-  return <p>Loading...</p>
+  return <div className={s.loading}>Loading...</div>
 }
