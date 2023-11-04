@@ -3,15 +3,17 @@
 import s from './DraftMode.module.scss'
 import { usePathname } from 'next/navigation'
 import { disableDraftMode } from '@app/api/draft/exit/action'
+import revalidateTag from '@lib/actions/revalidate-tag'
 import { useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 
 export type DraftModeProps = {
   draftMode: boolean
-  listenUrl?: string
+  listenUrl?: string,
+  tag: string
 }
 
-export default function DraftMode({ draftMode, listenUrl }: DraftModeProps) {
+export default function DraftMode({ draftMode, listenUrl, tag }: DraftModeProps) {
 
   const pathname = usePathname()
   const router = useRouter()
@@ -20,6 +22,7 @@ export default function DraftMode({ draftMode, listenUrl }: DraftModeProps) {
     console.log('disable draft mode')
     disableDraftMode(pathname)
   }
+
 
   useEffect(() => {
     if (!listenUrl) return
@@ -31,8 +34,8 @@ export default function DraftMode({ draftMode, listenUrl }: DraftModeProps) {
     });
     eventSource.addEventListener("update", (event) => {
       console.log(event)
-      if (++updates > 1) router.refresh()
-
+      if (++updates > 1)
+        revalidateTag(tag)
     });
     return () => {
       eventSource.close()
