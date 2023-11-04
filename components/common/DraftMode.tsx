@@ -31,7 +31,8 @@ export default function DraftMode({ draftMode, listenUrl }: DraftModeProps) {
     });
     eventSource.addEventListener("update", (event) => {
       const result = JSON.parse(event.data);
-      router.refresh()
+      console.log(event)
+      //router.refresh()
     });
     return () => {
       eventSource.close()
