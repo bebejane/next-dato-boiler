@@ -4,6 +4,7 @@ import s from './DraftMode.module.scss'
 import { usePathname } from 'next/navigation'
 import { disableDraftMode } from '@app/api/draft/exit/action'
 import { useEffect } from 'react'
+import { useRouter } from 'next/navigation'
 
 export type DraftModeProps = {
   draftMode: boolean
@@ -13,6 +14,7 @@ export type DraftModeProps = {
 export default function DraftMode({ draftMode, listenUrl }: DraftModeProps) {
 
   const pathname = usePathname()
+  const router = useRouter()
 
   const disable = async () => {
     console.log('disable draft mode')
@@ -24,12 +26,13 @@ export default function DraftMode({ draftMode, listenUrl }: DraftModeProps) {
 
     console.log('listenUrl', listenUrl)
     const eventSource = new EventSource(listenUrl)
-    eventSource.onmessage = (e) => {
-      console.log('eventSource.onmessage', e)
-      if (e.data === 'exit') {
-        window.location.reload()
-      }
-    }
+    eventSource.addEventListener("open", () => {
+      console.log("connected to channel!");
+    });
+    eventSource.addEventListener("update", (event) => {
+      const result = JSON.parse(event.data);
+      router.refresh()
+    });
     return () => {
       eventSource.close()
     }
