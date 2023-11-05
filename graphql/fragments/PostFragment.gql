@@ -1,0 +1,18 @@
+fragment PostFragment on PostRecord {
+	id
+	title
+	slug
+	image {
+		...ImageFragment
+	}
+	content(markdown: false)
+	background {
+		hex
+	}
+	createdAt
+	updatedAt
+	author {
+		id
+		name
+	}
+}

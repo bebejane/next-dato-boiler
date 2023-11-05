@@ -6,7 +6,7 @@ import { cache } from 'react';
 import { buildClient } from '@datocms/cma-client-browser';
 import deepIterator from 'deep-iterator';
 
-const client = buildClient({ apiToken: process.env.DATOCMS_API_TOKEN });
+export default buildClient({ apiToken: process.env.DATOCMS_API_TOKEN });
 
 export type ApiQueryOptions<V> = {
   variables?: V;
@@ -42,7 +42,7 @@ export async function apiQuery<T, V>(query: DocumentNode, options: ApiQueryOptio
     queryId
   }
 
-  const tags = options.generateTags ? await generateIdTags(dedupeOptions, options.tags) : options.tags
+  const tags = options.generateTags ? await generateIdTags(await dedupedFetch(dedupeOptions), options.tags) : options.tags
   const res = options.includeDrafts ? await dedupedFetch({ ...dedupeOptions, url: 'https://graphql-listen.datocms.com/preview' }) : {}
   const { data } = await dedupedFetch({ ...dedupeOptions, tags });
 
@@ -115,13 +115,13 @@ const dedupedFetch = cache(async (options: DedupeOptions) => {
   return responseBody;
 })
 
-const generateIdTags = async (dedupeOptions: DedupeOptions, tags: string[]): Promise<string[]> => {
+export const generateIdTags = (data: any, tags?: string[]): string[] => {
 
-  const data = await dedupedFetch(dedupeOptions);
   const allTags: string[] = []
   for (let { key, value } of deepIterator(data))
     key === 'id' && allTags.push(value)
-  allTags.push.apply(allTags, tags)
-  return allTags
+  tags && allTags.push.apply(allTags, tags)
+
+  return allTags.filter((value, index, self) => self.indexOf(value) === index) // dedupe
 
 }

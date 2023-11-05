@@ -3,29 +3,36 @@
 import s from './page.module.scss'
 import Link from "next/link"
 import { apiQuery } from '@lib/client';
-import { AllPostsDocument, StartDocument } from '@graphql';
+import { StartDocument } from '@graphql';
 import { draftMode } from 'next/headers'
+import { format } from 'date-fns';
+import { DatoMarkdown as Markdown } from 'dato-nextjs-utils/components';
 
 export default async function Home() {
 
-  const { start } = await apiQuery<StartQuery>(StartDocument, { includeDrafts: draftMode().isEnabled });
-  const { posts } = await apiQuery<AllPostsQuery>(AllPostsDocument, { includeDrafts: draftMode().isEnabled });
+  const { start } = await apiQuery<StartQuery, StartQueryVariables>(StartDocument, { includeDrafts: draftMode().isEnabled });
 
   return (
-    <div className={s.container}>
+    <>
       <h1>{start.headline}</h1>
       <br />
-      <b>Posts</b>
-      <ul>
-        {posts.map(post => (
-          <li key={post.id}>
-            <Link href={`/posts/${post.slug}`}>
-              {post.title} {post.updatedAt} {post.author.name}
-            </Link>
-          </li>
-        ))}
-      </ul>
-      {posts.length === 0 && 'No posts yet...'}
-    </div>
+      {start.posts.map(post => (
+        <div className={s.post} key={post.id}>
+          <Link href={`/posts/${post.slug}`}>
+            <h3>
+              {post.title}
+            </h3>
+          </Link>
+          <div className={s.small}>
+            {format(new Date(post.updatedAt), 'yyyy-MM-dd HH:mm')}
+          </div>
+          <Markdown>{post.content}</Markdown>
+          <div className={s.small}>
+            {post.author.name}
+          </div>
+        </div>
+      ))}
+      {start.posts.length === 0 && 'No posts yet...'}
+    </>
   )
 }
