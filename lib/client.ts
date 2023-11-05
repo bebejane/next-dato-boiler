@@ -6,8 +6,6 @@ import { cache } from 'react';
 import { buildClient } from '@datocms/cma-client-browser';
 import deepIterator from 'deep-iterator';
 
-//export default buildClient({ apiToken: process.env.DATOCMS_API_TOKEN });
-
 export type ApiQueryOptions<V> = {
   variables?: V;
   includeDrafts?: boolean;
@@ -27,7 +25,7 @@ const defaultApiQueryOptions = {
   generateTags: true
 };
 
-export async function apiQuery<T, V>(query: DocumentNode, options: ApiQueryOptions<V>): Promise<T & { listenUrl: string | null }> {
+export async function apiQuery<T, V>(query: DocumentNode, options: ApiQueryOptions<V>): Promise<T & { draftUrl: string | null }> {
 
   options = { ...defaultApiQueryOptions, ...options }
 
@@ -46,7 +44,7 @@ export async function apiQuery<T, V>(query: DocumentNode, options: ApiQueryOptio
   const res = options.includeDrafts ? await dedupedFetch({ ...dedupeOptions, url: 'https://graphql-listen.datocms.com/preview' }) : {}
   const { data } = await dedupedFetch({ ...dedupeOptions, tags });
 
-  return { ...data, listenUrl: res.url ?? null }
+  return { ...data, draftUrl: res.url ?? null }
 }
 
 export type DedupeOptions = {

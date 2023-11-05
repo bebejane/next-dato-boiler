@@ -19,7 +19,7 @@ export async function generateStaticParams() {
 
 export default async function Post({ params }: { params: { post: string, id: string } }) {
 
-  const { post, listenUrl } = await apiQuery<PostQuery, PostQueryVariables>(PostDocument, {
+  const { post, draftUrl } = await apiQuery<PostQuery, PostQueryVariables>(PostDocument, {
     variables: { slug: params.post },
     includeDrafts: draftMode().isEnabled
   });
@@ -37,7 +37,7 @@ export default async function Post({ params }: { params: { post: string, id: str
         </p>
       </div>
       <BackgroundColor color={post.background?.hex} />
-      <DraftMode draftMode={draftMode().isEnabled} listenUrl={listenUrl} tag={post.id} />
+      <DraftMode draftMode={draftMode().isEnabled} draftUrl={draftUrl} tag={post.id} />
     </>
   )
 }

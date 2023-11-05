@@ -8,11 +8,11 @@ import { useEffect } from 'react'
 
 export type DraftModeProps = {
   draftMode: boolean
-  listenUrl?: string,
+  draftUrl?: string,
   tag: string
 }
 
-export default function DraftMode({ draftMode, listenUrl, tag }: DraftModeProps) {
+export default function DraftMode({ draftMode, draftUrl, tag }: DraftModeProps) {
 
   const pathname = usePathname()
 
@@ -23,10 +23,10 @@ export default function DraftMode({ draftMode, listenUrl, tag }: DraftModeProps)
 
   useEffect(() => {
 
-    if (!listenUrl) return
+    if (!draftUrl) return
 
     let updates = 0;
-    const eventSource = new EventSource(listenUrl)
+    const eventSource = new EventSource(draftUrl)
     eventSource.addEventListener("open", () => {
       console.log("connected to channel!");
     });
@@ -38,7 +38,7 @@ export default function DraftMode({ draftMode, listenUrl, tag }: DraftModeProps)
       eventSource.close()
     }
 
-  }, [listenUrl, tag])
+  }, [draftUrl, tag])
 
   if (!draftMode) return null
 

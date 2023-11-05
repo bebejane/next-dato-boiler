@@ -7,10 +7,11 @@ import { StartDocument } from '@graphql';
 import { draftMode } from 'next/headers'
 import { format } from 'date-fns';
 import { DatoMarkdown as Markdown } from 'dato-nextjs-utils/components';
+import { DraftMode } from '@components';
 
 export default async function Home() {
 
-  const { start } = await apiQuery<StartQuery, StartQueryVariables>(StartDocument, { includeDrafts: draftMode().isEnabled });
+  const { start, draftUrl } = await apiQuery<StartQuery, StartQueryVariables>(StartDocument, { includeDrafts: draftMode().isEnabled });
 
   return (
     <>
@@ -33,6 +34,7 @@ export default async function Home() {
         </div>
       ))}
       {start.posts.length === 0 && 'No posts yet...'}
+      <DraftMode draftMode={draftMode().isEnabled} draftUrl={draftUrl} tag={start.id} />
     </>
   )
 }
