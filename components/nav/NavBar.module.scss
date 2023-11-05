@@ -1,8 +1,10 @@
 .navbar {
   display: flex;
   flex-direction: row;
+  align-items: center;
   list-style: none;
   width: 100%;
-  background-color: lightblue;
-  padding: calc(var(--outer-margin) / 2);
+  height: var(--navbar-height);
+  background-color: rgb(201, 201, 201);
+  padding: var(--outer-margin);
 }

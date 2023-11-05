@@ -8,6 +8,7 @@ import { draftMode } from 'next/headers'
 import { format } from 'date-fns';
 import { DatoMarkdown as Markdown } from 'dato-nextjs-utils/components';
 import { DraftMode } from '@components';
+import { Image } from 'react-datocms';
 
 export default async function Home() {
 
@@ -23,10 +24,14 @@ export default async function Home() {
             <h3>
               {post.title}
             </h3>
+
+            <div className={s.small}>
+              {format(new Date(post.updatedAt), 'yyyy-MM-dd HH:mm')}
+            </div>
+            {post.image &&
+              <Image data={post.image.responsiveImage} className={s.image} pictureClassName={s.picture} placeholderClassName={s.picture} />
+            }
           </Link>
-          <div className={s.small}>
-            {format(new Date(post.updatedAt), 'yyyy-MM-dd HH:mm')}
-          </div>
           <Markdown>{post.content}</Markdown>
           <div className={s.small}>
             {post.author.name}

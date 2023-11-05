@@ -2,6 +2,18 @@
   margin-bottom: 2em;
 }
 
+.image {
+  width: 150px !important;
+  height: 150px !important;
+  margin-bottom: 0.3em;
+
+  .picture {
+    object-fit: cover;
+  }
+}
+
+
+
 .small {
   font-size: 0.7em;
   margin-bottom: 1em;

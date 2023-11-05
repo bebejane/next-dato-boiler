@@ -2,8 +2,8 @@
 	--black: #161616;
 	--white: #fcfcfc;
 	--red: #bf0000;
-	--outer-margin: 1.5em;
-
+	--outer-margin: 1em;
+	--navbar-height: calc(1em + calc(2 * var(--outer-margin)));
 	--background: var(--white);
 	--foreground: var(--black);
 
