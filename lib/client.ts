@@ -6,7 +6,7 @@ import { cache } from 'react';
 import { buildClient } from '@datocms/cma-client-browser';
 import deepIterator from 'deep-iterator';
 
-export default buildClient({ apiToken: process.env.DATOCMS_API_TOKEN });
+//export default buildClient({ apiToken: process.env.DATOCMS_API_TOKEN });
 
 export type ApiQueryOptions<V> = {
   variables?: V;
