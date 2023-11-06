@@ -2,6 +2,7 @@ import { draftMode } from 'next/headers'
 import { redirect } from 'next/navigation'
 import { cookies } from 'next/headers'
 
+export const dynamic = 'force-dynamic'
 export const runtime = "edge"
 
 export async function GET(request: Request) {
@@ -20,7 +21,7 @@ export async function GET(request: Request) {
     sameSite: 'none',
     secure: true,
     path: '/',
-    //maxAge: 2
+    maxAge: 3
   })
 
   redirect(slug)
