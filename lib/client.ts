@@ -40,7 +40,7 @@ export async function apiQuery<T, V>(query: DocumentNode, options: ApiQueryOptio
     queryId
   }
 
-  const tags = options.generateTags ? await generateIdTags(await dedupedFetch(dedupeOptions), options.tags) : options.tags
+  const tags = options.generateTags ? await generateIdTags(await dedupedFetch(dedupeOptions), options.tags, queryId) : options.tags
   const res = options.includeDrafts ? await dedupedFetch({ ...dedupeOptions, url: 'https://graphql-listen.datocms.com/preview' }) : {}
   const { data } = await dedupedFetch({ ...dedupeOptions, tags });
 
@@ -113,13 +113,16 @@ const dedupedFetch = cache(async (options: DedupeOptions) => {
   return responseBody;
 })
 
-export const generateIdTags = (data: any, tags?: string[]): string[] => {
+export const generateIdTags = (data: any, tags: string[] | null, queryId: string): string[] => {
 
   const allTags: string[] = []
+
   for (let { key, value } of deepIterator(data))
     key === 'id' && allTags.push(value)
-  tags && allTags.push.apply(allTags, tags)
 
-  return allTags.filter((value, index, self) => self.indexOf(value) === index) // dedupe
+  tags?.length && allTags.push.apply(allTags, tags)
+  const idTags = allTags.filter((value, index, self) => self.indexOf(value) === index) // dedupe
+  console.log('idTags', queryId, idTags)
+  return idTags
 
 }

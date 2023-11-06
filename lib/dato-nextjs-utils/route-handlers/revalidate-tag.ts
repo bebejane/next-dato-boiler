@@ -13,10 +13,11 @@ export default async function revalidateTagHandler(req: Request): Promise<Respon
   const { entity, event_type } = payload
   const { id } = entity
   const delay = Date.now() - Math.max(new Date(entity.meta.updated_at).getTime(), new Date(entity.meta.published_at).getTime(), new Date(entity.meta.created_at).getTime())
+  const now = Date.now()
 
   revalidateTag(id)
   console.log(`Revalidated tag (${event_type}): "${id}"`)
-  return new Response(JSON.stringify({ revalidated: true, id, delay, event_type }), { status: 200, headers: { 'content-type': 'application/json' } })
+  return new Response(JSON.stringify({ revalidated: true, id, now, delay, event_type }), { status: 200, headers: { 'content-type': 'application/json' } })
 
 }
 

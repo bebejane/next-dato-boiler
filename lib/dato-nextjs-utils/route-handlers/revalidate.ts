@@ -18,6 +18,7 @@ export default async function revalidate(req: Request, callback: (record: any, r
 
   const record = { ...entity.attributes, model: model.attributes }
   const delay = Date.now() - Math.max(new Date(entity.meta.updated_at).getTime(), new Date(entity.meta.published_at).getTime(), new Date(entity.meta.created_at).getTime())
+  const now = Date.now()
 
   return await callback(record, async (paths) => {
     try {
@@ -25,17 +26,17 @@ export default async function revalidate(req: Request, callback: (record: any, r
         return new Response('Nothing to revalidate. Paths empty', { status: 400 })
 
       if (paths.length === 0)
-        return new Response(JSON.stringify({ revalidated: false, paths, delay, event_type }), { status: 200, headers: { 'content-type': 'application/json' } })
+        return new Response(JSON.stringify({ revalidated: false, paths, delay, now, event_type }), { status: 200, headers: { 'content-type': 'application/json' } })
 
       paths.forEach(p => revalidatePath(p))
 
       console.log(`revalidate${delay && !['unpublish', 'delete'].includes(event_type) ? ` (${delay}ms)` : ''} ${event_type}`, paths)
 
-      return new Response(JSON.stringify({ revalidated: true, paths, delay, event_type }), { status: 200, headers: { 'content-type': 'application/json' } })
+      return new Response(JSON.stringify({ revalidated: true, paths, now, delay, event_type }), { status: 200, headers: { 'content-type': 'application/json' } })
     } catch (err) {
       console.log('Error revalidating', paths)
       console.error(err)
-      return new Response(JSON.stringify({ revalidated: false, paths, err, delay, event_type }), { status: 200, headers: { 'content-type': 'application/json' } })
+      return new Response(JSON.stringify({ revalidated: false, paths, err, now, delay, event_type }), { status: 200, headers: { 'content-type': 'application/json' } })
     }
   })
 
