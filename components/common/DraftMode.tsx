@@ -14,6 +14,13 @@ export type DraftModeProps = {
 
 export default function DraftMode({ draftMode, draftUrl, tag }: DraftModeProps) {
 
+  const pathname = usePathname()
+
+  const disable = async () => {
+    console.log('disable draft mode')
+    disableDraftMode(pathname)
+  }
+
   useEffect(() => {
 
     if (!draftUrl) return
@@ -35,14 +42,11 @@ export default function DraftMode({ draftMode, draftUrl, tag }: DraftModeProps) 
 
   if (!draftMode) return null
 
-  return null
-  /*
-  (
+  return (
 
     <button className={s.draftMode} onClick={disable}>
-      <div>Exit preview</div>
+      <div>Exit draft</div>
       <img width="20" height="20" />
     </button>
   )
-  */
 }

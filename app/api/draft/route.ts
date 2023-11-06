@@ -9,20 +9,23 @@ export async function GET(request: Request) {
   const { searchParams } = new URL(request.url)
   const secret = searchParams.get('secret')
   const slug = searchParams.get('slug')
+  const maxAge = searchParams.get('max-age')
 
   if (secret !== process.env.DATOCMS_PREVIEW_SECRET || !slug)
     return new Response('Invalid token', { status: 401 })
 
   draftMode().enable()
 
-  const bypassCookie = cookies().get('__prerender_bypass');
-  cookies().set(bypassCookie.name, bypassCookie.value, {
-    httpOnly: true,
-    sameSite: 'none',
-    secure: true,
-    path: '/',
-    maxAge: 3
-  })
+  if (maxAge) {
+    const bypassCookie = cookies().get('__prerender_bypass');
+    cookies().set(bypassCookie.name, bypassCookie.value, {
+      httpOnly: true,
+      sameSite: 'none',
+      secure: true,
+      path: '/',
+      maxAge: parseInt(maxAge)
+    })
+  }
 
   redirect(slug)
 }
