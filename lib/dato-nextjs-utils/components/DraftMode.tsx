@@ -3,7 +3,7 @@
 import s from './DraftMode.module.scss'
 import { usePathname } from 'next/navigation'
 import { disableDraftMode } from '@app/api/draft/exit/action'
-import revalidateTag from '@lib/actions/revalidate-tag'
+import revalidateTag from '../actions/revalidate-tag'
 import { useEffect, useState } from 'react'
 import { ImSpinner8 } from 'react-icons/im'
 

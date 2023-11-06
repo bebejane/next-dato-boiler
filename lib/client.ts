@@ -3,7 +3,6 @@
 import type { DocumentNode } from 'graphql';
 import { print } from 'graphql';
 import { cache } from 'react';
-import { buildClient } from '@datocms/cma-client-browser';
 import deepIterator from 'deep-iterator';
 
 export type ApiQueryOptions<V> = {
@@ -92,7 +91,6 @@ const dedupedFetch = cache(async (options: DedupeOptions) => {
   if (tags?.length > 0)
     next['tags'] = tags
 
-  //console.log('query', queryId, next)
   const response = await fetch(url ?? 'https://graphql.datocms.com/', {
     method: 'POST',
     headers,

@@ -7,7 +7,7 @@ import { StartDocument } from '@graphql';
 import { draftMode } from 'next/headers'
 import { format } from 'date-fns';
 import { DatoMarkdown as Markdown } from 'dato-nextjs-utils/components';
-import { DraftMode } from '@components';
+import DraftMode from '@lib/dato-nextjs-utils/components/DraftMode';
 import { Image } from 'react-datocms';
 
 export default async function Home() {
