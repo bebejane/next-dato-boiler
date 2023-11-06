@@ -53,10 +53,10 @@ export default function DraftMode({ draftMode, draftUrl, tag }: DraftModeProps) 
   return (
 
     <button className={s.draftMode} onClick={disable}>
-      <div>
+      <label>
         Exit draft
         {loading && <div className={s.loading}><ImSpinner8 /></div>}
-      </div>
+      </label>
       <img width="20" height="20" />
     </button>
   )
