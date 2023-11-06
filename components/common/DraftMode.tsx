@@ -4,7 +4,8 @@ import s from './DraftMode.module.scss'
 import { usePathname } from 'next/navigation'
 import { disableDraftMode } from '@app/api/draft/exit/action'
 import revalidateTag from '@lib/actions/revalidate-tag'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
+import { ImSpinner8 } from 'react-icons/im'
 
 export type DraftModeProps = {
   draftMode: boolean
@@ -15,10 +16,13 @@ export type DraftModeProps = {
 export default function DraftMode({ draftMode, draftUrl, tag }: DraftModeProps) {
 
   const pathname = usePathname()
+  const [loading, setLoading] = useState(false)
 
   const disable = async () => {
     console.log('disable draft mode')
-    disableDraftMode(pathname)
+    setLoading(true)
+    await disableDraftMode(pathname)
+    setLoading(false)
   }
 
   useEffect(() => {
@@ -30,9 +34,13 @@ export default function DraftMode({ draftMode, draftUrl, tag }: DraftModeProps) 
     eventSource.addEventListener("open", () => {
       console.log("connected to channel!");
     });
-    eventSource.addEventListener("update", (event) => {
-      if (++updates > 1)
-        revalidateTag(tag)
+    eventSource.addEventListener("update", async (event) => {
+      if (++updates <= 1) return
+
+      setLoading(true)
+      await revalidateTag(tag)
+      setLoading(false)
+
     });
     return () => {
       eventSource.close()
@@ -45,7 +53,10 @@ export default function DraftMode({ draftMode, draftUrl, tag }: DraftModeProps) 
   return (
 
     <button className={s.draftMode} onClick={disable}>
-      <div>Exit draft</div>
+      <div>
+        Exit draft
+        {loading && <div className={s.loading}><ImSpinner8 /></div>}
+      </div>
       <img width="20" height="20" />
     </button>
   )

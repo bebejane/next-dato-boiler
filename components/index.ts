@@ -6,5 +6,7 @@ export { default as index } from "./blocks/index";
 export * from "./blocks/index";
 export { default as DraftMode } from "./common/DraftMode";
 export * from "./common/DraftMode";
+export { default as RouteChange } from "./common/RouteChange";
+export * from "./common/RouteChange";
 export { default as NavBar } from "./nav/NavBar";
 export * from "./nav/NavBar";

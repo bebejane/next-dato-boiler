@@ -36,3 +36,30 @@
     background-size: cover;
   }
 }
+
+.loading {
+  position: abssolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(240, 240, 240);
+
+  svg {
+    animation: rotate 0.3s linear infinite;
+
+    path {
+      fill: var(--black);
+    }
+
+    @keyframes rotate {
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+  }
+}

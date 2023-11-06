@@ -6,6 +6,7 @@ import { apiQuery } from '@lib/client';
 import { GlobalDocument } from '@graphql';
 import { Metadata } from 'next';
 import { Icon } from 'next/dist/lib/metadata/types/metadata-types';
+import { RouteChange } from '@components';
 
 export type LayoutProps = {
   children: React.ReactNode
@@ -14,14 +15,17 @@ export type LayoutProps = {
 export default async function RootLayout({ children }: LayoutProps) {
 
   return (
-    <html lang="en">
-      <body id="root" >
-        <NavBar />
-        <main>
-          {children}
-        </main>
-      </body>
-    </html >
+    <>
+      <html lang="en">
+        <body id="root" >
+          <NavBar />
+          <main>
+            {children}
+          </main>
+        </body>
+      </html >
+      <RouteChange />
+    </>
   );
 }
 
