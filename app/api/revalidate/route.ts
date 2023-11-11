@@ -1,5 +1,5 @@
 
-import revalidate from '@lib/dato-nextjs-utils/route-handlers/revalidate';
+import revalidate from '@lib/next-dato-utils/route-handlers/revalidate';
 
 export const runtime = "nodejs"
 export const dynamic = "force-dynamic"

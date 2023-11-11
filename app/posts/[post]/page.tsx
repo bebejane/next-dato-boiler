@@ -6,7 +6,7 @@ import { apiQuery } from '@lib/client';
 import { AllPostsDocument, PostDocument } from '@graphql';
 import { DatoMarkdown as Markdown } from 'dato-nextjs-utils/components';
 import { draftMode } from 'next/headers'
-import DraftMode from '@lib/dato-nextjs-utils/components/DraftMode';
+import DraftMode from '@lib/next-dato-utils/components/DraftMode';
 import BackgroundColor from './BackgroundColor';
 
 export async function generateStaticParams() {

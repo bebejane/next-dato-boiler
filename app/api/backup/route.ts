@@ -1,4 +1,4 @@
-import backup from '@lib/dato-nextjs-utils/route-handlers/backup';
+import backup from '@lib/next-dato-utils/route-handlers/backup';
 
 export const runtime = "edge"
 
