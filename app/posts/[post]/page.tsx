@@ -10,9 +10,9 @@ import DraftMode from '@lib/next-dato-utils/components/DraftMode';
 import BackgroundColor from './BackgroundColor';
 
 export async function generateStaticParams() {
-  const { posts } = await apiQuery<AllPostsQuery, AllPostsQueryVariables>(AllPostsDocument, { generateTags: false });
+  const { allPosts } = await apiQuery<AllPostsQuery, AllPostsQueryVariables>(AllPostsDocument, { tags: ['post'] });
 
-  return posts.map((post) => ({
+  return allPosts.map((post) => ({
     post: post.slug,
   }))
 }
