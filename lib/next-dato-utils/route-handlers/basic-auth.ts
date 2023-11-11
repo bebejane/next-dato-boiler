@@ -1,8 +1,8 @@
 export default async function basicAuth(
   req: Request,
-  callback: (req: Request) => Promise<Response>,
+  callback?: (req: Request) => Promise<Response>,
   options?: { username: string, password: string }
-): Promise<Response> {
+): Promise<Response | boolean> {
 
   if (req.method === 'OPTIONS')
     return await callback(req)
@@ -21,5 +21,8 @@ export default async function basicAuth(
   if (!isAuthorized)
     return new Response('Access denied. Wrong password or username.', { status: 401 })
 
-  return await callback(req)
+  if (callback)
+    return await callback(req)
+
+  return true
 }

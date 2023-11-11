@@ -6,20 +6,25 @@ export const dynamic = "force-dynamic"
 
 export async function POST(req: Request) {
 
-  return await revalidate(req, async (record, revalidate) => {
+  return await revalidate(req, async (payload, revalidate) => {
 
-    const { api_key } = record.model;
-    const { slug } = record
+    const { api_key, entity, event_type } = payload;
+    const { id, attributes: { slug } } = entity
     const paths: string[] = []
+    const tags: string[] = [id]
 
     switch (api_key) {
       case 'post':
         paths.push(`/posts/${slug}`)
         paths.push(`/`)
         break;
+      case 'menu':
+        paths.push(`/`)
+        break;
       default:
         break;
     }
-    return revalidate(paths)
+
+    return revalidate(paths, tags)
   })
 }

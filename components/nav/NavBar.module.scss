@@ -7,4 +7,8 @@
   height: var(--navbar-height);
   background-color: rgb(201, 201, 201);
   padding: var(--outer-margin);
+
+  li {
+    margin-right: 1ch;
+  }
 }
