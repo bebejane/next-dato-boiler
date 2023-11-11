@@ -1,4 +1,4 @@
-import { revalidatePath } from "next/cache";
+import { revalidatePath, revalidateTag } from "next/cache";
 //import basicAuth from "./basic-auth";
 
 export default async function revalidate(req: Request, callback: (payload: TransformedPayload, revalidate: (paths: string[], tags: string[]) => Promise<Response>) => Promise<Response>) {
@@ -25,13 +25,13 @@ export default async function revalidate(req: Request, callback: (payload: Trans
         return new Response(JSON.stringify(response), { status: 200, headers: { 'content-type': 'application/json' } })
 
       paths?.forEach(p => revalidatePath(p))
-      tags?.forEach(t => revalidatePath(t))
+      tags?.forEach(t => revalidateTag(t))
 
-      return new Response(JSON.stringify({ ...response, revalidated: true }), { status: 200, headers: { 'content-type': 'application/json' } })
+      return new Response(JSON.stringify({ ...response, revalidated: true, paths, tags }), { status: 200, headers: { 'content-type': 'application/json' } })
     } catch (error) {
       console.log('Error revalidating', paths, tags)
       console.error(error)
-      return new Response(JSON.stringify({ ...response, error }), { status: 200, headers: { 'content-type': 'application/json' } })
+      return new Response(JSON.stringify({ ...response, paths, tags, error }), { status: 200, headers: { 'content-type': 'application/json' } })
     }
   })
 }
