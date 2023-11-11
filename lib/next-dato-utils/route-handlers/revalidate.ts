@@ -17,7 +17,7 @@ export default async function revalidate(req: Request, callback: (payload: Trans
   const transformedPayload: TransformedPayload = { entity, event_type, api_key }
   const delay = Date.now() - Math.max(new Date(entity.meta.updated_at).getTime(), new Date(entity.meta.published_at).getTime(), new Date(entity.meta.created_at).getTime())
   const now = Date.now()
-  const response = { revalidated: false, delay, now, event_type }
+  const response = { revalidated: false, event_type, api_key, delay, now }
 
   return await callback(transformedPayload, async (paths, tags) => {
     try {
