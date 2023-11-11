@@ -14,7 +14,7 @@ export default async function Home() {
 
   const { start, draftUrl } = await apiQuery<StartQuery, StartQueryVariables>(StartDocument, {
     includeDrafts: draftMode().isEnabled,
-    tags: ['start', 'post']
+    tags: ['start']
   });
 
   return (
