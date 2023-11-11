@@ -24,7 +24,7 @@ export async function POST(req: Request) {
       default:
         break;
     }
-
+    tags.push(api_key)
     return revalidate(paths, tags)
   })
 }

@@ -7,7 +7,11 @@ import { AllMenusDocument } from "@graphql";
 
 export default async function NavBar({ }: {}) {
 
-  const { allMenus } = await apiQuery<AllMenusQuery, AllMenusQueryVariables>(AllMenusDocument, { generateTags: true, revalidate: 120 });
+  const { allMenus } = await apiQuery<AllMenusQuery, AllMenusQueryVariables>(AllMenusDocument, {
+    generateTags: true,
+    revalidate: 120,
+    tags: ['menu']
+  });
 
   return (
     <ul className={s.navbar}>
