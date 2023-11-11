@@ -3,17 +3,18 @@
 import s from './DraftMode.module.scss'
 import { usePathname } from 'next/navigation'
 import { disableDraftMode } from '@app/api/draft/exit/action'
-import revalidateTag from '../actions/revalidate-tag'
+import { revalidateTag, revalidatePath } from '../actions/revalidate'
 import { useEffect, useState } from 'react'
 import { ImSpinner8 } from 'react-icons/im'
 
 export type DraftModeProps = {
   draftMode: boolean
   draftUrl?: string,
-  tag: string
+  tag?: string
+  path?: string
 }
 
-export default function DraftMode({ draftMode, draftUrl, tag }: DraftModeProps) {
+export default function DraftMode({ draftMode, draftUrl, tag, path }: DraftModeProps) {
 
   const pathname = usePathname()
   const [loading, setLoading] = useState(false)
@@ -38,7 +39,10 @@ export default function DraftMode({ draftMode, draftUrl, tag }: DraftModeProps) 
       if (++updates <= 1) return
 
       setLoading(true)
-      await revalidateTag(tag)
+      if (tag)
+        await revalidateTag(tag)
+      if (path)
+        await revalidatePath(path)
       setLoading(false)
 
     });
@@ -46,7 +50,7 @@ export default function DraftMode({ draftMode, draftUrl, tag }: DraftModeProps) 
       eventSource.close()
     }
 
-  }, [draftUrl, tag])
+  }, [draftUrl, tag, path])
 
   if (!draftMode) return null
 

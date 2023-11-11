@@ -1,5 +1,5 @@
 query AllPosts($first: IntType = 10, $skip: IntType = 0) {
-	posts: allPosts(first: $first, skip: $skip) {
+	allPosts(first: $first, skip: $skip) {
 		...PostFragment
 	}
 	pagination: _allPostsMeta {

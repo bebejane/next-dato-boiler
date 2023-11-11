@@ -1,4 +1,4 @@
-'use server';
+'use server'
 
 import type { DocumentNode } from 'graphql';
 import { print } from 'graphql';

@@ -9,6 +9,15 @@
   padding: var(--outer-margin);
 
   li {
-    margin-right: 1ch;
+    //
+
+
+
+    &:not(:last-child)::after {
+      content: "|";
+      margin-right: 1ch;
+      margin-left: 1ch;
+
+    }
   }
 }

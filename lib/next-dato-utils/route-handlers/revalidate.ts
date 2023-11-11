@@ -1,7 +1,7 @@
 import { revalidatePath, revalidateTag } from "next/cache";
 //import basicAuth from "./basic-auth";
 
-export default async function revalidate(req: Request, callback: (payload: TransformedPayload, revalidate: (paths: string[], tags: string[]) => Promise<Response>) => Promise<Response>) {
+export default async function revalidate(req: Request, callback: (payload: RevalidatePayload, revalidate: (paths: string[], tags: string[]) => Promise<Response>) => Promise<Response>) {
 
   const payload = await req.json() as DatoWebhookPayload
 
@@ -14,7 +14,7 @@ export default async function revalidate(req: Request, callback: (payload: Trans
   if (!api_key)
     return new Response('Model api_key not found in payload', { status: 400 })
 
-  const transformedPayload: TransformedPayload = { entity, event_type, api_key }
+  const transformedPayload: RevalidatePayload = { entity, event_type, api_key }
   const delay = Date.now() - Math.max(new Date(entity.meta.updated_at).getTime(), new Date(entity.meta.published_at).getTime(), new Date(entity.meta.created_at).getTime())
   const now = Date.now()
   const response = { revalidated: false, event_type, api_key, delay, now }
@@ -36,7 +36,7 @@ export default async function revalidate(req: Request, callback: (payload: Trans
   })
 }
 
-export type TransformedPayload = {
+export type RevalidatePayload = {
   event_type: DatoWebhookPayload['event_type']
   entity: DatoWebhookPayload['entity']
   api_key: string
