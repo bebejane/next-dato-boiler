@@ -9,7 +9,7 @@ export default async function NavBar({ }: {}) {
 
   const { allMenus } = await apiQuery<AllMenusQuery, AllMenusQueryVariables>(AllMenusDocument, {
     generateTags: true,
-    revalidate: 120,
+    revalidate: 30,
     tags: ['menu']
   });
 
