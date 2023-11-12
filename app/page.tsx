@@ -5,7 +5,9 @@ import Link from "next/link"
 import { StartDocument } from '@graphql';
 import { draftMode } from 'next/headers'
 import { format } from 'date-fns';
-import { Markdown, DraftMode, apiQuery } from 'next-dato-utils';
+import { Markdown, apiQuery } from 'next-dato-utils';
+import DraftMode from '@lib/draft/DraftMode';
+
 import { Image } from 'react-datocms';
 
 export default async function Home() {
@@ -39,7 +41,7 @@ export default async function Home() {
         </div>
       ))}
       {start.posts.length === 0 && 'No posts yet...'}
-      <DraftMode enabled={draftMode().isEnabled} draftUrl={draftUrl} tag={start.id} />
+      <DraftMode enabled={true} draftUrl={draftUrl} tag={start.id} />
     </>
   )
 }
