@@ -25,7 +25,7 @@ export default async function Posts() {
           ))}
         </ul>
       </div>
-      <DraftMode draftMode={draftMode().isEnabled} draftUrl={draftUrl} path="/posts" />
+      <DraftMode enabled={draftMode().isEnabled} draftUrl={draftUrl} path="/posts" />
     </>
   )
 }
