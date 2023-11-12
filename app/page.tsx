@@ -3,7 +3,7 @@
 import s from './page.module.scss'
 import Link from "next/link"
 import { StartDocument } from '@graphql';
-import { cookies, draftMode } from 'next/headers'
+import { draftMode } from 'next/headers'
 import { format } from 'date-fns';
 import { Markdown, DraftMode, apiQuery } from 'next-dato-utils';
 import { Image } from 'react-datocms';
