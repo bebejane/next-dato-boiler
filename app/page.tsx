@@ -2,12 +2,10 @@
 
 import s from './page.module.scss'
 import Link from "next/link"
-import { apiQuery } from '@lib/client';
 import { StartDocument } from '@graphql';
 import { draftMode } from 'next/headers'
 import { format } from 'date-fns';
-import { DatoMarkdown as Markdown } from 'dato-nextjs-utils/components';
-import DraftMode from '@lib/next-dato-utils/components/DraftMode';
+import { Markdown, DraftMode, apiQuery } from 'next-dato-utils';
 import { Image } from 'react-datocms';
 
 export default async function Home() {
@@ -27,7 +25,6 @@ export default async function Home() {
             <h3>
               {post.title}
             </h3>
-
             <div className={s.small}>
               {format(new Date(post.updatedAt), 'yyyy-MM-dd HH:mm')}
             </div>
@@ -35,7 +32,7 @@ export default async function Home() {
               <Image data={post.image.responsiveImage} className={s.image} pictureClassName={s.picture} placeholderClassName={s.picture} />
             }
           </Link>
-          <Markdown>{post.content}</Markdown>
+          <Markdown content={post.content} />
           <div className={s.small}>
             {post.author.name}
           </div>

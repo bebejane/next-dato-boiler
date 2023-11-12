@@ -2,11 +2,9 @@
 
 import s from './page.module.scss'
 import { notFound } from 'next/navigation';
-import { apiQuery } from '@lib/client';
 import { AllPostsDocument, PostDocument } from '@graphql';
-import { DatoMarkdown as Markdown } from 'dato-nextjs-utils/components';
+import { Markdown, DraftMode, apiQuery } from 'next-dato-utils';
 import { draftMode } from 'next/headers'
-import DraftMode from '@lib/next-dato-utils/components/DraftMode';
 import BackgroundColor from './BackgroundColor';
 
 export async function generateStaticParams() {
@@ -31,7 +29,7 @@ export default async function Post({ params }: { params: { post: string, id: str
     <>
       <div className={s.container}>
         <h1>{post.title}</h1>
-        <Markdown>{post.content}</Markdown>
+        <Markdown content={post.content} />
         <p>
           {post.author.name}
         </p>

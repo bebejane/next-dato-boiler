@@ -1,10 +1,9 @@
 'use server'
 
 import s from './page.module.scss'
-import { apiQuery } from '@lib/client';
+import { apiQuery, DraftMode } from 'next-dato-utils';
 import { AllPostsDocument } from '@graphql';
 import { draftMode } from 'next/headers'
-import DraftMode from '@lib/next-dato-utils/components/DraftMode';
 import Link from 'next/link';
 
 export default async function Posts() {

@@ -1,5 +1,4 @@
-import test from '@lib/next-dato-utils/route-handlers/test'
-import cors from '@lib/next-dato-utils/route-handlers/cors'
+import { test, cors } from 'next-dato-utils'
 
 export const runtime = "edge"
 

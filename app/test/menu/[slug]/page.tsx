@@ -1,7 +1,7 @@
 'use server'
 
 import { AllMenusDocument } from "@graphql";
-import { apiQuery } from "@lib/client";
+import { apiQuery } from "next-dato-utils";
 
 export async function generateStaticParams() {
   const { allMenus } = await apiQuery<AllMenusQuery, AllMenusQueryVariables>(AllMenusDocument, { generateTags: true });

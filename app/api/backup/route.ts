@@ -1,4 +1,4 @@
-import backup from '@lib/next-dato-utils/route-handlers/backup';
+import { backup } from 'next-dato-utils';
 
 export const runtime = "edge"
 
