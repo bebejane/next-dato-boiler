@@ -17,10 +17,7 @@ export async function generateStaticParams() {
 
 export default async function Post({ params }: { params: { post: string, id: string } }) {
 
-  const { post, draftUrl } = await apiQuery<PostQuery, PostQueryVariables>(PostDocument, {
-    variables: { slug: params.post },
-    includeDrafts: draftMode().isEnabled
-  });
+  const { post, draftUrl } = await apiQuery<PostQuery, PostQueryVariables>(PostDocument, { variables: { slug: params.post } });
 
   if (!post)
     return notFound();
