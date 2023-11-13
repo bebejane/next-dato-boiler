@@ -7,9 +7,6 @@ import { draftMode } from 'next/headers'
 import { format } from 'date-fns';
 import { apiQuery, Markdown, DraftMode } from 'next-dato-utils';
 import { Image } from 'react-datocms';
-//import DraftMode from 'next-dato-draft';
-//import DraftMode from '@lib/draft/DraftMode';
-//import { DraftMode } from 'next-dato-utils';
 
 export default async function Home() {
 
@@ -42,7 +39,7 @@ export default async function Home() {
         </div>
       ))}
       {start.posts.length === 0 && 'No posts yet...'}
-      <DraftMode enabled={draftMode().isEnabled} draftUrl={draftUrl} tag={start.id} />
+      <DraftMode url={draftUrl} tag={start.id} />
     </>
   )
 }
