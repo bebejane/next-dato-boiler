@@ -28,6 +28,7 @@
 		"graphql": "^16.8.1",
 		"markdown-truncate": "^1.1.0",
 		"next": "^14.0.2",
+		"next-dato-draft": "github:bebejane/next-dato-draft",
 		"next-dato-utils": "github:bebejane/next-dato-utils",
 		"next-seo": "^5.15.0",
 		"next-sitemap": "^3.1.55",

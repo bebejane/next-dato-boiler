@@ -1,6 +1,6 @@
 'use client'
 
-import { revalidateTag, revalidatePath, disableDraftMode } from './actions'
+import { revalidateTag, revalidatePath } from './actions'
 import s from './DraftMode.module.scss'
 import { usePathname } from 'next/navigation'
 import { useEffect, useTransition } from 'react'
@@ -9,10 +9,11 @@ export type DraftModeProps = {
   enabled: boolean
   draftUrl?: string,
   tag?: string
-  path?: string
+  path?: string,
+  disableDraftMode?: (pathname?: string) => void
 }
 
-export default function DraftMode({ enabled, draftUrl, tag, path }: DraftModeProps) {
+export default function DraftMode({ enabled, draftUrl, tag, path, disableDraftMode }: DraftModeProps) {
 
   const pathname = usePathname()
   const [loading, startTransition] = useTransition();
