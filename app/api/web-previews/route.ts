@@ -18,8 +18,8 @@ export async function POST(req: NextRequest) {
       case 'post':
         path = `/posts/${slug}`
         break;
-      case 'user':
-        path = `/users/${slug}`
+      case 'menu':
+        path = `/`
         break;
       default:
         break;
