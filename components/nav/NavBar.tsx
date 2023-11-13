@@ -22,7 +22,7 @@ export default async function NavBar({ }: {}) {
           <li key={id}><Link href={`/test/menu/${slug}`}>{title}</Link></li>
         ))}
       </ul>
-      <DraftMode url={draftUrl} path={'/'} />
+      <DraftMode url={draftUrl} tag={'menu'} />
     </>
   );
 }
