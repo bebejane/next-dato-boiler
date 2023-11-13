@@ -3,17 +3,13 @@
 import s from './page.module.scss'
 import Link from "next/link"
 import { StartDocument } from '@graphql';
-import { draftMode } from 'next/headers'
 import { format } from 'date-fns';
 import { apiQuery, Markdown, DraftMode } from 'next-dato-utils';
 import { Image } from 'react-datocms';
 
 export default async function Home() {
 
-  const { start, draftUrl } = await apiQuery<StartQuery, StartQueryVariables>(StartDocument, {
-    includeDrafts: draftMode().isEnabled,
-    tags: ['start']
-  });
+  const { start, draftUrl } = await apiQuery<StartQuery, StartQueryVariables>(StartDocument, { tags: ['start'] });
 
   return (
     <>

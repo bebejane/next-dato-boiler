@@ -4,7 +4,6 @@ import s from './page.module.scss'
 import { notFound } from 'next/navigation';
 import { AllPostsDocument, PostDocument } from '@graphql';
 import { Markdown, DraftMode, apiQuery } from 'next-dato-utils';
-import { draftMode } from 'next/headers'
 import BackgroundColor from './BackgroundColor';
 
 export async function generateStaticParams() {
