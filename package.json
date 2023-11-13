@@ -3,8 +3,7 @@
 	"version": "0.1.0",
 	"private": true,
 	"scripts": {
-		"dev": "npm run dev:watch",
-		"dev:watch": "next dev & npm run barrel:watch & npm run codegen",
+		"dev": "next dev --experimental-https & npm run barrel:watch & npm run codegen",
 		"build": "next build && npm run postbuild",
 		"codegen": "graphql-codegen --watch",
 		"start": "next start",

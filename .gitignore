@@ -38,3 +38,5 @@ yarn-error.log*
 
 # Dato introspection types
 @types/datocms.d.ts
+
+certificates
