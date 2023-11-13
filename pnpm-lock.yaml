@@ -64,7 +64,7 @@ dependencies:
   markdown-truncate: 1.1.0
   next: 14.0.2_2sxiyfzeap2fgw7t7svnurc6pi
   next-dato-draft: github.com/bebejane/next-dato-draft/a636a99b5369bf69c4b40ee0a7d4ffde19714c03_bjy3eoieuxcj4gpfd47l3hnk7e
-  next-dato-utils: github.com/bebejane/next-dato-utils/8539e187f24d1898207fd1b884e03f987357a796_bjy3eoieuxcj4gpfd47l3hnk7e
+  next-dato-utils: github.com/bebejane/next-dato-utils/72b0ccd82fb422ac37557f7d3b9d09f117d6488a_bjy3eoieuxcj4gpfd47l3hnk7e
   next-seo: 5.15.0_jkbxmum2k66uczeeyfa2ahwyou
   next-sitemap: 3.1.55_blke3mye4q2ur4oqzj6c3ojmza
   nextjs-google-analytics: 2.3.3_next@14.0.2+react@18.2.0
@@ -7585,11 +7585,11 @@ packages:
       - supports-color
     dev: false
 
-  github.com/bebejane/next-dato-utils/8539e187f24d1898207fd1b884e03f987357a796_bjy3eoieuxcj4gpfd47l3hnk7e:
-    resolution: {tarball: https://codeload.github.com/bebejane/next-dato-utils/tar.gz/8539e187f24d1898207fd1b884e03f987357a796}
-    id: github.com/bebejane/next-dato-utils/8539e187f24d1898207fd1b884e03f987357a796
+  github.com/bebejane/next-dato-utils/72b0ccd82fb422ac37557f7d3b9d09f117d6488a_bjy3eoieuxcj4gpfd47l3hnk7e:
+    resolution: {tarball: https://codeload.github.com/bebejane/next-dato-utils/tar.gz/72b0ccd82fb422ac37557f7d3b9d09f117d6488a}
+    id: github.com/bebejane/next-dato-utils/72b0ccd82fb422ac37557f7d3b9d09f117d6488a
     name: next-dato-utils
-    version: 1.0.90
+    version: 1.0.92
     engines: {node: '>=0.18'}
     hasBin: true
     peerDependencies:
