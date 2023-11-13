@@ -42,7 +42,7 @@ export default async function Home() {
         </div>
       ))}
       {start.posts.length === 0 && 'No posts yet...'}
-      <DraftMode enabled={true} draftUrl={draftUrl} tag={start.id} />
+      <DraftMode enabled={draftMode().isEnabled} draftUrl={draftUrl} tag={start.id} />
     </>
   )
 }
