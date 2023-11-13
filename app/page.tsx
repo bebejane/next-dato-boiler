@@ -4,19 +4,11 @@ import s from './page.module.scss'
 import Link from "next/link"
 import { StartDocument } from '@graphql';
 import { draftMode } from 'next/headers'
-//import { disableDraftMode } from '@lib/draft/actions';
 import { format } from 'date-fns';
 import { apiQuery, Markdown, disableDraftMode } from 'next-dato-utils';
 import { Image } from 'react-datocms';
 import DraftMode from 'next-dato-draft';
 //import DraftMode from '@lib/draft/DraftMode';
-/*
-const disableDraftMode = async (pathname?: string) => {
-  'use server'
-  draftMode().disable()
-  redirect(pathname || '/')
-}
-*/
 //import { DraftMode } from 'next-dato-utils';
 
 export default async function Home() {
@@ -50,7 +42,7 @@ export default async function Home() {
         </div>
       ))}
       {start.posts.length === 0 && 'No posts yet...'}
-      <DraftMode enabled={true} draftUrl={draftUrl} tag={start.id} disableDraftMode={disableDraftMode} />
+      <DraftMode enabled={draftMode().isEnabled} draftUrl={draftUrl} tag={start.id} disableDraftMode={disableDraftMode} />
     </>
   )
 }
