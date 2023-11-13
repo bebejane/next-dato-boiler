@@ -3,7 +3,6 @@
 import s from './page.module.scss'
 import { apiQuery, DraftMode } from 'next-dato-utils';
 import { AllPostsDocument } from '@graphql';
-import { draftMode } from 'next/headers'
 import Link from 'next/link';
 
 export default async function Posts() {
@@ -25,7 +24,7 @@ export default async function Posts() {
           ))}
         </ul>
       </div>
-      <DraftMode enabled={draftMode().isEnabled} draftUrl={draftUrl} path="/posts" />
+      <DraftMode url={draftUrl} path="/posts" />
     </>
   )
 }

@@ -35,7 +35,7 @@ export default async function Post({ params }: { params: { post: string, id: str
         </p>
       </div>
       <BackgroundColor color={post.background?.hex} />
-      <DraftMode enabled={draftMode().isEnabled} draftUrl={draftUrl} tag={post.id} />
+      <DraftMode url={draftUrl} tag={post.id} />
     </>
   )
 }
