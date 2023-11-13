@@ -55,7 +55,7 @@ dependencies:
   dotenv: 16.3.1
   graphql: 16.8.1
   next: 14.0.2_2sxiyfzeap2fgw7t7svnurc6pi
-  next-dato-utils: github.com/bebejane/next-dato-utils/a0b16bc2bde1ace0e0d3fcf07a6cedaf99c38af9_bjy3eoieuxcj4gpfd47l3hnk7e
+  next-dato-utils: github.com/bebejane/next-dato-utils/c7dc2b7a48d69751a2bffcc9ba6818eb408804dd_bjy3eoieuxcj4gpfd47l3hnk7e
   next-seo: 5.15.0_jkbxmum2k66uczeeyfa2ahwyou
   next-sitemap: 3.1.55_blke3mye4q2ur4oqzj6c3ojmza
   nextjs-google-analytics: 2.3.3_next@14.0.2+react@18.2.0
@@ -3696,7 +3696,7 @@ packages:
     resolution: {integrity: sha512-7Gps/XWymbLk2QLYK4NzpMOrYjMhdIxXuIvy2QBsLE6ljuodKvdkWs/cpyJJ3CVIVpH0Oi1Hvg1ovbMzLdFBBg==}
     engines: {node: ^10.12.0 || >=12.0.0}
     dependencies:
-      flat-cache: 3.1.1
+      flat-cache: 3.2.0
     dev: true
 
   /fill-range/7.0.1:
@@ -3735,9 +3735,9 @@ packages:
       path-exists: 4.0.0
     dev: true
 
-  /flat-cache/3.1.1:
-    resolution: {integrity: sha512-/qM2b3LUIaIgviBQovTLvijfyOQXPtSRnRK26ksj2J7rzPIecePUIpJsZ4T02Qg+xiAEKIs5K8dsHEd+VaKa/Q==}
-    engines: {node: '>=12.0.0'}
+  /flat-cache/3.2.0:
+    resolution: {integrity: sha512-CYcENa+FtcUKLmhhqyctpclsq7QF38pKjZHsGNiSQF5r4FtoKDWabFDl3hzaEQMvT1LHEysw5twgLvpYYb4vbw==}
+    engines: {node: ^10.12.0 || >=12.0.0}
     dependencies:
       flatted: 3.2.9
       keyv: 4.5.4
@@ -5731,8 +5731,8 @@ packages:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
     dev: true
 
-  /react-markdown/9.0.0_u5zja476buyywzbvglb2fbhaii:
-    resolution: {integrity: sha512-v6yNf3AB8GfJ8lCpUvzxAXKxgsHpdmWPlcVRQ6Nocsezp255E/IDrF31kLQsPJeB/cKto/geUwjU36wH784FCA==}
+  /react-markdown/9.0.1_u5zja476buyywzbvglb2fbhaii:
+    resolution: {integrity: sha512-186Gw/vF1uRkydbsOIkcGXw7aHq0sZOCRFFjGrr7b9+nVZg4UfA4enXCaxm4fUzecU38sWfrNDitGhshuU7rdg==}
     peerDependencies:
       '@types/react': '>=18'
       react: '>=18'
@@ -5743,7 +5743,6 @@ packages:
       hast-util-to-jsx-runtime: 2.2.0
       html-url-attributes: 3.0.0
       mdast-util-to-hast: 13.0.2
-      micromark-util-sanitize-uri: 2.0.0
       react: 18.2.0
       remark-parse: 11.0.0
       remark-rehype: 11.0.0
@@ -6931,11 +6930,11 @@ packages:
     resolution: {integrity: sha512-bXE4cR/kVZhKZX/RjPEflHaKVhUVl85noU3v6b8apfQEc1x4A+zBxjZ4lN8LqGd6WZ3dl98pY4o717VFmoPp+A==}
     dev: false
 
-  github.com/bebejane/next-dato-utils/a0b16bc2bde1ace0e0d3fcf07a6cedaf99c38af9_bjy3eoieuxcj4gpfd47l3hnk7e:
-    resolution: {tarball: https://codeload.github.com/bebejane/next-dato-utils/tar.gz/a0b16bc2bde1ace0e0d3fcf07a6cedaf99c38af9}
-    id: github.com/bebejane/next-dato-utils/a0b16bc2bde1ace0e0d3fcf07a6cedaf99c38af9
+  github.com/bebejane/next-dato-utils/c7dc2b7a48d69751a2bffcc9ba6818eb408804dd_bjy3eoieuxcj4gpfd47l3hnk7e:
+    resolution: {tarball: https://codeload.github.com/bebejane/next-dato-utils/tar.gz/c7dc2b7a48d69751a2bffcc9ba6818eb408804dd}
+    id: github.com/bebejane/next-dato-utils/c7dc2b7a48d69751a2bffcc9ba6818eb408804dd
     name: next-dato-utils
-    version: 1.0.95
+    version: 1.0.103
     engines: {node: '>=0.18'}
     hasBin: true
     peerDependencies:
@@ -6964,7 +6963,7 @@ packages:
       react: 18.2.0
       react-datocms: 4.1.3_bfvpv3ajad3vqegote5bklnhgq
       react-dom: 18.2.0_react@18.2.0
-      react-markdown: 9.0.0_u5zja476buyywzbvglb2fbhaii
+      react-markdown: 9.0.1_u5zja476buyywzbvglb2fbhaii
       remark-breaks: 4.0.0
       remark-gfm: 4.0.0
       sass: 1.69.5
