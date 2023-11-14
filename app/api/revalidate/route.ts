@@ -8,7 +8,7 @@ export async function POST(req: Request) {
 
   return await revalidate(req, async (payload, revalidate) => {
 
-    const { api_key, entity, event_type } = payload;
+    const { api_key, entity, event_type, entity_type } = payload;
     const { id, attributes: { slug } } = entity
     const paths: string[] = []
     const tags: string[] = [id]
@@ -24,7 +24,9 @@ export async function POST(req: Request) {
       default:
         break;
     }
-    tags.push(api_key)
+
+    if (api_key)
+      tags.push(api_key)
     return revalidate(paths, tags)
   })
 }
