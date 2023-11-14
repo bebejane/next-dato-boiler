@@ -25,7 +25,12 @@ export default async function Home() {
               {format(new Date(post.updatedAt), 'yyyy-MM-dd HH:mm')}
             </div>
             {post.image &&
-              <Image data={post.image.responsiveImage} className={s.image} pictureClassName={s.picture} placeholderClassName={s.picture} />
+              <figure>
+                <Image data={post.image.responsiveImage} className={s.image} pictureClassName={s.picture} placeholderClassName={s.picture} />
+                <figcaption>
+                  {post.image.title}
+                </figcaption>
+              </figure>
             }
           </Link>
           <Markdown content={post.content} />
