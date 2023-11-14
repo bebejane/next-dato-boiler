@@ -4,7 +4,8 @@
 	"private": true,
 	"scripts": {
 		"dev": "next dev & npm run barrel:watch & npm run codegen",
-		"build": "next build && npm run postbuild",
+		"build": "npm run clear:cache && next build && npm run postbuild",
+		"clear:cache": "rm -rf .next/cache/fetch-cache",
 		"codegen": "graphql-codegen --watch",
 		"start": "next start",
 		"lint": "next lint",
