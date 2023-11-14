@@ -77,15 +77,7 @@ p.intro,
 footer,
 footer nav,
 figcaption,
-.caption label {
-  font-family: $headline-font;
-  font-size: 0.75rem;
-  text-align: center;
-
-  @include mq($from: wide) {
-    font-size: 0.7rem;
-  }
-}
+.caption label {}
 
 nav,
 .mid,

@@ -21,7 +21,6 @@ body {
 	font-family: $body-font;
 	-webkit-font-smoothing: antialiased;
 	font-feature-settings: "liga", "kern";
-	overflow-x: hidden;
 }
 
 html {
@@ -34,6 +33,7 @@ body {
 }
 
 main {
+	display: block;
 	padding: var(--outer-margin);
 }
 
@@ -99,7 +99,9 @@ button {
 }
 
 figcaption {
-	@include mq($until: tablet) {}
+	line-height: 1;
+	font-size: 0.7em;
+	margin-bottom: 1em;
 }
 
 hr {}
