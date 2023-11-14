@@ -81,6 +81,17 @@ export const Post: DocumentNode;
 }
     
 
+declare module '*/product.gql' {
+  import { DocumentNode } from 'graphql';
+  const defaultDocument: DocumentNode;
+  export const AllProducts: DocumentNode;
+export const Product: DocumentNode;
+export const AllCurrencies: DocumentNode;
+
+  export default defaultDocument;
+}
+    
+
 declare module '*/seo.gql' {
   import { DocumentNode } from 'graphql';
   const defaultDocument: DocumentNode;

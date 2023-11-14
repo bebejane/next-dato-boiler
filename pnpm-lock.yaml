@@ -55,7 +55,7 @@ dependencies:
   dotenv: 16.3.1
   graphql: 16.8.1
   next: 14.0.2_2sxiyfzeap2fgw7t7svnurc6pi
-  next-dato-utils: github.com/bebejane/next-dato-utils/43e3ff50623a537764deb15212586f811f9df3ba_bjy3eoieuxcj4gpfd47l3hnk7e
+  next-dato-utils: github.com/bebejane/next-dato-utils/0477b86cdcf53b7884df48a62280cd59e9a13b31_bjy3eoieuxcj4gpfd47l3hnk7e
   next-seo: 5.15.0_jkbxmum2k66uczeeyfa2ahwyou
   next-sitemap: 3.1.55_blke3mye4q2ur4oqzj6c3ojmza
   nextjs-google-analytics: 2.3.3_next@14.0.2+react@18.2.0
@@ -6930,11 +6930,11 @@ packages:
     resolution: {integrity: sha512-bXE4cR/kVZhKZX/RjPEflHaKVhUVl85noU3v6b8apfQEc1x4A+zBxjZ4lN8LqGd6WZ3dl98pY4o717VFmoPp+A==}
     dev: false
 
-  github.com/bebejane/next-dato-utils/43e3ff50623a537764deb15212586f811f9df3ba_bjy3eoieuxcj4gpfd47l3hnk7e:
-    resolution: {tarball: https://codeload.github.com/bebejane/next-dato-utils/tar.gz/43e3ff50623a537764deb15212586f811f9df3ba}
-    id: github.com/bebejane/next-dato-utils/43e3ff50623a537764deb15212586f811f9df3ba
+  github.com/bebejane/next-dato-utils/0477b86cdcf53b7884df48a62280cd59e9a13b31_bjy3eoieuxcj4gpfd47l3hnk7e:
+    resolution: {tarball: https://codeload.github.com/bebejane/next-dato-utils/tar.gz/0477b86cdcf53b7884df48a62280cd59e9a13b31}
+    id: github.com/bebejane/next-dato-utils/0477b86cdcf53b7884df48a62280cd59e9a13b31
     name: next-dato-utils
-    version: 1.0.117
+    version: 1.0.127
     engines: {node: '>=0.18'}
     hasBin: true
     peerDependencies:

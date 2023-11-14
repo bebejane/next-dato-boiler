@@ -1,0 +1,34 @@
+query AllProducts {
+	allProducts {
+		id
+		title
+		price {
+			amount
+			currency {
+				id
+				code
+			}
+		}
+	}
+}
+
+query Product($id: ItemId!) {
+	product(filter: { id: { eq: $id } }) {
+		id
+		title
+		price {
+			amount
+			currency {
+				id
+				code
+			}
+		}
+	}
+}
+
+query AllCurrencies {
+	allCurrencies {
+		id
+		code
+	}
+}

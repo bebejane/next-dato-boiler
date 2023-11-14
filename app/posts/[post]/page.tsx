@@ -32,6 +32,7 @@ export default async function Post({ params }: { params: { post: string, id: str
       </div>
       <BackgroundColor color={post.background?.hex} />
       <DraftMode url={draftUrl} tag={post.id} />
+
     </>
   )
 }
