@@ -4,7 +4,7 @@ import s from './page.module.scss'
 import Link from "next/link"
 import { StartDocument } from '@graphql';
 import { format } from 'date-fns';
-import { apiQuery, Markdown, DraftMode } from 'next-dato-utils';
+import { apiQuery, Markdown, DraftMode, sleep } from 'next-dato-utils';
 import { Image } from 'react-datocms';
 
 export default async function Home() {
