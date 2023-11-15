@@ -8,7 +8,6 @@ import { AllMenusDocument } from "@graphql";
 export default async function NavBar({ }: {}) {
 
   const { allMenus, draftUrl } = await apiQuery<AllMenusQuery, AllMenusQueryVariables>(AllMenusDocument, {
-    generateTags: true,
     revalidate: 30,
     tags: ['menu']
   });
@@ -19,7 +18,7 @@ export default async function NavBar({ }: {}) {
         <li><Link href={'/'} prefetch={false}>Home</Link></li>
         <li><Link href={'/posts'}>Posts</Link></li>
         {allMenus.map(({ id, title, slug }) => (
-          <li key={id}><Link href={`/test/menu/${slug}`}>{title}</Link></li>
+          <li key={id}>{title}</li>
         ))}
       </ul>
       <DraftMode url={draftUrl} tag={'menu'} />
