@@ -1,17 +1,29 @@
 'use server'
 
-import { AllMenusDocument } from "@graphql";
+import { AllPostsTestDocument } from "@graphql";
 import { apiQuery } from "next-dato-utils";
-import ServerTest from "@app/test/ServerTest";
-import { Suspense } from "react";
 
 export default async function TestPage() {
+  const { allPosts, allCurrencies } = await apiQuery<AllPostsTestQuery, AllPostsTestQueryVariables>(AllPostsTestDocument, {
+    all: true,
+    variables: {
+      first: 100,
+      skip: 0
+    }
+  });
+  //console.log(data)
+
   return (
     <div>
       <h1>Test Page</h1>
-      <Suspense fallback={<div>Loading...</div>}>
-        <ServerTest />
-      </Suspense>
+      <ul>
+        {allPosts.map((post) => (<li key={post.id}>{post.title}</li>))}
+      </ul>
+      <div>{allPosts.length}</div>
+      <ul>
+        {allCurrencies.map((post) => (<li key={post.id}>{post.id}</li>))}
+      </ul>
+      <div>{allCurrencies.length}</div>
     </div>
   );
 }

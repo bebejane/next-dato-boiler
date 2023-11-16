@@ -3486,3 +3486,11 @@ type StartQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 type StartQuery = { __typename?: 'Query', start?: { __typename?: 'StartRecord', id: any, headline: string, posts: Array<{ __typename?: 'PostRecord', id: any, title: string, slug: string, content?: string | null, createdAt: any, updatedAt: any, image?: { __typename?: 'ImageFileField', id: any, width: any, height: any, alt?: string | null, basename: string, format: string, mimeType: string, size: any, title?: string | null, url: string, responsiveImage: { __typename?: 'ResponsiveImage', width: any, height: any, alt?: string | null, aspectRatio: any, base64?: string | null, bgColor?: string | null, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null } } | null, background?: { __typename?: 'ColorField', hex: string } | null, author: { __typename?: 'AuthorRecord', id: any, name: string } }> } | null };
+
+type AllPostsTestQueryVariables = Exact<{
+  first?: InputMaybe<Scalars['IntType']['input']>;
+  skip?: InputMaybe<Scalars['IntType']['input']>;
+}>;
+
+
+type AllPostsTestQuery = { __typename?: 'Query', allPosts: Array<{ __typename?: 'PostRecord', id: any, title: string, slug: string, content?: string | null, createdAt: any, updatedAt: any, image?: { __typename?: 'ImageFileField', id: any, width: any, height: any, alt?: string | null, basename: string, format: string, mimeType: string, size: any, title?: string | null, url: string, responsiveImage: { __typename?: 'ResponsiveImage', width: any, height: any, alt?: string | null, aspectRatio: any, base64?: string | null, bgColor?: string | null, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null } } | null, background?: { __typename?: 'ColorField', hex: string } | null, author: { __typename?: 'AuthorRecord', id: any, name: string } }>, _allPostsMeta: { __typename?: 'CollectionMetadata', count: any }, allCurrencies: Array<{ __typename?: 'CurrencyRecord', id: any }>, _allCurrenciesMeta: { __typename?: 'CollectionMetadata', count: any } };

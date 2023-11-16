@@ -109,3 +109,12 @@ declare module '*/start.gql' {
   export default defaultDocument;
 }
     
+
+declare module '*/test.gql' {
+  import { DocumentNode } from 'graphql';
+  const defaultDocument: DocumentNode;
+  export const AllPostsTest: DocumentNode;
+
+  export default defaultDocument;
+}
+    
