@@ -2,14 +2,19 @@
 
 import s from './page.module.scss'
 import { apiQuery, DraftMode } from 'next-dato-utils'
-import { AllPostsDocument } from '@graphql'
+import { AllPostsDocument, ConfigDocument } from '@graphql'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 
-const pageSize = 1;
+const getConfig = async (): Promise<ConfigQuery['config']> => {
+  return (await apiQuery<ConfigQuery, ConfigQueryVariables>(ConfigDocument, {
+    tags: ['config']
+  })).config;
+}
 
 export default async function PostsPage({ params: { page } }) {
 
+  const { pageSize } = await getConfig();
   const { allPosts, _allPostsMeta: { count }, draftUrl } = await apiQuery<AllPostsQuery, AllPostsQueryVariables>(AllPostsDocument, {
     variables: {
       first: pageSize,
@@ -44,6 +49,7 @@ export default async function PostsPage({ params: { page } }) {
 }
 
 export async function generateStaticParams() {
+  const { pageSize } = await getConfig();
   const { allPosts } = await apiQuery<AllPostsQuery, AllPostsQueryVariables>(AllPostsDocument, {
     all: true,
     tags: ['post']

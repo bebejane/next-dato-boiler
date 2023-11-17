@@ -136,6 +136,34 @@ type ColorFilter = {
   exists?: InputMaybe<Scalars['BooleanType']['input']>;
 };
 
+/** Record of type Config (config) */
+type ConfigRecord = RecordInterface & {
+  __typename?: 'ConfigRecord';
+  _createdAt: Scalars['DateTime']['output'];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars['String']['output']>;
+  _firstPublishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _isValid: Scalars['BooleanType']['output'];
+  _modelApiKey: Scalars['String']['output'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  /** Generates SEO and Social card meta tags to be used in your frontend */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _updatedAt: Scalars['DateTime']['output'];
+  createdAt: Scalars['DateTime']['output'];
+  id: Scalars['ItemId']['output'];
+  pageSize?: Maybe<Scalars['IntType']['output']>;
+  updatedAt: Scalars['DateTime']['output'];
+};
+
+
+/** Record of type Config (config) */
+type ConfigRecord_seoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
 /** Specifies how to filter by creation datetime */
 type CreatedAtFilter = {
   /** Filter records with a value that's within the specified minute range. Seconds and milliseconds are truncated from the argument. */
@@ -2577,6 +2605,8 @@ type Query = {
   allUploads: Array<FileField>;
   /** Returns a specific record */
   author?: Maybe<AuthorRecord>;
+  /** Returns the single instance record */
+  config?: Maybe<ConfigRecord>;
   /** Returns a specific record */
   currency?: Maybe<CurrencyRecord>;
   /** Returns a specific record */
@@ -2773,6 +2803,13 @@ type QueryauthorArgs = {
   filter?: InputMaybe<AuthorModelFilter>;
   locale?: InputMaybe<SiteLocale>;
   orderBy?: InputMaybe<Array<InputMaybe<AuthorModelOrderBy>>>;
+};
+
+
+/** The query root for this schema */
+type QueryconfigArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  locale?: InputMaybe<SiteLocale>;
 };
 
 
@@ -3414,6 +3451,11 @@ type focalPoint = {
   x: Scalars['FloatType']['output'];
   y: Scalars['FloatType']['output'];
 };
+
+type ConfigQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type ConfigQuery = { __typename?: 'Query', config?: { __typename?: 'ConfigRecord', pageSize?: any | null } | null };
 
 type ImageFragment_FileField_ = { __typename?: 'FileField', id: any, width?: any | null, height?: any | null, alt?: string | null, basename: string, format: string, mimeType: string, size: any, title?: string | null, url: string, responsiveImage?: { __typename?: 'ResponsiveImage', width: any, height: any, alt?: string | null, aspectRatio: any, base64?: string | null, bgColor?: string | null, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null } | null };
 
