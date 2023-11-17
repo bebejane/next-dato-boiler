@@ -30,7 +30,6 @@ export async function POST(req: NextRequest) {
 }
 
 export async function OPTIONS(req: Request) {
-
   return await cors(req, new Response('ok', { status: 200 }), {
     origin: '*',
     methods: ['POST', 'OPTIONS'],

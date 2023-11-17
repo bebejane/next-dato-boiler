@@ -16,7 +16,7 @@ export default async function NavBar({ }: {}) {
     <>
       <ul className={s.navbar}>
         <li><Link href={'/'} prefetch={false}>Home</Link></li>
-        <li><Link href={'/posts'}>Posts</Link></li>
+        <li><Link href={'/posts/page/1'}>Posts</Link></li>
         {allMenus.map(({ id, title, slug }) => (
           <li key={id}>{title}</li>
         ))}

@@ -11,7 +11,6 @@ export default async function TestPage() {
       skip: 0
     }
   });
-  //console.log(data)
 
   return (
     <div>

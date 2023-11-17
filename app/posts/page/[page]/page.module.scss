@@ -1,0 +1,25 @@
+.container {
+  display: flex;
+  flex-direction: column;
+
+  ul {
+    list-style: none;
+  }
+}
+
+.pagination {
+  display: flex;
+  flex-direction: row;
+  margin-top: 2rem;
+
+  li:not(:last-child)::after {
+    content: '|';
+    margin-left: 1ch;
+    margin-right: 1ch;
+    font-weight: normal;
+  }
+
+  li.active {
+    font-weight: bold;
+  }
+}
