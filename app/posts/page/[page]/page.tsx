@@ -20,7 +20,7 @@ export default async function PostsPage({ params: { page } }) {
       first: pageSize,
       skip: (page - 1) * pageSize,
     },
-    tags: ['post']
+    tags: ['post', 'config']
   });
 
   if (!allPosts.length)
@@ -52,7 +52,7 @@ export async function generateStaticParams() {
   const { pageSize } = await getConfig();
   const { allPosts } = await apiQuery<AllPostsQuery, AllPostsQueryVariables>(AllPostsDocument, {
     all: true,
-    tags: ['post']
+    tags: ['post', 'config']
   });
 
   const pages = Math.ceil(allPosts.length / pageSize);
