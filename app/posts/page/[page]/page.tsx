@@ -29,12 +29,6 @@ export default async function PostsPage({ params: { page } }) {
   return (
     <>
       <div className={s.container}>
-        {allPosts.map(post =>
-          <div key={post.id}>
-            <Link href={`/posts/${post.slug}`}>{post.title}</Link>
-          </div>
-        )}
-
         <ul className={s.pagination}>
           {Array.from({ length: Math.ceil(count / pageSize) }, (_, i) => (
             <li key={i} className={(i + 1) == page ? s.active : undefined}>
@@ -42,6 +36,13 @@ export default async function PostsPage({ params: { page } }) {
             </li>
           ))}
         </ul>
+
+        {allPosts.map(post =>
+          <div key={post.id}>
+            <Link href={`/posts/${post.slug}`}>{post.title}</Link>
+          </div>
+        )}
+
       </div>
       <DraftMode url={draftUrl} path="/" />
     </>

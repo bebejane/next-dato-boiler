@@ -10,7 +10,7 @@
 .pagination {
   display: flex;
   flex-direction: row;
-  margin-top: 2rem;
+  margin-bottom: 2rem;
 
   li:not(:last-child)::after {
     content: '|';
