@@ -1,3 +1,5 @@
+'use server'
+
 import s from './page.module.scss'
 import Link from "next/link"
 import { StartDocument } from '@graphql';
