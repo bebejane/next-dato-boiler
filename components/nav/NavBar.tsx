@@ -1,5 +1,3 @@
-'use server'
-
 import Link from "next/link";
 import s from './NavBar.module.scss'
 import { apiQuery, DraftMode } from "next-dato-utils";
