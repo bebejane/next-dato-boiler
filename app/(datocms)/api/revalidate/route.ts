@@ -9,7 +9,7 @@ export async function POST(req: Request) {
 
     const { api_key, entity, event_type, entity_type } = payload;
     const { id, attributes: { slug } } = entity
-    const paths: string[] = []
+    const paths: string[] = ['/']
     const tags: string[] = [api_key, id].filter(t => t)
 
     switch (api_key) {
