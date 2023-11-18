@@ -12,7 +12,6 @@ export default async function Home() {
   return (
     <>
       <h1>{start.headline}</h1>
-      <br />
       {start.posts.map(post => (
         <div className={s.post} key={post.id}>
           <Link href={`/posts/${post.slug}`}>
