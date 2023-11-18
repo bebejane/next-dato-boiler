@@ -9,8 +9,6 @@ export type LayoutProps = {
   children: React.ReactNode
 }
 
-export const runtime = 'edge'
-
 export default async function RootLayout({ children }: LayoutProps) {
 
   return (

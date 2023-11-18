@@ -5,8 +5,6 @@ import { format } from 'date-fns';
 import { apiQuery, Markdown, DraftMode, sleep } from 'next-dato-utils';
 import { Image } from 'react-datocms';
 
-export const runtime = 'edge'
-
 export default async function Home() {
 
   const { start, draftUrl } = await apiQuery<StartQuery, StartQueryVariables>(StartDocument, { tags: ['start'] });
