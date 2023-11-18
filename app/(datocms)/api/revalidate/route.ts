@@ -28,7 +28,6 @@ export async function POST(req: Request) {
     if (api_key)
       tags.push(api_key)
 
-    await revalidate(paths, tags)
-    return await revalidate(paths, tags)
+    return revalidate(paths, tags, true)
   })
 }
