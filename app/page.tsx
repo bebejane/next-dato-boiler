@@ -11,8 +11,6 @@ export default async function Home() {
 
   const { start, draftUrl } = await apiQuery<StartQuery, StartQueryVariables>(StartDocument, { tags: ['start'] });
 
-  console.log('render start forreal')
-
   return (
     <>
       <h1>{start.headline}</h1>
