@@ -1,3 +1,5 @@
+'use server'
+
 import '@styles/index.scss'
 import { NavBar } from '@components';
 import { apiQuery } from 'next-dato-utils';
