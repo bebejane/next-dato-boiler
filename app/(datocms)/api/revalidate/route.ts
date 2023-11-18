@@ -11,7 +11,7 @@ export async function POST(req: Request) {
     const { api_key, entity, event_type, entity_type } = payload;
     const { id, attributes: { slug } } = entity
     const paths: string[] = []
-    const tags: string[] = [id]
+    const tags: string[] = [api_key, id].filter(t => t)
 
     switch (api_key) {
       case 'post':
@@ -25,9 +25,6 @@ export async function POST(req: Request) {
         break;
     }
 
-    if (api_key)
-      tags.push(api_key)
-
-    return revalidate(paths, tags, true)
+    return await revalidate(paths, tags, true)
   })
 }
