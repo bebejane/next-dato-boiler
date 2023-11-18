@@ -1,5 +1,3 @@
-'use server'
-
 import '@styles/index.scss'
 import { NavBar } from '@components';
 import { apiQuery } from 'next-dato-utils';
@@ -10,6 +8,8 @@ import { Icon } from 'next/dist/lib/metadata/types/metadata-types';
 export type LayoutProps = {
   children: React.ReactNode
 }
+
+export const runtime = 'edge'
 
 export default async function RootLayout({ children }: LayoutProps) {
 
