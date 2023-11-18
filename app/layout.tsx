@@ -19,6 +19,7 @@ export default async function RootLayout({ children }: LayoutProps) {
           <main>
             {children}
           </main>
+          hej
         </body>
       </html >
 
