@@ -1,11 +1,11 @@
 import { revalidate } from 'next-dato-utils'
 
-//export const runtime = "edge"
-//export const dynamic = "force-dynamic"
-//export const fetchCache = "force-no-store";
+export const runtime = "edge"
+export const dynamic = "force-dynamic"
 
 export async function POST(req: Request) {
 
+  console.log(req.headers.get('x-dato-event'))
   return await revalidate(req, async (payload, revalidate) => {
 
     const { api_key, entity, event_type, entity_type } = payload;
