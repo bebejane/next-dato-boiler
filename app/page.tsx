@@ -7,7 +7,11 @@ import { Image } from 'react-datocms';
 
 export default async function Home() {
 
-  const { start, draftUrl } = await apiQuery<StartQuery, StartQueryVariables>(StartDocument, { tags: ['start'], generateTags: false });
+  const { start, draftUrl } = await apiQuery<StartQuery, StartQueryVariables>(StartDocument, {
+    tags: ['start'],
+    revalidate: 0,
+    generateTags: false
+  });
 
   return (
     <>
