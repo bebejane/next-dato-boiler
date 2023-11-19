@@ -10,7 +10,7 @@ export default async function Home() {
   const { start, draftUrl } = await apiQuery<StartQuery, StartQueryVariables>(StartDocument, {
     tags: ['start'],
     logs: true,
-    generateTags: false
+    generateTags: true
   });
 
   return (
