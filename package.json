@@ -28,7 +28,7 @@
 		"dotenv": "^16.3.1",
 		"graphql": "^16.8.1",
 		"is-integer": "^1.0.7",
-		"next": "14.0.4-canary.4",
+		"next": "14.0.4-canary.10",
 		"next-dato-utils": "github:bebejane/next-dato-utils",
 		"next-seo": "^5.15.0",
 		"next-sitemap": "^3.1.55",
