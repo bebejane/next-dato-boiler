@@ -1,5 +1,5 @@
 import { NextRequest } from 'next/server';
-import { webPreviews, cors } from 'next-dato-utils'
+import { webPreviews, cors } from 'next-dato-utils/route-handlers';
 
 export const runtime = "edge"
 
