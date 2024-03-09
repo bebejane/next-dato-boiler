@@ -1,4 +1,4 @@
-import { apiQuery } from "next-dato-utils";
+import { apiQuery } from "next-dato-utils/api";
 import { AllPostsTestDocument } from "@graphql";
 
 (async () => {

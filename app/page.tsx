@@ -2,7 +2,8 @@ import s from './page.module.scss'
 import Link from "next/link"
 import { StartDocument } from '@graphql';
 import { format } from 'date-fns';
-import { apiQuery, Markdown, DraftMode } from 'next-dato-utils';
+import { apiQuery } from 'next-dato-utils/api';
+import { Markdown, DraftMode } from 'next-dato-utils/components';
 import { Image } from 'react-datocms';
 
 export default async function Home() {

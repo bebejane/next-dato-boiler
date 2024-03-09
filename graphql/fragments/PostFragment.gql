@@ -6,6 +6,11 @@ fragment PostFragment on PostRecord {
 		...ImageFragment
 	}
 	content(markdown: false)
+	structuredContent {
+		blocks
+		links
+		value
+	}
 	background {
 		hex
 	}

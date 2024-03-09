@@ -3,7 +3,8 @@
 import s from './page.module.scss'
 import { notFound } from 'next/navigation';
 import { AllPostsDocument, PostDocument } from '@graphql';
-import { Markdown, DraftMode, apiQuery } from 'next-dato-utils';
+import { apiQuery } from 'next-dato-utils/api';
+import { Markdown, DraftMode, StructuredContent } from 'next-dato-utils/components';
 import BackgroundColor from './BackgroundColor';
 
 export async function generateStaticParams() {
@@ -30,6 +31,10 @@ export default async function Post({ params }: { params: { post: string, id: str
           {post.author.name}
         </p>
       </div>
+      <StructuredContent
+        content={post.structuredContent}
+        styles={{ 'emphasized': s.emphasis }}
+      />
       <BackgroundColor color={post.background?.hex} />
       <DraftMode url={draftUrl} tag={post.id} />
 

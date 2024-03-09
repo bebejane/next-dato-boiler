@@ -1,6 +1,6 @@
 import '@styles/index.scss'
 import { NavBar } from '@components';
-import { apiQuery } from 'next-dato-utils';
+import { apiQuery } from 'next-dato-utils/api';
 import { GlobalDocument } from '@graphql';
 import { Metadata } from 'next';
 import { Icon } from 'next/dist/lib/metadata/types/metadata-types';

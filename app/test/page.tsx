@@ -1,7 +1,7 @@
 'use server'
 
 import { AllPostsTestDocument } from "@graphql";
-import { apiQuery } from "next-dato-utils";
+import { apiQuery } from "next-dato-utils/api";
 
 export default async function TestPage() {
   const { allPosts, allCurrencies } = await apiQuery<AllPostsTestQuery, AllPostsTestQueryVariables>(AllPostsTestDocument, {

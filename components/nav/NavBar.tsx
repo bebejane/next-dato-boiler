@@ -1,6 +1,7 @@
 import Link from "next/link";
 import s from './NavBar.module.scss'
-import { apiQuery, DraftMode } from "next-dato-utils";
+import { apiQuery } from 'next-dato-utils/api';
+import { DraftMode } from 'next-dato-utils/components';
 import { AllMenusDocument } from "@graphql";
 
 export default async function NavBar({ }: {}) {
