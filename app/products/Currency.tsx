@@ -1,7 +1,8 @@
 'use server'
 
 import s from './Currency.module.scss'
-import { apiQuery, DraftMode } from 'next-dato-utils';
+import { apiQuery } from 'next-dato-utils/api';
+import { DraftMode } from 'next-dato-utils/components';
 import { AllCurrenciesDocument } from '@graphql';
 import Link from 'next/link';
 import { cookies } from 'next/headers';
