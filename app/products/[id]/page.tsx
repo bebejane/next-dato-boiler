@@ -3,7 +3,8 @@
 import s from './page.module.scss'
 import { notFound } from 'next/navigation';
 import { AllProductsDocument, ProductDocument } from '@graphql';
-import { DraftMode, apiQuery } from 'next-dato-utils';
+import { apiQuery } from 'next-dato-utils/api';
+import { DraftMode } from 'next-dato-utils/components';
 import { cookies } from 'next/headers';
 
 export async function generateStaticParams() {
