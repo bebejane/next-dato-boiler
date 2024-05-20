@@ -1,9 +1,0 @@
-query Start {
-	start {
-		id
-		headline
-		posts {
-			...PostFragment
-		}
-	}
-}

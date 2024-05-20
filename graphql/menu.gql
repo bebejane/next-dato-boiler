@@ -1,7 +1,0 @@
-query AllMenus {
-	allMenus {
-		id
-		title
-		slug
-	}
-}

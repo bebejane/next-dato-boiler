@@ -1,48 +1,17 @@
 import s from './page.module.scss'
 import Link from "next/link"
-import { StartDocument } from '@graphql';
-import { format } from 'date-fns';
 import { apiQuery } from 'next-dato-utils/api';
-import { Markdown, DraftMode } from 'next-dato-utils/components';
+import { DraftMode } from 'next-dato-utils/components';
 import { Image } from 'react-datocms';
 
 export default async function Home() {
 
-  const { start, draftUrl } = await apiQuery<StartQuery, StartQueryVariables>(StartDocument, {
-    tags: ['start'],
-    logs: true,
-    generateTags: true
-  });
-
   return (
     <>
-      <h1>{start.headline}</h1>
-      {start.posts.map(post => (
-        <div className={s.post} key={post.id}>
-          <Link href={`/posts/${post.slug}`}>
-            <h3>
-              {post.title}
-            </h3>
-            <div className={s.small}>
-              {format(new Date(post.updatedAt), 'yyyy-MM-dd HH:mm')}
-            </div>
-            {post.image &&
-              <figure>
-                <Image data={post.image.responsiveImage} className={s.image} pictureClassName={s.picture} placeholderClassName={s.picture} />
-                <figcaption>
-                  {post.image.title}
-                </figcaption>
-              </figure>
-            }
-          </Link>
-          <Markdown content={post.content} />
-          <div className={s.small}>
-            {post.author.name}
-          </div>
-        </div>
-      ))}
-      {start.posts.length === 0 && 'No posts yet...'}
-      <DraftMode url={draftUrl} tag={start.id} />
+      <div className={s.page}>
+        <h1>Home</h1>
+        <p>This is the home page</p>
+      </div>
     </>
   )
 }

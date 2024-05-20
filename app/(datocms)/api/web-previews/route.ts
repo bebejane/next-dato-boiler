@@ -12,15 +12,6 @@ export async function POST(req: NextRequest) {
     const { slug } = item.attributes
 
     switch (itemType.attributes.api_key) {
-      case 'start':
-        path = `/`
-        break;
-      case 'post':
-        path = `/posts/${slug}`
-        break;
-      case 'menu':
-        path = `/`
-        break;
       default:
         break;
     }
