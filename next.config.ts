@@ -1,7 +1,8 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {
+import { NextConfig } from "next";
+
+const nextConfig: NextConfig = {
 	sassOptions: {
-		includePaths: ["./components", "./pages"],
+		includePaths: ["./components", "./app"],
 		prependData: `
     	@use "sass:math";
     	@import "./styles/mediaqueries"; 
