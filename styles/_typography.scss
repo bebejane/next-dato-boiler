@@ -1,13 +1,16 @@
+@use "fonts";
+@use "mediaqueries";
+
 html,
 body {
   font-size: 15px;
   font-weight: normal;
 
-  @include mq($from: tablet) {
+  @include mediaqueries.mq($from: tablet) {
     font-size: 20px;
   }
 
-  @include mq($from: wide) {
+  @include mediaqueries.mq($from: wide) {
     font-size: 24px;
   }
 }
@@ -27,18 +30,18 @@ h1 {
   font-weight: bold;
   padding-bottom: var(--space);
   line-height: 1.25;
-  font-family: $headline-font;
+  font-family: fonts.$headline-font;
 
 }
 
 h2 {
   font-size: 0.75rem;
-  font-family: $headline-font;
+  font-family: fonts.$headline-font;
 }
 
 h3 {
   font-size: 0.85rem;
-  font-family: $headline-font;
+  font-family: fonts.$headline-font;
   margin-bottom: 0;
   padding-bottom: 0;
 }
@@ -61,7 +64,7 @@ p.intro,
   font-size: 0.75rem;
 
   strong {
-    font-family: $headline-font;
+    font-family: fonts.$headline-font;
     font-weight: bold !important;
     font-size: 0.65rem;
     padding-right: 0.5em;
@@ -84,7 +87,7 @@ nav,
 button,
 .mid input,
 .mid select {
-  font-family: $headline-font;
+  font-family: fonts.$headline-font;
   font-size: 0.75rem;
 }
 
@@ -136,7 +139,7 @@ article {
   p strong,
   p b {
     font-weight: normal !important;
-    font-family: $headline-font;
+    font-family: fonts.$headline-font;
   }
 
   p.center {
@@ -145,7 +148,7 @@ article {
 }
 
 button {
-  font-family: $headline-font;
+  font-family: fonts.$headline-font;
 }
 
 em,

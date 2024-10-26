@@ -1,3 +1,6 @@
+@use "fonts";
+@use "mediaqueries";
+
 :root {
 	--black: #161616;
 	--white: #fcfcfc;
@@ -7,9 +10,9 @@
 	--background: var(--white);
 	--foreground: var(--black);
 
-	@include mq($from: tablet) {}
+	@include mediaqueries.mq($from: tablet) {}
 
-	@include mq($until: tablet) {}
+	@include mediaqueries.mq($until: tablet) {}
 }
 
 body {
@@ -18,7 +21,7 @@ body {
 	line-height: 1em;
 	color: var(--foreground);
 	background-color: var(--background);
-	font-family: $body-font;
+	font-family: fonts.$body-font;
 	-webkit-font-smoothing: antialiased;
 	font-feature-settings: "liga", "kern";
 }
@@ -88,11 +91,11 @@ button {
 	color: var(--foreground);
 	border: 0;
 
-	@include mq($from: tablet) {}
+	@include mediaqueries.mq($from: tablet) {}
 
 	&.back {
 
-		@include mq($from: tablet) {}
+		@include mediaqueries.mq($from: tablet) {}
 	}
 
 	&:hover {}

@@ -72,7 +72,7 @@ dependencies:
     specifier: ^7.14.1
     version: 7.14.1(react-dom@18.3.0-canary-bbb9cb116-20231117)(react@18.3.0-canary-bbb9cb116-20231117)
   sass:
-    specifier: ^1.80.4
+    specifier: 1.80.4
     version: 1.80.4
   swiper:
     specifier: ^11.1.14
@@ -1712,7 +1712,7 @@ packages:
       graphql: ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0
     dependencies:
       graphql: 16.9.0
-      tslib: 2.4.1
+      tslib: 2.6.3
     dev: true
 
   /@graphql-tools/optimize@2.0.0(graphql@16.9.0):
@@ -1764,7 +1764,7 @@ packages:
       '@ardatan/relay-compiler': 12.0.0(graphql@16.9.0)
       '@graphql-tools/utils': 9.2.1(graphql@16.9.0)
       graphql: 16.9.0
-      tslib: 2.4.1
+      tslib: 2.6.3
     transitivePeerDependencies:
       - encoding
       - supports-color
