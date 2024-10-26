@@ -2,10 +2,12 @@ import { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
 	sassOptions: {
-		includePaths: ["./components", "./app"],
+		includePaths: ["./components", "./pages", "./app"],
 		silenceDeprecations: ['legacy-js-api'],
 		prependData: `
     	@use "sass:math";
+    	@use "./styles/mediaqueries" as mediaqueries-module;
+			@use "./styles/fonts" as fonts-module;
   	`,
 	},
 	typescript: {

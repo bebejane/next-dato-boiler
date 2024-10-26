@@ -30,18 +30,18 @@ h1 {
   font-weight: bold;
   padding-bottom: var(--space);
   line-height: 1.25;
-  font-family: fonts.$headline-font;
+  font-family: var(--headline-font);
 
 }
 
 h2 {
   font-size: 0.75rem;
-  font-family: fonts.$headline-font;
+  font-family: var(--headline-font);
 }
 
 h3 {
   font-size: 0.85rem;
-  font-family: fonts.$headline-font;
+  font-family: var(--headline-font);
   margin-bottom: 0;
   padding-bottom: 0;
 }
@@ -64,7 +64,7 @@ p.intro,
   font-size: 0.75rem;
 
   strong {
-    font-family: fonts.$headline-font;
+    font-family: var(--headline-font);
     font-weight: bold !important;
     font-size: 0.65rem;
     padding-right: 0.5em;
@@ -87,7 +87,7 @@ nav,
 button,
 .mid input,
 .mid select {
-  font-family: fonts.$headline-font;
+  font-family: var(--headline-font);
   font-size: 0.75rem;
 }
 
@@ -139,7 +139,7 @@ article {
   p strong,
   p b {
     font-weight: normal !important;
-    font-family: fonts.$headline-font;
+    font-family: var(--headline-font);
   }
 
   p.center {
@@ -148,7 +148,7 @@ article {
 }
 
 button {
-  font-family: fonts.$headline-font;
+  font-family: var(--headline-font);
 }
 
 em,
