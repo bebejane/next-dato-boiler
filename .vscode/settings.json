@@ -3,6 +3,7 @@
     "node_modules": true,
     ".vscode": true,
     ".next": true,
-    "@types": true
+    "@types": true,
+    ".vercel": true
   }
 }
