@@ -1,10 +1,8 @@
-//@use "./styles/mediaqueries";
-
 .page {
   display: block;
   margin-bottom: 2em;
 
-  @include mediaqueries-module.mq($from: desktop) {
-    //background-color: red;
+  @include mixins.mq($from: desktop) {
+    background-color: red;
   }
 }

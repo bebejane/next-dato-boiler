@@ -5,9 +5,8 @@ const nextConfig: NextConfig = {
 		includePaths: ["./components", "./pages", "./app"],
 		silenceDeprecations: ['legacy-js-api'],
 		prependData: `
-    	@use "sass:math";
-    	@use "./styles/mediaqueries" as mediaqueries-module;
-			@use "./styles/fonts" as fonts-module;
+			@use "sass:math";
+    	@use "./styles/mixins";
   	`,
 	},
 	typescript: {
