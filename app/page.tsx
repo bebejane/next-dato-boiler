@@ -4,7 +4,7 @@ export default async function Home() {
 	return (
 		<>
 			<div className={s.page}>
-				<p>Min homepage</p>
+				<p>Broiler</p>
 			</div>
 		</>
 	);
