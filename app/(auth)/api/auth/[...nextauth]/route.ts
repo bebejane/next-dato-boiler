@@ -2,7 +2,6 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 import type { NextAuthOptions } from 'next-auth';
 import NextAuth from 'next-auth'
 import CredentialsProvider from 'next-auth/providers/credentials'
-import client from '@/lib/client';
 
 export const authOptions: NextAuthOptions = {
   session: {
@@ -41,7 +40,8 @@ export const authOptions: NextAuthOptions = {
         try {
 
           const { username: email, password } = credentials
-
+          const user = { id: email, email, password }
+          /*
           const user = (await client.items.list({
             filter: {
               type: "workshop",
@@ -55,7 +55,7 @@ export const authOptions: NextAuthOptions = {
               },
             },
           }))?.[0]
-
+          */
           if (!user) {
             return null
           }

@@ -11,7 +11,7 @@ export default function LogoutForm() {
 	}, []);
 
 	return (
-		<div className={cn('structured', 'grid')}>
+		<div>
 			<div>Loggar ut...</div>
 		</div>
 	);
