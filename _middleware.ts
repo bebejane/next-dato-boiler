@@ -1,5 +1,6 @@
 import { routing } from '@/i18n/routing'
 import createMiddleware from 'next-intl/middleware';
+import { withAuth } from "next-auth/middleware"
 
 export default createMiddleware(routing);
 

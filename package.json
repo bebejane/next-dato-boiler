@@ -27,6 +27,7 @@
 		"graphql": "^16.10.0",
 		"is-integer": "^1.0.7",
 		"next": "15.3.0",
+		"next-auth": "^4.24.11",
 		"next-dato-utils": "github:bebejane/next-dato-utils#next15",
 		"next-intl": "^4.0.2",
 		"object-traversal": "^1.0.1",

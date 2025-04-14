@@ -4,6 +4,7 @@
     ".vscode": true,
     ".next": true,
     "@types": true,
-    ".vercel": true
+    ".vercel": true,
+    "types": true
   }
 }
