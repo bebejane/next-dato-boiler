@@ -1,0 +1,38 @@
+{
+	"menu": {
+		"read-more": {
+			"en": "Read more",
+			"sv": "Läs mer"
+		}
+	},
+	"Start": {
+		"readmore": {
+			"en": "Read more",
+			"sv": "Läs mer"
+		},
+		"in-our-portfolio": {
+			"en": "In our portfolio",
+			"sv": "Vårt innehav"
+		},
+		"showall": {
+			"en": "Show all",
+			"sv": "Visa alla"
+		}
+	},
+	"Contact": {
+		"title": {
+			"en": "Contact",
+			"sv": "Kontakt"
+		},
+		"close": {
+			"en": "Close",
+			"sv": "Stäng"
+		}
+	},
+	"About": {
+		"readmore": {
+			"en": "Read more in our manifest",
+			"sv": "Läs mer i vårat manifest"
+		}
+	}
+}

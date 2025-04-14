@@ -9,7 +9,7 @@ export default {
   },
   url: {
     dev: 'http://localhost:3000',
-    public: 'https://nextjs-dato-boiler.vercel.app',
+    public: 'https://next-dato-boiler.vercel.app',
   },
   i18n: {
     locales: ['sv', 'en'],
@@ -28,7 +28,6 @@ export default {
         changeFrequency: 'daily',
         priority: 1,
       },
-
     ]
   }
 } satisfies DatoCmsConfig
