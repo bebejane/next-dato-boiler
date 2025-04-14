@@ -29,7 +29,7 @@ body {
 	font-feature-settings: "liga", "kern";
 
 	@include mediaqueries.mq($from: desktop) {
-		background-color: pink;
+		//background-color: pink;
 	}
 }
 

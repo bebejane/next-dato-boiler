@@ -606,7 +606,7 @@ type ImgixParams = {
    *
    * Depends on: `fit=crop`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/size/ar)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/size/aspect-ratio)
    */
   ar?: InputMaybe<Scalars['String']['input']>;
   /**
@@ -614,7 +614,7 @@ type ImgixParams = {
    *
    * Applies automatic enhancements to images.
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/auto)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/automatic)
    */
   auto?: InputMaybe<Array<ImgixParamsAuto>>;
   /**
@@ -622,7 +622,7 @@ type ImgixParams = {
    *
    * Colors the background of padded and partially-transparent images.
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/bg)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/fill/background-color)
    */
   bg?: InputMaybe<Scalars['String']['input']>;
   /**
@@ -630,7 +630,7 @@ type ImgixParams = {
    *
    * Removes background from image.
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/background/bg-remove)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/background/background-removal)
    */
   bgRemove?: InputMaybe<Scalars['BooleanType']['input']>;
   /**
@@ -638,23 +638,41 @@ type ImgixParams = {
    *
    * Overrides default fallback behavior for bg-remove failures.
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/background/bg-remove)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/background/background-removal-fallback)
    */
   bgRemoveFallback?: InputMaybe<Scalars['BooleanType']['input']>;
+  /**
+   * Background Removal Foreground Type
+   *
+   * Specifies the image foreground type for background removal.
+   *
+   * Depends on: `bg-remove=true`
+   *
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/background/background-removal-foreground-type)
+   */
+  bgRemoveFgType?: InputMaybe<Array<ImgixParamsBgRemoveFgType>>;
+  /**
+   * Background Removal Semi Transparency
+   *
+   * Enables background removal while retaining semi-transparent areas.
+   *
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/background/background-removal-semi-transparency)
+   */
+  bgRemoveSemiTransparency?: InputMaybe<Scalars['BooleanType']['input']>;
   /**
    * Background Replacement
    *
    * Replaces background from image using a string based prompt.
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/background/bg-replace)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/background/background-replacement)
    */
   bgReplace?: InputMaybe<Scalars['String']['input']>;
   /**
-   * Background Removal Fallback
+   * Background Replace Fallback
    *
    * Overrides default fallback behavior for bg-replace failures.
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/background/bg-replace)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/background/background-replace-fallback)
    */
   bgReplaceFallback?: InputMaybe<Scalars['BooleanType']['input']>;
   /**
@@ -662,7 +680,7 @@ type ImgixParams = {
    *
    * Provides a negative text suggestion for background replacement.
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/background/bg-replace-neg-prompt)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/background/background-replacement-negative-prompt)
    */
   bgReplaceNegPrompt?: InputMaybe<Scalars['String']['input']>;
   /**
@@ -670,7 +688,7 @@ type ImgixParams = {
    *
    * Specifies the location of the blend image.
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/blending/blend)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/blending/blend)
    */
   blend?: InputMaybe<Scalars['String']['input']>;
   /**
@@ -680,7 +698,7 @@ type ImgixParams = {
    *
    * Depends on: `blend`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/blending/blend-align)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/blending/blend-align)
    */
   blendAlign?: InputMaybe<Array<ImgixParamsBlendAlign>>;
   /**
@@ -690,7 +708,7 @@ type ImgixParams = {
    *
    * Depends on: `blend`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/blending/blend-alpha)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/blending/blend-alpha)
    */
   blendAlpha?: InputMaybe<Scalars['IntType']['input']>;
   /**
@@ -698,7 +716,7 @@ type ImgixParams = {
    *
    * Specifies a color to use when applying the blend.
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/blending/blend-color)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/blending/blend-color)
    */
   blendColor?: InputMaybe<Scalars['String']['input']>;
   /**
@@ -708,7 +726,7 @@ type ImgixParams = {
    *
    * Depends on: `blend`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/blending/blend-crop)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/blending/blend-crop)
    */
   blendCrop?: InputMaybe<Array<ImgixParamsBlendCrop>>;
   /**
@@ -718,7 +736,7 @@ type ImgixParams = {
    *
    * Depends on: `blend`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/blending/blend-fit)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/blending/blend-fit)
    */
   blendFit?: InputMaybe<ImgixParamsBlendFit>;
   /**
@@ -728,7 +746,7 @@ type ImgixParams = {
    *
    * Depends on: `blend`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/blending/blend-h)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/blending/blend-height)
    */
   blendH?: InputMaybe<Scalars['FloatType']['input']>;
   /**
@@ -738,7 +756,7 @@ type ImgixParams = {
    *
    * Depends on: `blend`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/blending/blend-mode)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/blending/blend-mode)
    */
   blendMode?: InputMaybe<ImgixParamsBlendMode>;
   /**
@@ -748,7 +766,7 @@ type ImgixParams = {
    *
    * Depends on: `blend`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/blending/blend-pad)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/blending/blend-padding)
    */
   blendPad?: InputMaybe<Scalars['IntType']['input']>;
   /**
@@ -758,7 +776,7 @@ type ImgixParams = {
    *
    * Depends on: `blend`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/blending/blend-size)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/blending/blend-size)
    */
   blendSize?: InputMaybe<ImgixParamsBlendSize>;
   /**
@@ -768,7 +786,7 @@ type ImgixParams = {
    *
    * Depends on: `blend`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/blending/blend-w)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/blending/blend-width)
    */
   blendW?: InputMaybe<Scalars['FloatType']['input']>;
   /**
@@ -778,7 +796,7 @@ type ImgixParams = {
    *
    * Depends on: `blend`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/blending/blend-x)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/blending/blend-x-position)
    */
   blendX?: InputMaybe<Scalars['IntType']['input']>;
   /**
@@ -788,7 +806,7 @@ type ImgixParams = {
    *
    * Depends on: `blend`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/blending/blend-y)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/blending/blend-y-position)
    */
   blendY?: InputMaybe<Scalars['IntType']['input']>;
   /**
@@ -796,7 +814,7 @@ type ImgixParams = {
    *
    * Applies a gaussian blur to an image.
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/stylize/blur)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/stylize/gaussian-blur)
    */
   blur?: InputMaybe<Scalars['IntType']['input']>;
   /**
@@ -804,7 +822,7 @@ type ImgixParams = {
    *
    * Applies a border to an image.
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/border-and-padding/border)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/size)
    */
   border?: InputMaybe<Scalars['String']['input']>;
   /**
@@ -814,7 +832,7 @@ type ImgixParams = {
    *
    * Depends on: `border`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/border-and-padding/border-bottom)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/border-and-padding/border-bottom)
    */
   borderBottom?: InputMaybe<Scalars['IntType']['input']>;
   /**
@@ -824,7 +842,7 @@ type ImgixParams = {
    *
    * Depends on: `border`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/border-and-padding/border-left)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/border-and-padding/border-left)
    */
   borderLeft?: InputMaybe<Scalars['IntType']['input']>;
   /**
@@ -834,7 +852,7 @@ type ImgixParams = {
    *
    * Depends on: `border`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/border-and-padding/border-radius)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/border-and-padding/outer-border-radius)
    */
   borderRadius?: InputMaybe<Scalars['String']['input']>;
   /**
@@ -844,7 +862,7 @@ type ImgixParams = {
    *
    * Depends on: `border`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/border-and-padding/border-radius-inner)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/border-and-padding/inner-border-radius)
    */
   borderRadiusInner?: InputMaybe<Scalars['String']['input']>;
   /**
@@ -854,7 +872,7 @@ type ImgixParams = {
    *
    * Depends on: `border`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/border-and-padding/border-right)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/border-and-padding/border-right)
    */
   borderRight?: InputMaybe<Scalars['IntType']['input']>;
   /**
@@ -864,7 +882,7 @@ type ImgixParams = {
    *
    * Depends on: `border`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/border-and-padding/border-top)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/border-and-padding/border-top)
    */
   borderTop?: InputMaybe<Scalars['IntType']['input']>;
   /**
@@ -872,7 +890,7 @@ type ImgixParams = {
    *
    * Adjusts the brightness of the source image.
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/adjustment/bri)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/adjustment/brightness)
    */
   bri?: InputMaybe<Scalars['IntType']['input']>;
   /**
@@ -880,7 +898,7 @@ type ImgixParams = {
    *
    * Sets one or more Client-Hints headers
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/format/ch)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/format/client-hints)
    */
   ch?: InputMaybe<Array<ImgixParamsCh>>;
   /**
@@ -888,7 +906,7 @@ type ImgixParams = {
    *
    * Specifies the output chroma subsampling rate.
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/format/chromasub)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/format/chroma-subsampling)
    */
   chromasub?: InputMaybe<Scalars['IntType']['input']>;
   /**
@@ -896,7 +914,7 @@ type ImgixParams = {
    *
    * Limits the number of unique colors in an image.
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/format/colorquant)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/format/color-quantization)
    */
   colorquant?: InputMaybe<Scalars['IntType']['input']>;
   /**
@@ -906,7 +924,7 @@ type ImgixParams = {
    *
    * Depends on: `palette`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/color-palette/colors)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/color-palette/palette-color-count)
    */
   colors?: InputMaybe<Scalars['IntType']['input']>;
   /**
@@ -914,7 +932,7 @@ type ImgixParams = {
    *
    * Adjusts the contrast of the source image.
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/adjustment/con)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/adjustment/contrast)
    */
   con?: InputMaybe<Scalars['IntType']['input']>;
   /**
@@ -924,7 +942,7 @@ type ImgixParams = {
    *
    * Depends on: `mask=corners`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/mask/corner-radius)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/mask-image/mask-corner-radius)
    */
   cornerRadius?: InputMaybe<Scalars['String']['input']>;
   /**
@@ -934,7 +952,7 @@ type ImgixParams = {
    *
    * Depends on: `fit=crop`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/size/crop)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/size/crop-mode)
    */
   crop?: InputMaybe<Array<ImgixParamsCrop>>;
   /**
@@ -942,7 +960,7 @@ type ImgixParams = {
    *
    * Specifies the color space of the output image.
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/format/cs)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/format/color-space)
    */
   cs?: InputMaybe<ImgixParamsCs>;
   /**
@@ -950,7 +968,7 @@ type ImgixParams = {
    *
    * Forces a URL to use send-file in its response.
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/format/dl)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/format/download)
    */
   dl?: InputMaybe<Scalars['String']['input']>;
   /**
@@ -958,7 +976,7 @@ type ImgixParams = {
    *
    * Sets the DPI value in the EXIF header.
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/format/dpi)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/format/dots-per-inch)
    */
   dpi?: InputMaybe<Scalars['IntType']['input']>;
   /**
@@ -966,7 +984,7 @@ type ImgixParams = {
    *
    * Adjusts the device-pixel ratio of the output image.
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/dpr)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/device-pixel-ratio)
    */
   dpr?: InputMaybe<Scalars['FloatType']['input']>;
   /**
@@ -974,7 +992,7 @@ type ImgixParams = {
    *
    * Applies a duotone effect to the source image.
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/stylize/duotone)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/stylize/duotone)
    */
   duotone?: InputMaybe<Scalars['String']['input']>;
   /**
@@ -984,7 +1002,7 @@ type ImgixParams = {
    *
    * Depends on: `duotone`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/stylize/duotone-alpha)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/stylize/duotone-alpha)
    */
   duotoneAlpha?: InputMaybe<Scalars['IntType']['input']>;
   /**
@@ -992,7 +1010,7 @@ type ImgixParams = {
    *
    * Adjusts the exposure of the output image.
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/adjustment/exp)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/adjustment/exposure)
    */
   exp?: InputMaybe<Scalars['IntType']['input']>;
   /**
@@ -1000,9 +1018,25 @@ type ImgixParams = {
    *
    * A Unix timestamp specifying a UTC time. Requests made to this URL after that time will output a 404 status code.
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/expires)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/expiration)
    */
   expires?: InputMaybe<Scalars['IntType']['input']>;
+  /**
+   * Face Blur
+   *
+   * Specifies the amount of blur to apply to detected faces. Defaults to 0.
+   *
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/face-detection/face-blur)
+   */
+  faceBlur?: InputMaybe<Scalars['IntType']['input']>;
+  /**
+   * Face Pixelation
+   *
+   * Specifies the pixelation amount of the face.
+   *
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/face-detection/face-pixelation)
+   */
+  facePixel?: InputMaybe<Scalars['IntType']['input']>;
   /**
    * Face Index
    *
@@ -1010,7 +1044,7 @@ type ImgixParams = {
    *
    * Depends on: `fit=facearea`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/face-detection/faceindex)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/face-detection/face-index)
    */
   faceindex?: InputMaybe<Scalars['IntType']['input']>;
   /**
@@ -1020,7 +1054,7 @@ type ImgixParams = {
    *
    * Depends on: `fit=facearea`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/face-detection/facepad)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/face-detection/face-padding)
    */
   facepad?: InputMaybe<Scalars['FloatType']['input']>;
   /**
@@ -1030,7 +1064,7 @@ type ImgixParams = {
    *
    * Depends on: `fm=json`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/face-detection/faces)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/face-detection/json-face-data)
    */
   faces?: InputMaybe<Scalars['IntType']['input']>;
   /**
@@ -1040,7 +1074,7 @@ type ImgixParams = {
    *
    * Depends on: `fit`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/fill/fill)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/fill/fill-mode)
    */
   fill?: InputMaybe<ImgixParamsFill>;
   /**
@@ -1050,7 +1084,7 @@ type ImgixParams = {
    *
    * Depends on: `fill=solid`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/fill/fill-color)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/fill/fill-color)
    */
   fillColor?: InputMaybe<Scalars['String']['input']>;
   /**
@@ -1060,7 +1094,7 @@ type ImgixParams = {
    *
    * Depends on: `fit=fill`, `fill=gen`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/fill/fill-gen-fallback)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/fill/fill-generative-fallback)
    */
   fillGenFallback?: InputMaybe<Scalars['BooleanType']['input']>;
   /**
@@ -1070,7 +1104,7 @@ type ImgixParams = {
    *
    * Depends on: `fit=fill`, `fill=gen`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/fill/fill-gen-neg-prompt)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/fill/fill-generative-negative-prompt)
    */
   fillGenNegPrompt?: InputMaybe<Scalars['String']['input']>;
   /**
@@ -1080,7 +1114,7 @@ type ImgixParams = {
    *
    * Depends on: `fit=fill`, `fill=gen`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/fill/fill-gen-pos)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/fill/fill-generative-position)
    */
   fillGenPos?: InputMaybe<Array<ImgixParamsFillGenPos>>;
   /**
@@ -1090,7 +1124,7 @@ type ImgixParams = {
    *
    * Depends on: `fit=fill`, `fill=gen`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/fill/fill-gen-prompt)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/fill/fill-generative-prompt)
    */
   fillGenPrompt?: InputMaybe<Scalars['String']['input']>;
   /**
@@ -1100,7 +1134,7 @@ type ImgixParams = {
    *
    * Depends on: `fit=fill`, `fill=gen`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/fill/fill-gen-seed)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/fill/fill-generative-seed)
    */
   fillGenSeed?: InputMaybe<Scalars['IntType']['input']>;
   /**
@@ -1110,7 +1144,7 @@ type ImgixParams = {
    *
    * Depends on: `fit=fill`, `fill=gradient`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/fill/fill-gradient-cs)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/fill/fill-gradient-color-space)
    */
   fillGradientCs?: InputMaybe<ImgixParamsFillGradientCs>;
   /**
@@ -1120,7 +1154,7 @@ type ImgixParams = {
    *
    * Depends on: `fit=fill`, `fill=gradient`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/fill/fill-gradient-linear)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/fill/fill-gradient-linear)
    */
   fillGradientLinear?: InputMaybe<Scalars['String']['input']>;
   /**
@@ -1130,7 +1164,7 @@ type ImgixParams = {
    *
    * Depends on: `fit=fill`, `fill=gen`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/fill/fill-gradient-linear-direction)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/fill/fill-gradient-linear-direction)
    */
   fillGradientLinearDirection?: InputMaybe<Array<ImgixParamsFillGradientLinearDirection>>;
   /**
@@ -1140,7 +1174,7 @@ type ImgixParams = {
    *
    * Depends on: `fit=fill`, `fill=gradient`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/fill/fill-gradient-radial)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/fill/fill-gradient-radial)
    */
   fillGradientRadial?: InputMaybe<Scalars['String']['input']>;
   /**
@@ -1150,7 +1184,7 @@ type ImgixParams = {
    *
    * Depends on: `fit=fill`, `fill=gradient`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/fill/fill-gradient-radial-radius)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/fill/fill-gradient-radial-radius)
    */
   fillGradientRadialRadius?: InputMaybe<Scalars['String']['input']>;
   /**
@@ -1160,7 +1194,7 @@ type ImgixParams = {
    *
    * Depends on: `fit=fill`, `fill=gradient`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/fill/fill-gradient-radial-x)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/fill/fill-gradient-radial-x)
    */
   fillGradientRadialX?: InputMaybe<Scalars['FloatType']['input']>;
   /**
@@ -1170,7 +1204,7 @@ type ImgixParams = {
    *
    * Depends on: `fit=fill`, `fill=gradient`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/fill/fill-gradient-radial-y)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/fill/fill-gradient-radial-y)
    */
   fillGradientRadialY?: InputMaybe<Scalars['FloatType']['input']>;
   /**
@@ -1180,7 +1214,7 @@ type ImgixParams = {
    *
    * Depends on: `fit=fill`, `fill=gradient`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/fill/fill-gradient-type)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/fill/fill-gradient-type)
    */
   fillGradientType?: InputMaybe<ImgixParamsFillGradientType>;
   /**
@@ -1188,7 +1222,7 @@ type ImgixParams = {
    *
    * Specifies how to map the source image to the output image dimensions.
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/size/fit)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/size/resize-fit-mode)
    */
   fit?: InputMaybe<ImgixParamsFit>;
   /**
@@ -1196,7 +1230,7 @@ type ImgixParams = {
    *
    * Flips an image on a specified axis.
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/rotation/flip)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/rotation/flip-axis)
    */
   flip?: InputMaybe<ImgixParamsFlip>;
   /**
@@ -1204,7 +1238,7 @@ type ImgixParams = {
    *
    * Changes the format of the output image.
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/format/fm)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/format/output-format)
    */
   fm?: InputMaybe<ImgixParamsFm>;
   /**
@@ -1214,7 +1248,7 @@ type ImgixParams = {
    *
    * Depends on: `fit=crop`, `crop=focalpoint`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/focalpoint-crop/fp-debug)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/focal-point-crop/focal-point-debug)
    */
   fpDebug?: InputMaybe<Scalars['BooleanType']['input']>;
   /**
@@ -1224,7 +1258,7 @@ type ImgixParams = {
    *
    * Depends on: `fit=crop`, `crop=focalpoint`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/focalpoint-crop/fp-x)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/focal-point-crop/focal-point-x-position)
    */
   fpX?: InputMaybe<Scalars['FloatType']['input']>;
   /**
@@ -1234,7 +1268,7 @@ type ImgixParams = {
    *
    * Depends on: `fit=crop`, `crop=focalpoint`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/focalpoint-crop/fp-y)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/focal-point-crop/focal-point-y-position)
    */
   fpY?: InputMaybe<Scalars['FloatType']['input']>;
   /**
@@ -1244,19 +1278,23 @@ type ImgixParams = {
    *
    * Depends on: `fit=crop`, `crop=focalpoint`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/focalpoint-crop/fp-z)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/focal-point-crop/focal-point-zoom)
    */
   fpZ?: InputMaybe<Scalars['FloatType']['input']>;
   /**
    * Frames Per Second
    *
    * Specifies the framerate of the generated image.
+   *
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/animation/frames-per-second)
    */
   fps?: InputMaybe<Scalars['IntType']['input']>;
   /**
    * Frame Selection
    *
    * Specifies the frame of an animated image to use.
+   *
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/animation/frame-selection)
    */
   frame?: InputMaybe<Scalars['String']['input']>;
   /**
@@ -1264,7 +1302,7 @@ type ImgixParams = {
    *
    * Adjusts the gamma of the source image.
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/adjustment/gam)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/adjustment/gamma)
    */
   gam?: InputMaybe<Scalars['IntType']['input']>;
   /**
@@ -1273,6 +1311,8 @@ type ImgixParams = {
    * Specifies the quality of the animated gif. The higher the value, the better more compression is applied.
    *
    * Depends on: `fm=gif`
+   *
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/animation/animated-gif-quality)
    */
   gifQ?: InputMaybe<Scalars['IntType']['input']>;
   /**
@@ -1281,6 +1321,8 @@ type ImgixParams = {
    * Sets grid colors for the transparency checkerboard grid.
    *
    * Depends on: `transparency`
+   *
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/fill/grid-colors)
    */
   gridColors?: InputMaybe<Scalars['String']['input']>;
   /**
@@ -1289,6 +1331,8 @@ type ImgixParams = {
    * Sets grid size for the transparency checkerboard grid.
    *
    * Depends on: `transparency`
+   *
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/fill/grid-size)
    */
   gridSize?: InputMaybe<Scalars['IntType']['input']>;
   /**
@@ -1296,7 +1340,7 @@ type ImgixParams = {
    *
    * Adjusts the height of the output image.
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/size/h)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/size/image-height)
    */
   h?: InputMaybe<Scalars['FloatType']['input']>;
   /**
@@ -1304,7 +1348,7 @@ type ImgixParams = {
    *
    * Adjusts the highlights of the source image.
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/adjustment/high)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/adjustment/highlight)
    */
   high?: InputMaybe<Scalars['IntType']['input']>;
   /**
@@ -1312,7 +1356,7 @@ type ImgixParams = {
    *
    * Applies a half-tone effect to the source image.
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/stylize/htn)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/stylize/halftone)
    */
   htn?: InputMaybe<Scalars['IntType']['input']>;
   /**
@@ -1320,13 +1364,15 @@ type ImgixParams = {
    *
    * Adjusts the hue of the source image.
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/adjustment/hue)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/adjustment/hue-shift)
    */
   hue?: InputMaybe<Scalars['IntType']['input']>;
   /**
    * Frame Interval
    *
    * Displays every Nth frame starting with the first frame.
+   *
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/animation/frame-interval)
    */
   interval?: InputMaybe<Scalars['IntType']['input']>;
   /**
@@ -1334,25 +1380,31 @@ type ImgixParams = {
    *
    * Inverts the colors on the source image.
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/adjustment/invert)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/adjustment/invert)
    */
   invert?: InputMaybe<Scalars['BooleanType']['input']>;
   /**
    * Iptc Passthrough
    *
    * Determine if IPTC data should be passed for JPEG images.
+   *
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/format/iptc-passthrough)
    */
   iptc?: InputMaybe<ImgixParamsIptc>;
   /**
    * Jpg Progressive
    *
    * Specifies whether or not a jpg/jpeg uses progressive (true) or baseline (false)
+   *
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/format/jpg-progressive)
    */
   jpgProgressive?: InputMaybe<Scalars['BooleanType']['input']>;
   /**
    * Animation Loop Count
    *
    * Specifies the number of times an animated image should repeat. A value of 0 means infinite looping.
+   *
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/animation)
    */
   loop?: InputMaybe<Scalars['IntType']['input']>;
   /**
@@ -1362,15 +1414,23 @@ type ImgixParams = {
    *
    * Depends on: `fm=webp`, `fm=jxr`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/format/lossless)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/format/lossless-compression)
    */
   lossless?: InputMaybe<Scalars['BooleanType']['input']>;
+  /**
+   * License Plate Blur
+   *
+   * Specifies the amount of blur to apply to detected license plates. Defaults to 0.
+   *
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/license-plate-detection/license-plate-blur)
+   */
+  lpBlur?: InputMaybe<Scalars['IntType']['input']>;
   /**
    * Watermark Image Url
    *
    * Specifies the location of the watermark image.
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/watermark/mark)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/watermark/watermark-image-url)
    */
   mark?: InputMaybe<Scalars['String']['input']>;
   /**
@@ -1380,7 +1440,7 @@ type ImgixParams = {
    *
    * Depends on: `mark`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/watermark/mark-align)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/watermark/watermark-alignment-mode)
    */
   markAlign?: InputMaybe<Array<ImgixParamsMarkAlign>>;
   /**
@@ -1390,7 +1450,7 @@ type ImgixParams = {
    *
    * Depends on: `mark`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/watermark/mark-alpha)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/watermark/watermark-alpha)
    */
   markAlpha?: InputMaybe<Scalars['IntType']['input']>;
   /**
@@ -1400,7 +1460,7 @@ type ImgixParams = {
    *
    * Depends on: `mark`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/watermark/mark-base)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/watermark/watermark-base-url)
    */
   markBase?: InputMaybe<Scalars['String']['input']>;
   /**
@@ -1410,7 +1470,7 @@ type ImgixParams = {
    *
    * Depends on: `mark`, `markw`, `markh`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/watermark/mark-fit)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/watermark/watermark-fit-mode)
    */
   markFit?: InputMaybe<ImgixParamsMarkFit>;
   /**
@@ -1420,9 +1480,29 @@ type ImgixParams = {
    *
    * Depends on: `mark`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/watermark/mark-h)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/watermark/watermark-height)
    */
   markH?: InputMaybe<Scalars['FloatType']['input']>;
+  /**
+   * Watermark If Minimum Height
+   *
+   * Displays the watermark if rendered base image pixel height is equal to or larger than the supplied value
+   *
+   * Depends on: `mark`
+   *
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/watermark/watermark-if-minimum-height)
+   */
+  markIfMinHeight?: InputMaybe<Scalars['IntType']['input']>;
+  /**
+   * Watermark If Minimum Width
+   *
+   * Displays the watermark if rendered base image pixel width is equal to or larger than the supplied value
+   *
+   * Depends on: `mark`
+   *
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/watermark/watermark-if-minimum-width)
+   */
+  markIfMinWidth?: InputMaybe<Scalars['IntType']['input']>;
   /**
    * Watermark Padding
    *
@@ -1430,7 +1510,7 @@ type ImgixParams = {
    *
    * Depends on: `mark`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/watermark/mark-pad)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/watermark/watermark-padding)
    */
   markPad?: InputMaybe<Scalars['IntType']['input']>;
   /**
@@ -1438,7 +1518,7 @@ type ImgixParams = {
    *
    * Rotates a watermark or tiled watermarks by a specified number of degrees.
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/watermark/mark-rot)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/watermark/watermark-rotation)
    */
   markRot?: InputMaybe<Scalars['FloatType']['input']>;
   /**
@@ -1448,7 +1528,7 @@ type ImgixParams = {
    *
    * Depends on: `mark`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/watermark/mark-scale)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/watermark/watermark-scale)
    */
   markScale?: InputMaybe<Scalars['IntType']['input']>;
   /**
@@ -1458,7 +1538,7 @@ type ImgixParams = {
    *
    * Depends on: `mark`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/watermark/mark-tile)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/watermark/watermark-tile)
    */
   markTile?: InputMaybe<ImgixParamsMarkTile>;
   /**
@@ -1468,7 +1548,7 @@ type ImgixParams = {
    *
    * Depends on: `mark`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/watermark/mark-w)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/watermark/watermark-width)
    */
   markW?: InputMaybe<Scalars['FloatType']['input']>;
   /**
@@ -1478,7 +1558,7 @@ type ImgixParams = {
    *
    * Depends on: `mark`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/watermark/mark-x)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/watermark/watermark-x-position)
    */
   markX?: InputMaybe<Scalars['IntType']['input']>;
   /**
@@ -1488,7 +1568,7 @@ type ImgixParams = {
    *
    * Depends on: `mark`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/watermark/mark-y)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/watermark/watermark-y-position)
    */
   markY?: InputMaybe<Scalars['IntType']['input']>;
   /**
@@ -1496,7 +1576,7 @@ type ImgixParams = {
    *
    * Defines the type of mask and specifies the URL if that type is selected.
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/mask)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/mask-image/mask-type)
    */
   mask?: InputMaybe<Scalars['String']['input']>;
   /**
@@ -1506,7 +1586,7 @@ type ImgixParams = {
    *
    * Depends on: `mask`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/mask/mask-bg)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/mask-image/mask-background-color)
    */
   maskBg?: InputMaybe<Scalars['String']['input']>;
   /**
@@ -1516,7 +1596,7 @@ type ImgixParams = {
    *
    * Depends on: `fit=crop`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/size/max-height)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/size/maximum-height)
    */
   maxH?: InputMaybe<Scalars['IntType']['input']>;
   /**
@@ -1526,7 +1606,7 @@ type ImgixParams = {
    *
    * Depends on: `fit=crop`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/size/max-width)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/size/maximum-width)
    */
   maxW?: InputMaybe<Scalars['IntType']['input']>;
   /**
@@ -1536,7 +1616,7 @@ type ImgixParams = {
    *
    * Depends on: `fit=crop`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/size/min-height)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/size/minimum-height)
    */
   minH?: InputMaybe<Scalars['IntType']['input']>;
   /**
@@ -1546,7 +1626,7 @@ type ImgixParams = {
    *
    * Depends on: `fit=crop`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/size/min-width)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/size/minimum-width)
    */
   minW?: InputMaybe<Scalars['IntType']['input']>;
   /**
@@ -1554,7 +1634,7 @@ type ImgixParams = {
    *
    * Applies a monochrome effect to the source image.
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/stylize/monochrome)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/stylize/monochrome)
    */
   monochrome?: InputMaybe<Scalars['String']['input']>;
   /**
@@ -1562,7 +1642,7 @@ type ImgixParams = {
    *
    * Reduces the noise in an image.
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/noise-reduction/nr)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/noise-reduction/noise-reduction-bound)
    */
   nr?: InputMaybe<Scalars['IntType']['input']>;
   /**
@@ -1570,15 +1650,53 @@ type ImgixParams = {
    *
    * Provides a threshold by which to sharpen an image.
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/noise-reduction/nrs)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/noise-reduction/noise-reduction-sharpen)
    */
   nrs?: InputMaybe<Scalars['IntType']['input']>;
+  /**
+   * Object Removal Negative Prompt
+   *
+   * Provides a negative text suggestion to object-removal-prompt. Used to reduce the probability of a subject, detail, or object appearing in generative output.
+   *
+   * Depends on: `object-removal-rect`
+   *
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/object-manipulation/object-removal-negative-prompt)
+   */
+  objectRemovalNegativePrompt?: InputMaybe<Scalars['String']['input']>;
+  /**
+   * Object Removal Prompt
+   *
+   * Suggest auto generative fill for the object-removal-rect parameter
+   *
+   * Depends on: `object-removal-rect`
+   *
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/object-manipulation/object-removal-prompt)
+   */
+  objectRemovalPrompt?: InputMaybe<Scalars['String']['input']>;
+  /**
+   * Object Removal
+   *
+   * Using a specified rectangle, an object is removed from the image
+   *
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/object-manipulation/object-removal)
+   */
+  objectRemovalRect?: InputMaybe<Scalars['String']['input']>;
+  /**
+   * Object Removal Seed
+   *
+   * Sets the generative seed value for object-removal. Used to generate new outputs from the same prompt
+   *
+   * Depends on: `object-removal-rect`, `object-removal-prompt`
+   *
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/object-manipulation/object-removal-seed)
+   */
+  objectRemovalSeed?: InputMaybe<Scalars['IntType']['input']>;
   /**
    * Orientation
    *
    * Changes the image orientation.
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/rotation/orient)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/rotation/orientation)
    */
   orient?: InputMaybe<Scalars['IntType']['input']>;
   /**
@@ -1586,7 +1704,7 @@ type ImgixParams = {
    *
    * Pads an image.
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/border-and-padding/pad)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/border-and-padding/padding)
    */
   pad?: InputMaybe<Scalars['IntType']['input']>;
   /**
@@ -1594,7 +1712,7 @@ type ImgixParams = {
    *
    * Sets bottom padding of an image.
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/border-and-padding/pad-bottom)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/border-and-padding/padding-bottom)
    */
   padBottom?: InputMaybe<Scalars['IntType']['input']>;
   /**
@@ -1602,7 +1720,7 @@ type ImgixParams = {
    *
    * Sets left padding of an image.
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/border-and-padding/pad-left)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/border-and-padding/padding-left)
    */
   padLeft?: InputMaybe<Scalars['IntType']['input']>;
   /**
@@ -1610,7 +1728,7 @@ type ImgixParams = {
    *
    * Sets right padding of an image.
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/border-and-padding/pad-right)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/border-and-padding/padding-right)
    */
   padRight?: InputMaybe<Scalars['IntType']['input']>;
   /**
@@ -1618,7 +1736,7 @@ type ImgixParams = {
    *
    * Sets top padding of an image.
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/border-and-padding/pad-top)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/border-and-padding/padding-top)
    */
   padTop?: InputMaybe<Scalars['IntType']['input']>;
   /**
@@ -1626,7 +1744,7 @@ type ImgixParams = {
    *
    * Selects a page from a PDF for display.
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/pdf/page)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/pdf/pdf-page-number)
    */
   page?: InputMaybe<Scalars['IntType']['input']>;
   /**
@@ -1634,7 +1752,7 @@ type ImgixParams = {
    *
    * Specifies an output format for palette-extraction.
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/color-palette/palette)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/color-palette/color-palette-extraction)
    */
   palette?: InputMaybe<ImgixParamsPalette>;
   /**
@@ -1642,7 +1760,7 @@ type ImgixParams = {
    *
    * Enables or disables PDF annotation.
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/pdf/pdf-annotation)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/pdf/pdf-annotation)
    */
   pdfAnnotation?: InputMaybe<Scalars['BooleanType']['input']>;
   /**
@@ -1652,7 +1770,7 @@ type ImgixParams = {
    *
    * Depends on: `palette=css`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/color-palette/prefix)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/color-palette/css-prefix)
    */
   prefix?: InputMaybe<Scalars['String']['input']>;
   /**
@@ -1660,7 +1778,7 @@ type ImgixParams = {
    *
    * Applies a pixelation effect to an image.
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/stylize/px)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/stylize/pixellate)
    */
   px?: InputMaybe<Scalars['IntType']['input']>;
   /**
@@ -1668,23 +1786,31 @@ type ImgixParams = {
    *
    * Adjusts the quality of an output image.
    *
-   * Depends on: `fm=jpg`, `fm=pjpg`, `fm=webp`, `fm=jxr`
+   * Depends on: `fm=avif`, `fm=jpg`, `fm=pjpg`, `fm=webp`, `fm=jxr`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/format/q)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/format/output-quality)
    */
   q?: InputMaybe<Scalars['IntType']['input']>;
+  /**
+   * Rasterize Bypass
+   *
+   * Bypasses all rendering parameters (including default parameters) and serves the original image. Works for svg+xml,x-eps,pdf, and vnd.adobe.illustrator.
+   */
+  rasterizeBypass?: InputMaybe<Scalars['BooleanType']['input']>;
   /**
    * Source Rectangle Region
    *
    * Crops an image to a specified rectangle.
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/size/rect)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/size/source-rectangle-region)
    */
   rect?: InputMaybe<Scalars['String']['input']>;
   /**
    * Reverse
    *
    * Reverses the frame order on the source animation.
+   *
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/animation/reverse)
    */
   reverse?: InputMaybe<Scalars['BooleanType']['input']>;
   /**
@@ -1692,15 +1818,23 @@ type ImgixParams = {
    *
    * Rotates an image by a specified number of degrees.
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/rotation/rot)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/rotation/rotation)
    */
   rot?: InputMaybe<Scalars['FloatType']['input']>;
+  /**
+   * Rotation Type
+   *
+   * Changes the rotation type.
+   *
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/rotation/rotation-type)
+   */
+  rotType?: InputMaybe<ImgixParamsRotType>;
   /**
    * Saturation
    *
    * Adjusts the saturation of an image.
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/adjustment/sat)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/adjustment/saturation)
    */
   sat?: InputMaybe<Scalars['IntType']['input']>;
   /**
@@ -1708,7 +1842,7 @@ type ImgixParams = {
    *
    * Applies a sepia effect to an image.
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/stylize/sepia)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/stylize/sepia-tone)
    */
   sepia?: InputMaybe<Scalars['IntType']['input']>;
   /**
@@ -1716,7 +1850,7 @@ type ImgixParams = {
    *
    * Adjusts the highlights of the source image.
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/adjustment/shad)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/adjustment/shadow)
    */
   shad?: InputMaybe<Scalars['FloatType']['input']>;
   /**
@@ -1724,13 +1858,15 @@ type ImgixParams = {
    *
    * Adjusts the sharpness of the source image.
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/adjustment/sharp)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/adjustment/sharpen)
    */
   sharp?: InputMaybe<Scalars['FloatType']['input']>;
   /**
    * Frame Skip
    *
    * Skips every Nth frame starting with the first frame.
+   *
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/animation/frame-skip)
    */
   skip?: InputMaybe<Scalars['IntType']['input']>;
   /**
@@ -1743,6 +1879,8 @@ type ImgixParams = {
    * Sanitize Svg
    *
    * Specifies whether to sanitize an SVG.
+   *
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/format/sanitize-svg)
    */
   svgSanitize?: InputMaybe<Scalars['BooleanType']['input']>;
   /**
@@ -1750,7 +1888,7 @@ type ImgixParams = {
    *
    * Adds checkerboard behind images which support transparency.
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/fill/transparency)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/fill/transparency)
    */
   transparency?: InputMaybe<ImgixParamsTransparency>;
   /**
@@ -1758,9 +1896,19 @@ type ImgixParams = {
    *
    * Trims the source image.
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/trim/trim)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/trim/trim-image)
    */
   trim?: InputMaybe<ImgixParamsTrim>;
+  /**
+   * Trim Alpha
+   *
+   * Specifies a trim alpha on a trim operation.
+   *
+   * Depends on: `trim=alpha`
+   *
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/trim/trim-alpha)
+   */
+  trimAlpha?: InputMaybe<Scalars['FloatType']['input']>;
   /**
    * Trim Color
    *
@@ -1768,7 +1916,7 @@ type ImgixParams = {
    *
    * Depends on: `trim=color`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/trim/trim-color)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/trim/trim-color)
    */
   trimColor?: InputMaybe<Scalars['String']['input']>;
   /**
@@ -1778,7 +1926,7 @@ type ImgixParams = {
    *
    * Depends on: `trim=auto`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/trim/trim-md)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/trim/trim-mean-difference)
    */
   trimMd?: InputMaybe<Scalars['FloatType']['input']>;
   /**
@@ -1788,7 +1936,7 @@ type ImgixParams = {
    *
    * Depends on: `trim`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/trim/trim-pad)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/trim/trim-padding)
    */
   trimPad?: InputMaybe<Scalars['IntType']['input']>;
   /**
@@ -1798,7 +1946,7 @@ type ImgixParams = {
    *
    * Depends on: `trim=auto`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/trim/trim-sd)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/trim/trim-standard-deviation)
    */
   trimSd?: InputMaybe<Scalars['FloatType']['input']>;
   /**
@@ -1808,7 +1956,7 @@ type ImgixParams = {
    *
    * Depends on: `trim=color`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/trim/trim-tol)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/trim/trim-tolerance)
    */
   trimTol?: InputMaybe<Scalars['FloatType']['input']>;
   /**
@@ -1816,7 +1964,7 @@ type ImgixParams = {
    *
    * Sets the text string to render.
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/text/txt)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/text/text-string)
    */
   txt?: InputMaybe<Scalars['String']['input']>;
   /**
@@ -1826,7 +1974,7 @@ type ImgixParams = {
    *
    * Depends on: `txt`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/text/txt-align)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/text/text-align)
    */
   txtAlign?: InputMaybe<Array<ImgixParamsTxtAlign>>;
   /**
@@ -1836,7 +1984,7 @@ type ImgixParams = {
    *
    * Depends on: `txt`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/text/txt-clip)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/text/text-clipping-mode)
    */
   txtClip?: InputMaybe<Array<ImgixParamsTxtClip>>;
   /**
@@ -1846,7 +1994,7 @@ type ImgixParams = {
    *
    * Depends on: `txt`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/text/txt-color)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/text/text-color)
    */
   txtColor?: InputMaybe<Scalars['String']['input']>;
   /**
@@ -1856,7 +2004,7 @@ type ImgixParams = {
    *
    * Depends on: `txt`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/text/txt-fit)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/text/text-fit-mode)
    */
   txtFit?: InputMaybe<ImgixParamsTxtFit>;
   /**
@@ -1866,7 +2014,7 @@ type ImgixParams = {
    *
    * Depends on: `txt`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/text/txt-font)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/text/text-font)
    */
   txtFont?: InputMaybe<Scalars['String']['input']>;
   /**
@@ -1876,7 +2024,7 @@ type ImgixParams = {
    *
    * Depends on: `txt`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/typesetting/txt-lead)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/typesetting-endpoint/text-leading)
    */
   txtLead?: InputMaybe<Scalars['IntType']['input']>;
   /**
@@ -1886,7 +2034,7 @@ type ImgixParams = {
    *
    * Depends on: `txt`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/text/txt-line)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/text/text-outline)
    */
   txtLine?: InputMaybe<Scalars['IntType']['input']>;
   /**
@@ -1896,7 +2044,7 @@ type ImgixParams = {
    *
    * Depends on: `txt`, `txtline`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/text/txt-line-color)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/text/text-outline-color)
    */
   txtLineColor?: InputMaybe<Scalars['String']['input']>;
   /**
@@ -1906,7 +2054,7 @@ type ImgixParams = {
    *
    * Depends on: `txt`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/text/txt-pad)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/text/text-padding)
    */
   txtPad?: InputMaybe<Scalars['IntType']['input']>;
   /**
@@ -1916,7 +2064,7 @@ type ImgixParams = {
    *
    * Depends on: `txt`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/text/txt-shad)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/text/text-shadow)
    */
   txtShad?: InputMaybe<Scalars['FloatType']['input']>;
   /**
@@ -1926,7 +2074,7 @@ type ImgixParams = {
    *
    * Depends on: `txt`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/text/txt-size)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/text/text-font-size)
    */
   txtSize?: InputMaybe<Scalars['IntType']['input']>;
   /**
@@ -1936,7 +2084,7 @@ type ImgixParams = {
    *
    * Depends on: `txt`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/typesetting/txt-track)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/typesetting-endpoint/text-tracking)
    */
   txtTrack?: InputMaybe<Scalars['IntType']['input']>;
   /**
@@ -1946,7 +2094,7 @@ type ImgixParams = {
    *
    * Depends on: `txt`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/text/txt-width)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/text/text-width)
    */
   txtWidth?: InputMaybe<Scalars['IntType']['input']>;
   /**
@@ -1956,7 +2104,7 @@ type ImgixParams = {
    *
    * Depends on: `txt`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/text/txt-x)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/text/text-x-position)
    */
   txtX?: InputMaybe<Scalars['IntType']['input']>;
   /**
@@ -1966,7 +2114,7 @@ type ImgixParams = {
    *
    * Depends on: `txt`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/text/txt-y)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/text/text-y-position)
    */
   txtY?: InputMaybe<Scalars['IntType']['input']>;
   /**
@@ -1974,7 +2122,7 @@ type ImgixParams = {
    *
    * Uses generative AI fill to upscale low resolution images.
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/super-resolution/upscale)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/super-resolution)
    */
   upscale?: InputMaybe<Scalars['BooleanType']['input']>;
   /**
@@ -1982,7 +2130,7 @@ type ImgixParams = {
    *
    * Overrides default fallback behavior for super resolution failures
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/super-resolution/upscale-fallback)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/super-resolution)
    */
   upscaleFallback?: InputMaybe<Scalars['BooleanType']['input']>;
   /**
@@ -1990,7 +2138,7 @@ type ImgixParams = {
    *
    * Sharpens the source image using an unsharp mask.
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/adjustment/usm)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/adjustment/unsharp-mask)
    */
   usm?: InputMaybe<Scalars['IntType']['input']>;
   /**
@@ -2000,7 +2148,7 @@ type ImgixParams = {
    *
    * Depends on: `usm`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/adjustment/usmrad)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/adjustment/unsharp-mask-radius)
    */
   usmrad?: InputMaybe<Scalars['FloatType']['input']>;
   /**
@@ -2008,7 +2156,7 @@ type ImgixParams = {
    *
    * Adjusts the vibrance of an image.
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/adjustment/vib)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/adjustment/vibrance)
    */
   vib?: InputMaybe<Scalars['IntType']['input']>;
   /**
@@ -2016,7 +2164,7 @@ type ImgixParams = {
    *
    * Adjusts the width of the output image.
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/size/w)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/size/image-width)
    */
   w?: InputMaybe<Scalars['FloatType']['input']>;
 };
@@ -2026,6 +2174,11 @@ enum ImgixParamsAuto {
   enhance = 'enhance',
   format = 'format',
   redeye = 'redeye'
+}
+
+enum ImgixParamsBgRemoveFgType {
+  auto = 'auto',
+  car = 'car'
 }
 
 enum ImgixParamsBlendAlign {
@@ -2095,6 +2248,7 @@ enum ImgixParamsCrop {
 
 enum ImgixParamsCs {
   adobergb1998 = 'adobergb1998',
+  origin = 'origin',
   srgb = 'srgb',
   strip = 'strip',
   tinysrgb = 'tinysrgb'
@@ -2203,11 +2357,17 @@ enum ImgixParamsPalette {
   json = 'json'
 }
 
+enum ImgixParamsRotType {
+  pivot = 'pivot',
+  straighten = 'straighten'
+}
+
 enum ImgixParamsTransparency {
   grid = 'grid'
 }
 
 enum ImgixParamsTrim {
+  alpha = 'alpha',
   auto = 'auto',
   color = 'color'
 }
@@ -2587,7 +2747,7 @@ enum PostModelOrderBy {
 
 type PostModelStructuredContentField = {
   __typename?: 'PostModelStructuredContentField';
-  blocks: Array<Scalars['String']['output']>;
+  blocks: Array<PageRecord>;
   links: Array<Scalars['String']['output']>;
   value: Scalars['JsonField']['output'];
 };
