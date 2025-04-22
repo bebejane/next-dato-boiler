@@ -1,10 +1,10 @@
 {
   "files.exclude": {
-    "node_modules": true,
-    ".vscode": true,
-    ".next": true,
-    "@types": true,
-    ".vercel": true,
-    "types": true
+    "node_modules": false,
+    ".vscode": false,
+    ".next": false,
+    "@types": false,
+    ".vercel": false,
+    "types": false
   }
 }
