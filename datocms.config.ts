@@ -1,4 +1,4 @@
-import type { DatoCmsConfig } from './datocms-config/index'
+import type { DatoCmsConfig } from 'next-dato-utils/config'
 
 export default {
   name: 'Nextjs Boiler',

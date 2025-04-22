@@ -1,5 +1,4 @@
-import { datoCmsApiRoutes } from '@datocms-config'
-export const runtime = "edge"
+import { datoCmsRouteHandler } from 'next-dato-utils/config'
 export const dynamic = "force-dynamic"
-export const GET = async (req: Request, params) => datoCmsApiRoutes(req, params)
-export const POST = async (req: Request, params) => datoCmsApiRoutes(req, params)
+export const GET = async (req: Request, params: any) => datoCmsRouteHandler(req, params)
+export const POST = async (req: Request, params: any) => datoCmsRouteHandler(req, params)
