@@ -24,7 +24,7 @@ const config: IGraphQLConfig = {
 		codegen: {
 			overwrite: true,
 			generates: {
-				"@types/datocms.d.ts": {
+				"types/datocms.d.ts": {
 					plugins: [
 						"typescript",
 						"typescript-operations",
@@ -35,7 +35,7 @@ const config: IGraphQLConfig = {
 					plugins: ["typed-document-node"],
 					config: { ...defaultConfig }
 				},
-				"@types/document-modules.d.ts": {
+				"types/document-modules.d.ts": {
 					plugins: ["typescript-graphql-files-modules"],
 					config: { ...defaultConfig }
 				},
