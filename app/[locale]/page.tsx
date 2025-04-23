@@ -1,6 +1,6 @@
 import { apiQuery } from 'next-dato-utils/api';
 import { DraftMode } from 'next-dato-utils/components';
-import { getTranslations } from 'next-intl/server';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { SiteDocument } from '@/graphql';
 
 export type PageProps = {
@@ -10,8 +10,8 @@ export type PageProps = {
 
 export default async function Home({ params }: PageProps) {
 	const { locale } = await params;
+	setRequestLocale(locale);
 	const t = await getTranslations('Start');
-	const { site } = await apiQuery<SiteQuery, SiteQueryVariables>(SiteDocument, { variables: {} });
-	console.log(site);
+
 	return <>{locale}</>;
 }
