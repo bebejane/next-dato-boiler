@@ -9,6 +9,10 @@ const nextConfig: NextConfig = {
     	@import "./styles/mediaqueries";
   	`,
 	},
+	webpack: (config) => {
+		config.module.exprContextCritical = false;
+		return config;
+	},
 	typescript: {
 		ignoreBuildErrors: true,
 	},
