@@ -1,8 +1,8 @@
-import { getDatoCmsConfig } from '@datocms-config'
+import { getDatoCmsConfig } from 'next-dato-utils/config'
 import { MetadataRoute } from 'next'
 
 export default async function manifest(): Promise<MetadataRoute.Manifest> {
-  const config = await getDatoCmsConfig()
+  const config = getDatoCmsConfig()
   return {
     name: config.name,
     short_name: config.name,
