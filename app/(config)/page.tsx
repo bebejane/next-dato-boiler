@@ -2,7 +2,7 @@ import s from './page.module.scss';
 import { getDatoCmsConfig } from 'next-dato-utils/config';
 
 export default async function Home() {
-	const config = getDatoCmsConfig();
+	const config = await getDatoCmsConfig();
 
 	return (
 		<>

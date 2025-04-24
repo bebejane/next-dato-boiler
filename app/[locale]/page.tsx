@@ -13,6 +13,6 @@ export default async function Home({ params }: PageProps) {
 	setRequestLocale(locale);
 
 	const t = await getTranslations('Start');
-	const config = getDatoCmsConfig();
+	const config = await getDatoCmsConfig();
 	return <>{locale}</>;
 }
