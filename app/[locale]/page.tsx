@@ -14,5 +14,9 @@ export default async function Home({ params }: PageProps) {
 
 	const t = await getTranslations('Start');
 	const config = await getDatoCmsConfig();
-	return <>{locale}</>;
+	return (
+		<div>
+			{locale} {JSON.stringify(config)}
+		</div>
+	);
 }

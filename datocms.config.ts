@@ -1,7 +1,7 @@
 import type { DatoCmsConfig } from 'next-dato-utils/config'
 
 export default {
-  name: 'Nextjs Boiler',
+  name: 'Nextjs Boiler2',
   description: 'A boilerplate for Nextjs and DatoCMS',
   theme: {
     color: '#f6f3ee',
