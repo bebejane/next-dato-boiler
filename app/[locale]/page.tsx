@@ -46,3 +46,7 @@ export default async function Home({ params }: PageProps) {
 		</>
 	);
 }
+
+export async function generateStaticParams() {
+	return locales.map((locale) => ({ locale }));
+}

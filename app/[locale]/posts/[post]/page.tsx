@@ -35,7 +35,6 @@ export default async function Post({ params }) {
 
 export async function generateStaticParams({ params }) {
 	const { locale } = await params;
-	if (!locales.includes(locale as any)) return notFound();
 	const { allPosts } = await apiQuery(AllPostsDocument, {
 		all: true,
 		variables: {
