@@ -1,9 +1,10 @@
-import '@styles/index.scss';
+import '@/styles/index.scss';
 import s from './layout.module.scss';
 import { apiQuery } from 'next-dato-utils/api';
 import { GlobalDocument } from '@/graphql';
 import { Metadata } from 'next';
 import { Icon } from 'next/dist/lib/metadata/types/metadata-types';
+import { NextIntlClientProvider } from 'next-intl';
 
 export type LayoutProps = {
 	children: React.ReactNode;
@@ -14,17 +15,19 @@ export default async function RootLayout({ children }: LayoutProps) {
 		<>
 			<html lang='en'>
 				<body id='root'>
-					<main className={s.main}>{children}</main>
+					<NextIntlClientProvider>
+						<main className={s.main}>{children}</main>
+					</NextIntlClientProvider>
 				</body>
 			</html>
 		</>
 	);
 }
 
-export async function generateMetadata() {
+export async function generateMetadata(): Promise<Metadata> {
 	const {
 		site: { globalSeo, faviconMetaTags },
-	} = await apiQuery<GlobalQuery, GlobalQueryVariables>(GlobalDocument, {
+	} = await apiQuery(GlobalDocument, {
 		variables: {},
 		revalidate: 60 * 60,
 	});

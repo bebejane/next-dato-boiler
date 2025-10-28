@@ -1,4 +1,13 @@
 
+declare module '*/FileFragment.gql' {
+  import { DocumentNode } from 'graphql';
+  const defaultDocument: DocumentNode;
+  export const FileFragment: DocumentNode;
+
+  export default defaultDocument;
+}
+    
+
 declare module '*/ImageFragment.gql' {
   import { DocumentNode } from 'graphql';
   const defaultDocument: DocumentNode;
@@ -26,24 +35,6 @@ declare module '*/MediaFragment.gql' {
 }
     
 
-declare module '*/ResponsiveImageFragment.gql' {
-  import { DocumentNode } from 'graphql';
-  const defaultDocument: DocumentNode;
-  export const ResponsiveImageFragment: DocumentNode;
-
-  export default defaultDocument;
-}
-    
-
-declare module '*/SEOFragment.gql' {
-  import { DocumentNode } from 'graphql';
-  const defaultDocument: DocumentNode;
-  export const SEOFragment: DocumentNode;
-
-  export default defaultDocument;
-}
-    
-
 declare module '*/SiteFragment.gql' {
   import { DocumentNode } from 'graphql';
   const defaultDocument: DocumentNode;
@@ -62,10 +53,35 @@ declare module '*/global.gql' {
 }
     
 
-declare module '*/seo.gql' {
+declare module '*/post.gql' {
   import { DocumentNode } from 'graphql';
   const defaultDocument: DocumentNode;
-  export const Site: DocumentNode;
+  export const Post: DocumentNode;
+export const AllPosts: DocumentNode;
+export const PostFragment: DocumentNode;
+export const PostLightFragment: DocumentNode;
+
+  export default defaultDocument;
+}
+    
+
+declare module '*/start.gql' {
+  import { DocumentNode } from 'graphql';
+  const defaultDocument: DocumentNode;
+  export const Start: DocumentNode;
+export const StartFragment: DocumentNode;
+
+  export default defaultDocument;
+}
+    
+
+declare module '*/user.gql' {
+  import { DocumentNode } from 'graphql';
+  const defaultDocument: DocumentNode;
+  export const User: DocumentNode;
+export const AllUsers: DocumentNode;
+export const UserFragment: DocumentNode;
+export const UserLightFragment: DocumentNode;
 
   export default defaultDocument;
 }
