@@ -13,16 +13,16 @@ const nextConfig: NextConfig = {
     	@import "./styles/mediaqueries";
   	`,
 	},
-	webpack: (config) => {
-		config.module.exprContextCritical = false;
-		config.resolve.alias['datocms.config'] = path.join(__dirname, 'datocms.config.ts');
-		return config;
-	},
 	typescript: {
 		ignoreBuildErrors: true,
 	},
 	eslint: {
 		ignoreDuringBuilds: true,
+	},
+	webpack: (config) => {
+		config.module.exprContextCritical = false;
+		config.resolve.alias['datocms.config'] = path.join(__dirname, 'datocms.config.ts');
+		return config;
 	},
 	turbopack: {
 		resolveAlias: {
