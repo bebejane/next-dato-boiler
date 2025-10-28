@@ -27,6 +27,9 @@ fragment PostFragment on PostRecord {
 		value
 		links
 	}
+	author {
+		name
+	}
 	_updatedAt
 }
 
@@ -37,5 +40,8 @@ fragment PostLightFragment on PostRecord {
 	intro
 	slug
 	title
+	author {
+		name
+	}
 	_updatedAt
 }

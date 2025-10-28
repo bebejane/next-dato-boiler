@@ -1,12 +1,12 @@
-import { NextConfig } from "next";
+import { NextConfig } from 'next';
 import createNextIntlPlugin from 'next-intl/plugin';
+import path from 'path';
 
 const withNextIntl = createNextIntlPlugin();
 
-
 const nextConfig: NextConfig = {
 	sassOptions: {
-		includePaths: ["./components", "./app"],
+		includePaths: ['./components', './app'],
 		silenceDeprecations: ['legacy-js-api', 'import'],
 		prependData: `
 			@use "sass:math";
@@ -15,6 +15,7 @@ const nextConfig: NextConfig = {
 	},
 	webpack: (config) => {
 		config.module.exprContextCritical = false;
+		config.resolve.alias['datocms.config'] = path.join(__dirname, 'datocms.config.ts');
 		return config;
 	},
 	typescript: {
@@ -22,6 +23,11 @@ const nextConfig: NextConfig = {
 	},
 	eslint: {
 		ignoreDuringBuilds: true,
+	},
+	turbopack: {
+		resolveAlias: {
+			'datocms.config': './datocms.config.ts',
+		},
 	},
 	logging: {
 		fetches: {
@@ -31,28 +37,28 @@ const nextConfig: NextConfig = {
 	async headers() {
 		return [
 			{
-				source: "/api/web-previews",
+				source: '/api/web-previews',
 				headers: [
-					{ key: "Access-Control-Allow-Credentials", value: "true" },
-					{ key: "Access-Control-Allow-Origin", value: "*" },
-					{ key: "Access-Control-Allow-Methods", value: "POST,OPTIONS" },
+					{ key: 'Access-Control-Allow-Credentials', value: 'true' },
+					{ key: 'Access-Control-Allow-Origin', value: '*' },
+					{ key: 'Access-Control-Allow-Methods', value: 'POST,OPTIONS' },
 					{
-						key: "Access-Control-Allow-Headers",
+						key: 'Access-Control-Allow-Headers',
 						value:
-							"X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version",
+							'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version',
 					},
 				],
 			},
 			{
-				source: "/api/backup",
+				source: '/api/backup',
 				headers: [
-					{ key: "Access-Control-Allow-Credentials", value: "true" },
-					{ key: "Access-Control-Allow-Origin", value: "*" }, // replace this your actual origin
-					{ key: "Access-Control-Allow-Methods", value: "POST,OPTIONS" },
+					{ key: 'Access-Control-Allow-Credentials', value: 'true' },
+					{ key: 'Access-Control-Allow-Origin', value: '*' }, // replace this your actual origin
+					{ key: 'Access-Control-Allow-Methods', value: 'POST,OPTIONS' },
 					{
-						key: "Access-Control-Allow-Headers",
+						key: 'Access-Control-Allow-Headers',
 						value:
-							"X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version",
+							'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version',
 					},
 				],
 			},

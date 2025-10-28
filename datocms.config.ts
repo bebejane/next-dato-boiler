@@ -1,16 +1,18 @@
 import { apiQuery } from 'next-dato-utils/api';
 import { AllPostsDocument } from '@/graphql';
-import { DatoCmsConfig, getUploadReferenceRoutes } from 'next-dato-utils/config';
+import { locales, defaultLocale } from '@/i18n/routing';
+import { DatoCmsConfig, getUploadReferenceRoutes, getItemReferenceRoutes } from 'next-dato-utils/config';
 import { MetadataRoute } from 'next';
 
 export default {
 	i18n: {
-		locales: ['en', 'sv'],
-		defaultLocale: 'en',
+		locales,
+		defaultLocale,
 	},
 	routes: {
 		start: async (record, locale) => ['/'],
 		post: async (record, locale) => [`/post/${record.slug[locale] ?? record.slug}`],
+		author: async (record, locale) => getItemReferenceRoutes(record, locales),
 		upload: async (record, locale) => getUploadReferenceRoutes(record),
 	},
 	sitemap: async () => {
