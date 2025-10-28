@@ -8,10 +8,10 @@
 		"start": "next start",
 		"preview": "npm run build && npm run start",
 		"build": "next build",
-		"clean": "rm -rf ./node_modules && rm -rf .next && pnpm i",
-		"clean:cache": "rm -rf .next/cache",
 		"codegen": "graphql-codegen --watch",
-		"lint": "next lint"
+		"lint": "next lint",
+		"reset": "rm -rf ./node_modules && rm -rf .next && pnpm i",
+		"reset:cache": "rm -rf .next/cache"
 	},
 	"dependencies": {
 		"@datocms/cma-client": "^5.1.24",
@@ -26,7 +26,7 @@
 		"graphql": "^16.11.0",
 		"next": "15.5.6",
 		"next-auth": "^4.24.12",
-		"next-dato-utils": "github:bebejane/next-dato-utils",
+		"next-dato-utils": "github:bebejane/next-dato-utils#latest",
 		"next-intl": "^4.4.0",
 		"react-datocms": "8.0.0-1",
 		"react-use": "^17.6.0",
