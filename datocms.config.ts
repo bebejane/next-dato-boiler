@@ -13,7 +13,7 @@ export default {
 		start: async (record, locale) => ['/'],
 		post: async (record, locale) => [`/post/${record.slug[locale] ?? record.slug}`],
 		author: async (record, locale) => getItemReferenceRoutes(record, locales),
-		upload: async (record, locale) => getUploadReferenceRoutes(record),
+		upload: async ({ id }) => getUploadReferenceRoutes(id),
 	},
 	sitemap: async () => {
 		const { allPosts } = await apiQuery(AllPostsDocument, { all: true });
