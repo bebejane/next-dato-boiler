@@ -24,7 +24,7 @@
 		"graphql": "^16.11.0",
 		"next": "15.5.6",
 		"next-auth": "^4.24.12",
-		"next-dato-utils": "github:bebejane/next-dato-utils#latest",
+		"next-dato-utils": "/Users/bebejane/Projects/next-dato-utils",
 		"next-intl": "^4.4.0",
 		"react-datocms": "8.0.0-1",
 		"sass": "1.93.2",

@@ -1,5 +1,5 @@
-@use "fonts";
-@use "mediaqueries";
+@use 'fonts';
+@use 'mediaqueries' as *;
 
 :root {
 	--black: #161616;
@@ -13,9 +13,11 @@
 	--body-font: Arial, Helvetica, Sans-Serif;
 	--headline-font: Arial, Helvetica, Sans-Serif;
 
-	@include mediaqueries.mq($from: tablet) {}
+	@include mq($from: tablet) {
+	}
 
-	@include mediaqueries.mq($until: tablet) {}
+	@include mq($until: tablet) {
+	}
 }
 
 body {
@@ -26,10 +28,9 @@ body {
 	background-color: var(--background);
 	font-family: var(--body-font);
 	-webkit-font-smoothing: antialiased;
-	font-feature-settings: "liga", "kern";
+	font-feature-settings: 'liga', 'kern';
 
-	@include mediaqueries.mq($from: desktop) {
-		//background-color: pink;
+	@include mq($from: desktop) {
 	}
 }
 
@@ -68,7 +69,6 @@ main {
 a {
 	text-decoration: none;
 	color: var(--foreground);
-
 }
 
 article p a {
@@ -90,13 +90,13 @@ button {
 	color: var(--foreground);
 	border: 0;
 
-	@include mediaqueries.mq($from: tablet) {}
-
-	&.back {
-
-		@include mediaqueries.mq($from: tablet) {}
+	@include mq($from: tablet) {
 	}
 
+	&.back {
+		@include mq($from: tablet) {
+		}
+	}
 }
 
 figcaption {
@@ -105,11 +105,13 @@ figcaption {
 	margin-bottom: 1em;
 }
 
-hr {}
+hr {
+}
 
 input,
 textarea,
-select {}
+select {
+}
 
 select {
 	-webkit-appearance: none;

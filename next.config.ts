@@ -7,10 +7,9 @@ const withNextIntl = createNextIntlPlugin();
 const nextConfig: NextConfig = {
 	sassOptions: {
 		includePaths: ['./components', './app'],
-		silenceDeprecations: ['legacy-js-api', 'import', 'global-builtin', 'mixed-decls'],
 		prependData: `
 			@use "sass:math";
-    	@import "./styles/mediaqueries";
+    	@use "@/styles/mediaqueries" as *;
   	`,
 	},
 	typescript: {
