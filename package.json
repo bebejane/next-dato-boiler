@@ -3,14 +3,13 @@
 	"version": "0.1.0",
 	"private": true,
 	"scripts": {
-		"dev": "next dev & npm run codegen",
-		"dev:turbo": "next dev --turbo & npm run codegen",
+		"dev": "next dev --turbo & npm run codegen",
 		"start": "next start",
 		"preview": "npm run build && npm run start",
 		"build": "next build",
 		"codegen": "graphql-codegen --watch",
 		"lint": "next lint",
-		"reset": "rm -rf ./node_modules && rm -rf .next && pnpm i",
+		"reset": "rm -rf ./node_modules && rm -rf pnpm-lock.yaml && rm -rf .next && pnpm i",
 		"reset:cache": "rm -rf .next/cache"
 	},
 	"dependencies": {
