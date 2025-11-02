@@ -17,6 +17,7 @@
 		"@datocms/cma-client-browser": "^5.1.24",
 		"@datocms/cma-client-node": "^5.1.24",
 		"@graphql-typed-document-node/core": "^3.2.0",
+		"change-case": "^5.4.4",
 		"classnames": "^2.5.1",
 		"datocms-structured-text-utils": "^5.1.6",
 		"dotenv": "^17.2.3",
@@ -25,6 +26,8 @@
 		"next-auth": "^4.24.12",
 		"next-dato-utils": "/Users/bebejane/Projects/next-dato-utils",
 		"next-intl": "^4.4.0",
+		"react": "19.1.0",
+		"react-dom": "19.1.0",
 		"react-datocms": "8.0.0-1",
 		"sass": "1.93.2",
 		"zod": "^4.1.12",
@@ -38,9 +41,10 @@
 		"@graphql-codegen/typescript-graphql-files-modules": "^3.0.1",
 		"@graphql-codegen/typescript-operations": "^5.0.2",
 		"@parcel/watcher": "^2.5.1",
-		"@types/node": "^24.9.1",
-		"eslint": "^9.38.0",
-		"eslint-config-next": "^15.5.6",
+		"typescript": "^5",
+		"@types/node": "^20",
+		"@types/react": "^19",
+		"@types/react-dom": "^19",
 		"graphql-config": "^5.1.5"
 	}
 }
