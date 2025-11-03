@@ -10,9 +10,9 @@ export default {
 		defaultLocale,
 	},
 	routes: {
-		start: async (record, locale) => ['/'],
-		post: async (record, locale) => [`/post/${record.slug[locale] ?? record.slug}`],
-		author: async (record, locale) => getItemReferenceRoutes(record, locales),
+		start: async (record, locale) => [`/${locale}`],
+		post: async ({ slug }, locale) => [`/post/${slug[locale as string]}`],
+		author: async (record, locale) => getItemReferenceRoutes(record.id, locales),
 		upload: async (record, locale) => getUploadReferenceRoutes(record.id, locales),
 	},
 	sitemap: async () => {
@@ -56,7 +56,6 @@ export default {
 			rules: {
 				userAgent: '*',
 				allow: '/',
-				disallow: '/medlem/',
 			},
 		};
 	},
