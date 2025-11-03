@@ -1,3 +1,1 @@
 ## Nextjs DatoCMS Boilerplate
-
-Hola

@@ -24,11 +24,13 @@
 		"graphql": "^16.11.0",
 		"next": "15.5.6",
 		"next-auth": "^4.24.12",
-		"next-dato-utils": "/Users/bebejane/Projects/next-dato-utils",
+		"next-dato-utils": "github:bebejane/next-dato-utils#latest",
 		"next-intl": "^4.4.0",
+		"nuqs": "^2.7.2",
 		"react": "19.1.0",
-		"react-dom": "19.1.0",
 		"react-datocms": "8.0.0-1",
+		"react-dom": "19.1.0",
+		"react-wrap-balancer": "^1.1.1",
 		"sass": "1.93.2",
 		"zod": "^4.1.12",
 		"zustand": "^5.0.8"
@@ -41,10 +43,10 @@
 		"@graphql-codegen/typescript-graphql-files-modules": "^3.0.1",
 		"@graphql-codegen/typescript-operations": "^5.0.2",
 		"@parcel/watcher": "^2.5.1",
-		"typescript": "^5",
 		"@types/node": "^20",
 		"@types/react": "^19",
 		"@types/react-dom": "^19",
-		"graphql-config": "^5.1.5"
+		"graphql-config": "^5.1.5",
+		"typescript": "^5"
 	}
 }
