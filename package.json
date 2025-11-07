@@ -8,6 +8,7 @@
 		"preview": "npm run build && npm run start",
 		"build": "next build",
 		"codegen": "graphql-codegen --watch",
+		"codegen:datocms": "datocms schema:generate ./types/datocms-cma.ts",
 		"lint": "next lint",
 		"reset": "rm -rf ./node_modules && rm -rf pnpm-lock.yaml && rm -rf .next && pnpm i",
 		"reset:cache": "rm -rf .next/cache"
