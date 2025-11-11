@@ -8,7 +8,7 @@ const nextConfig: NextConfig = {
 	sassOptions: {
 		includePaths: ['./components', './app'],
 		prependData: `
-			@use "sass:math";
+			@use "sass:math";			
     	@use "@/styles/mediaqueries" as *;
   	`,
 	},

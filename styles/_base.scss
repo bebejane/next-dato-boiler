@@ -40,9 +40,13 @@ html {
 
 main {
 	display: block;
-	padding: var(--outer-margin);
+	padding: 0;
 }
 
+article {
+	min-height: 100vh;
+	padding: var(--outer-margin);
+}
 ::-webkit-scrollbar {
 	-webkit-appearance: none;
 	background: var(--beige-light);
@@ -136,4 +140,15 @@ select {
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+}
+
+button {
+	padding: 1rem;
+	border: 1px solid black;
+	background-color: transparent;
+	cursor: pointer;
+	&:hover {
+		background-color: black;
+		color: white;
+	}
 }

@@ -1,3 +1,4 @@
+import s from './page.module.scss';
 import { AllPostsDocument, StartDocument } from '@/graphql';
 import { Link } from '@/i18n/routing';
 import { apiQuery } from 'next-dato-utils/api';
@@ -6,15 +7,10 @@ import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { locales } from '@/i18n/routing';
 import { notFound } from 'next/navigation';
 
-export type PageProps = {
-	children: React.ReactNode;
-	params: Promise<{ locale: string }>;
-};
-
-export default async function Home({ params }: PageProps) {
+export default async function Home({ params }: PageProps<'/[locale]'>) {
 	const { locale } = await params;
 	if (!locales.includes(locale as any)) return notFound();
-
+	console.log(locale);
 	setRequestLocale(locale);
 
 	const { start, draftUrl } = await apiQuery(StartDocument, { variables: { locale: locale as SiteLocale } });
@@ -24,7 +20,7 @@ export default async function Home({ params }: PageProps) {
 
 	return (
 		<>
-			<article>
+			<article className={s.article}>
 				<h1>{start.headline}</h1>
 				<ul>
 					{allPosts.map((post) => (
@@ -36,7 +32,7 @@ export default async function Home({ params }: PageProps) {
 									params: { post: post.slug },
 								}}
 							>
-								{post.title}
+								<div className={s.color} style={{ backgroundColor: post.color?.color?.hex }}></div> {post.title}
 							</Link>
 						</li>
 					))}

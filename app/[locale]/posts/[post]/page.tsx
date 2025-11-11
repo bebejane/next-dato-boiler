@@ -5,9 +5,9 @@ import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { Markdown } from 'next-dato-utils/components';
 import Content from '@/components/content/Content';
-import { locales } from '@/i18n/routing';
+import { Link, locales } from '@/i18n/routing';
 
-export default async function Post({ params }) {
+export default async function Post({ params }: PageProps<'/[locale]/posts/[post]'>) {
 	const { locale, post: slug } = await params;
 	if (!locales.includes(locale as any)) return notFound();
 	setRequestLocale(locale);
@@ -23,17 +23,21 @@ export default async function Post({ params }) {
 
 	return (
 		<>
-			<article>
+			<article style={{ backgroundColor: post.color?.color?.hex }}>
 				<h1>{post.title}</h1>
-				<Markdown content={post.intro} />
+				<Markdown content={post.intro ?? ''} />
 				<Content content={post.content} />
+				<br />
+				<Link href={`/`}>
+					<button>Tillbaka</button>
+				</Link>
 			</article>
-			<DraftMode url={draftUrl} path={`/${locale}/${slug}`} />
+			<DraftMode url={draftUrl} path={`/posts/${slug}`} />
 		</>
 	);
 }
 
-export async function generateStaticParams({ params }) {
+export async function generateStaticParams({ params }: PageProps<'/[locale]/posts/[post]'>) {
 	const { locale } = await params;
 	const { allPosts } = await apiQuery(AllPostsDocument, {
 		all: true,

@@ -131,6 +131,86 @@ type ColorField = {
   red: Scalars['IntType']['output'];
 };
 
+/** Specifies how to filter Color fields */
+type ColorFilter = {
+  /** Filter records with the specified field defined (i.e. with any value) or not */
+  exists?: InputMaybe<Scalars['BooleanType']['input']>;
+};
+
+type ColorModelFilter = {
+  AND?: InputMaybe<Array<InputMaybe<ColorModelFilter>>>;
+  OR?: InputMaybe<Array<InputMaybe<ColorModelFilter>>>;
+  _createdAt?: InputMaybe<CreatedAtFilter>;
+  _firstPublishedAt?: InputMaybe<PublishedAtFilter>;
+  _isValid?: InputMaybe<BooleanFilter>;
+  _publicationScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _publishedAt?: InputMaybe<PublishedAtFilter>;
+  _status?: InputMaybe<StatusFilter>;
+  _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _updatedAt?: InputMaybe<UpdatedAtFilter>;
+  color?: InputMaybe<ColorFilter>;
+  createdAt?: InputMaybe<CreatedAtFilter>;
+  id?: InputMaybe<ItemIdFilter>;
+  label?: InputMaybe<StringFilter>;
+  updatedAt?: InputMaybe<UpdatedAtFilter>;
+};
+
+enum ColorModelOrderBy {
+  _createdAt_ASC = '_createdAt_ASC',
+  _createdAt_DESC = '_createdAt_DESC',
+  _firstPublishedAt_ASC = '_firstPublishedAt_ASC',
+  _firstPublishedAt_DESC = '_firstPublishedAt_DESC',
+  _isValid_ASC = '_isValid_ASC',
+  _isValid_DESC = '_isValid_DESC',
+  _publicationScheduledAt_ASC = '_publicationScheduledAt_ASC',
+  _publicationScheduledAt_DESC = '_publicationScheduledAt_DESC',
+  _publishedAt_ASC = '_publishedAt_ASC',
+  _publishedAt_DESC = '_publishedAt_DESC',
+  _status_ASC = '_status_ASC',
+  _status_DESC = '_status_DESC',
+  _unpublishingScheduledAt_ASC = '_unpublishingScheduledAt_ASC',
+  _unpublishingScheduledAt_DESC = '_unpublishingScheduledAt_DESC',
+  _updatedAt_ASC = '_updatedAt_ASC',
+  _updatedAt_DESC = '_updatedAt_DESC',
+  createdAt_ASC = 'createdAt_ASC',
+  createdAt_DESC = 'createdAt_DESC',
+  id_ASC = 'id_ASC',
+  id_DESC = 'id_DESC',
+  label_ASC = 'label_ASC',
+  label_DESC = 'label_DESC',
+  updatedAt_ASC = 'updatedAt_ASC',
+  updatedAt_DESC = 'updatedAt_DESC'
+}
+
+/** Record of type Color (color) */
+type ColorRecord = RecordInterface & {
+  __typename?: 'ColorRecord';
+  _createdAt: Scalars['DateTime']['output'];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars['String']['output']>;
+  _firstPublishedAt: Scalars['DateTime']['output'];
+  _isValid: Scalars['BooleanType']['output'];
+  _modelApiKey: Scalars['String']['output'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _publishedAt: Scalars['DateTime']['output'];
+  /** Generates SEO and Social card meta tags to be used in your frontend */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _updatedAt: Scalars['DateTime']['output'];
+  color?: Maybe<ColorField>;
+  createdAt: Scalars['DateTime']['output'];
+  id: Scalars['ItemId']['output'];
+  label?: Maybe<Scalars['String']['output']>;
+  updatedAt: Scalars['DateTime']['output'];
+};
+
+
+/** Record of type Color (color) */
+type ColorRecord_seoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
 /** Specifies how to filter by creation datetime */
 type CreatedAtFilter = {
   /** Filter records with a value that's within the specified minute range. Seconds and milliseconds are truncated from the argument. */
@@ -2331,6 +2411,7 @@ type PostModelFilter = {
   _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
   _updatedAt?: InputMaybe<UpdatedAtFilter>;
   author?: InputMaybe<LinkFilter>;
+  color?: InputMaybe<LinkFilter>;
   content?: InputMaybe<StructuredTextFilter>;
   createdAt?: InputMaybe<CreatedAtFilter>;
   id?: InputMaybe<ItemIdFilter>;
@@ -2390,6 +2471,7 @@ type PostRecord = RecordInterface & {
   _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
   _updatedAt: Scalars['DateTime']['output'];
   author: AuthorRecord;
+  color?: Maybe<ColorRecord>;
   content?: Maybe<PostModelContentField>;
   createdAt: Scalars['DateTime']['output'];
   id: Scalars['ItemId']['output'];
@@ -2484,6 +2566,8 @@ type Query = {
   /** Returns meta information regarding a record collection */
   _allAuthorsMeta: CollectionMetadata;
   /** Returns meta information regarding a record collection */
+  _allColorsMeta: CollectionMetadata;
+  /** Returns meta information regarding a record collection */
   _allPostsMeta: CollectionMetadata;
   /** Returns meta information regarding an assets collection */
   _allUploadsMeta: CollectionMetadata;
@@ -2494,6 +2578,8 @@ type Query = {
   /** Returns a collection of records */
   allAuthors: Array<AuthorRecord>;
   /** Returns a collection of records */
+  allColors: Array<ColorRecord>;
+  /** Returns a collection of records */
   allPosts: Array<PostRecord>;
   /** Returns a collection of assets */
   allUploads: Array<FileField>;
@@ -2501,6 +2587,8 @@ type Query = {
   allUsers: Array<UserRecord>;
   /** Returns a specific record */
   author?: Maybe<AuthorRecord>;
+  /** Returns a specific record */
+  color?: Maybe<ColorRecord>;
   /** Returns a specific record */
   post?: Maybe<PostRecord>;
   /** Returns the single instance record */
@@ -2515,6 +2603,13 @@ type Query = {
 /** The query root for this schema */
 type Query_allAuthorsMetaArgs = {
   filter?: InputMaybe<AuthorModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** The query root for this schema */
+type Query_allColorsMetaArgs = {
+  filter?: InputMaybe<ColorModelFilter>;
   locale?: InputMaybe<SiteLocale>;
 };
 
@@ -2559,6 +2654,17 @@ type QueryallAuthorsArgs = {
 
 
 /** The query root for this schema */
+type QueryallColorsArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<ColorModelFilter>;
+  first?: InputMaybe<Scalars['IntType']['input']>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<ColorModelOrderBy>>>;
+  skip?: InputMaybe<Scalars['IntType']['input']>;
+};
+
+
+/** The query root for this schema */
 type QueryallPostsArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
   filter?: InputMaybe<PostModelFilter>;
@@ -2597,6 +2703,15 @@ type QueryauthorArgs = {
   filter?: InputMaybe<AuthorModelFilter>;
   locale?: InputMaybe<SiteLocale>;
   orderBy?: InputMaybe<Array<InputMaybe<AuthorModelOrderBy>>>;
+};
+
+
+/** The query root for this schema */
+type QuerycolorArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<ColorModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<ColorModelOrderBy>>>;
 };
 
 
@@ -3378,7 +3493,7 @@ type PostQueryVariables = Exact<{
 }>;
 
 
-type PostQuery = { __typename?: 'Query', post?: { __typename?: 'PostRecord', intro?: string | null, slug: string, title: string, _updatedAt: any, image?: { __typename?: 'ImageFileField', id: any, width: any, height: any, alt?: string | null, basename: string, format: string, mimeType: string, size: any, title?: string | null, url: string, responsiveImage: { __typename?: 'ResponsiveImage', width: any, height: any, alt?: string | null, aspectRatio: any, base64?: string | null, bgColor?: string | null, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null } } | null, content?: { __typename?: 'PostModelContentField', value: any, links: Array<string>, blocks: Array<{ __typename: 'PageRecord' }> } | null, author: { __typename?: 'AuthorRecord', name?: string | null } } | null };
+type PostQuery = { __typename?: 'Query', post?: { __typename?: 'PostRecord', intro?: string | null, slug: string, title: string, _updatedAt: any, image?: { __typename?: 'ImageFileField', id: any, width: any, height: any, alt?: string | null, basename: string, format: string, mimeType: string, size: any, title?: string | null, url: string, responsiveImage: { __typename?: 'ResponsiveImage', width: any, height: any, alt?: string | null, aspectRatio: any, base64?: string | null, bgColor?: string | null, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null } } | null, color?: { __typename?: 'ColorRecord', color?: { __typename?: 'ColorField', hex: string } | null } | null, content?: { __typename?: 'PostModelContentField', value: any, links: Array<string>, blocks: Array<{ __typename: 'PageRecord' }> } | null, author: { __typename?: 'AuthorRecord', name?: string | null } } | null };
 
 type AllPostsQueryVariables = Exact<{
   locale?: InputMaybe<SiteLocale>;
@@ -3387,20 +3502,20 @@ type AllPostsQueryVariables = Exact<{
 }>;
 
 
-type AllPostsQuery = { __typename?: 'Query', allPosts: Array<{ __typename?: 'PostRecord', intro?: string | null, slug: string, title: string, _updatedAt: any, image?: { __typename?: 'ImageFileField', id: any, width: any, height: any, alt?: string | null, basename: string, format: string, mimeType: string, size: any, title?: string | null, url: string, responsiveImage: { __typename?: 'ResponsiveImage', width: any, height: any, alt?: string | null, aspectRatio: any, base64?: string | null, bgColor?: string | null, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null } } | null, content?: { __typename?: 'PostModelContentField', value: any, links: Array<string>, blocks: Array<{ __typename: 'PageRecord' }> } | null, author: { __typename?: 'AuthorRecord', name?: string | null } }>, _allPostsMeta: { __typename?: 'CollectionMetadata', count: any } };
+type AllPostsQuery = { __typename?: 'Query', allPosts: Array<{ __typename?: 'PostRecord', intro?: string | null, slug: string, title: string, _updatedAt: any, image?: { __typename?: 'ImageFileField', id: any, width: any, height: any, alt?: string | null, basename: string, format: string, mimeType: string, size: any, title?: string | null, url: string, responsiveImage: { __typename?: 'ResponsiveImage', width: any, height: any, alt?: string | null, aspectRatio: any, base64?: string | null, bgColor?: string | null, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null } } | null, color?: { __typename?: 'ColorRecord', color?: { __typename?: 'ColorField', hex: string } | null } | null, content?: { __typename?: 'PostModelContentField', value: any, links: Array<string>, blocks: Array<{ __typename: 'PageRecord' }> } | null, author: { __typename?: 'AuthorRecord', name?: string | null } }>, _allPostsMeta: { __typename?: 'CollectionMetadata', count: any } };
 
-type PostFragment = { __typename?: 'PostRecord', intro?: string | null, slug: string, title: string, _updatedAt: any, image?: { __typename?: 'ImageFileField', id: any, width: any, height: any, alt?: string | null, basename: string, format: string, mimeType: string, size: any, title?: string | null, url: string, responsiveImage: { __typename?: 'ResponsiveImage', width: any, height: any, alt?: string | null, aspectRatio: any, base64?: string | null, bgColor?: string | null, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null } } | null, content?: { __typename?: 'PostModelContentField', value: any, links: Array<string>, blocks: Array<{ __typename: 'PageRecord' }> } | null, author: { __typename?: 'AuthorRecord', name?: string | null } };
+type PostFragment = { __typename?: 'PostRecord', intro?: string | null, slug: string, title: string, _updatedAt: any, image?: { __typename?: 'ImageFileField', id: any, width: any, height: any, alt?: string | null, basename: string, format: string, mimeType: string, size: any, title?: string | null, url: string, responsiveImage: { __typename?: 'ResponsiveImage', width: any, height: any, alt?: string | null, aspectRatio: any, base64?: string | null, bgColor?: string | null, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null } } | null, color?: { __typename?: 'ColorRecord', color?: { __typename?: 'ColorField', hex: string } | null } | null, content?: { __typename?: 'PostModelContentField', value: any, links: Array<string>, blocks: Array<{ __typename: 'PageRecord' }> } | null, author: { __typename?: 'AuthorRecord', name?: string | null } };
 
-type PostLightFragment = { __typename?: 'PostRecord', intro?: string | null, slug: string, title: string, _updatedAt: any, image?: { __typename?: 'ImageFileField', id: any, width: any, height: any, alt?: string | null, basename: string, format: string, mimeType: string, size: any, title?: string | null, url: string, responsiveImage: { __typename?: 'ResponsiveImage', width: any, height: any, alt?: string | null, aspectRatio: any, base64?: string | null, bgColor?: string | null, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null } } | null, author: { __typename?: 'AuthorRecord', name?: string | null } };
+type PostLightFragment = { __typename?: 'PostRecord', intro?: string | null, slug: string, title: string, _updatedAt: any, image?: { __typename?: 'ImageFileField', id: any, width: any, height: any, alt?: string | null, basename: string, format: string, mimeType: string, size: any, title?: string | null, url: string, responsiveImage: { __typename?: 'ResponsiveImage', width: any, height: any, alt?: string | null, aspectRatio: any, base64?: string | null, bgColor?: string | null, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null } } | null, author: { __typename?: 'AuthorRecord', name?: string | null }, color?: { __typename?: 'ColorRecord', color?: { __typename?: 'ColorField', hex: string } | null } | null };
 
 type StartQueryVariables = Exact<{
   locale?: InputMaybe<SiteLocale>;
 }>;
 
 
-type StartQuery = { __typename?: 'Query', start?: { __typename?: 'StartRecord', headline: string, intro?: string | null, posts: Array<{ __typename?: 'PostRecord', intro?: string | null, slug: string, title: string, _updatedAt: any, image?: { __typename?: 'ImageFileField', id: any, width: any, height: any, alt?: string | null, basename: string, format: string, mimeType: string, size: any, title?: string | null, url: string, responsiveImage: { __typename?: 'ResponsiveImage', width: any, height: any, alt?: string | null, aspectRatio: any, base64?: string | null, bgColor?: string | null, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null } } | null, author: { __typename?: 'AuthorRecord', name?: string | null } }> } | null };
+type StartQuery = { __typename?: 'Query', start?: { __typename?: 'StartRecord', headline: string, intro?: string | null, posts: Array<{ __typename?: 'PostRecord', intro?: string | null, slug: string, title: string, _updatedAt: any, image?: { __typename?: 'ImageFileField', id: any, width: any, height: any, alt?: string | null, basename: string, format: string, mimeType: string, size: any, title?: string | null, url: string, responsiveImage: { __typename?: 'ResponsiveImage', width: any, height: any, alt?: string | null, aspectRatio: any, base64?: string | null, bgColor?: string | null, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null } } | null, author: { __typename?: 'AuthorRecord', name?: string | null }, color?: { __typename?: 'ColorRecord', color?: { __typename?: 'ColorField', hex: string } | null } | null }> } | null };
 
-type StartFragment = { __typename?: 'StartRecord', headline: string, intro?: string | null, posts: Array<{ __typename?: 'PostRecord', intro?: string | null, slug: string, title: string, _updatedAt: any, image?: { __typename?: 'ImageFileField', id: any, width: any, height: any, alt?: string | null, basename: string, format: string, mimeType: string, size: any, title?: string | null, url: string, responsiveImage: { __typename?: 'ResponsiveImage', width: any, height: any, alt?: string | null, aspectRatio: any, base64?: string | null, bgColor?: string | null, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null } } | null, author: { __typename?: 'AuthorRecord', name?: string | null } }> };
+type StartFragment = { __typename?: 'StartRecord', headline: string, intro?: string | null, posts: Array<{ __typename?: 'PostRecord', intro?: string | null, slug: string, title: string, _updatedAt: any, image?: { __typename?: 'ImageFileField', id: any, width: any, height: any, alt?: string | null, basename: string, format: string, mimeType: string, size: any, title?: string | null, url: string, responsiveImage: { __typename?: 'ResponsiveImage', width: any, height: any, alt?: string | null, aspectRatio: any, base64?: string | null, bgColor?: string | null, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null } } | null, author: { __typename?: 'AuthorRecord', name?: string | null }, color?: { __typename?: 'ColorRecord', color?: { __typename?: 'ColorField', hex: string } | null } | null }> };
 
 type UserQueryVariables = Exact<{ [key: string]: never; }>;
 

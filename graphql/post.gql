@@ -20,6 +20,11 @@ fragment PostFragment on PostRecord {
 	intro
 	slug
 	title
+	color {
+		color {
+			hex
+		}
+	}
 	content {
 		blocks {
 			__typename
@@ -42,6 +47,11 @@ fragment PostLightFragment on PostRecord {
 	title
 	author {
 		name
+	}
+	color {
+		color {
+			hex
+		}
 	}
 	_updatedAt
 }
