@@ -17,6 +17,7 @@ export default async function Post({ params }: PageProps<'/[locale]/posts/[post]
 			slug,
 			locale: locale as SiteLocale,
 		},
+		tags: ['color'],
 	});
 
 	if (!post) return notFound();
