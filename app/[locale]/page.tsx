@@ -23,8 +23,8 @@ export default async function Home({ params }: PageProps<'/[locale]'>) {
 			<article className={s.article}>
 				<h1>{start.headline}</h1>
 				<ul>
-					{allPosts.map((post) => (
-						<li key={post.slug}>
+					{allPosts.map((post, idx) => (
+						<li key={idx}>
 							<Link
 								locale={locale}
 								href={{

@@ -5,7 +5,7 @@ import { GlobalDocument } from '@/graphql';
 import { Metadata } from 'next';
 import { Icon } from 'next/dist/lib/metadata/types/metadata-types';
 import { NextIntlClientProvider } from 'next-intl';
-import { getPathname } from '@/i18n/routing';
+import { getPathname, Link, locales } from '@/i18n/routing';
 
 export type LayoutProps = {
 	children: React.ReactNode;
@@ -18,6 +18,17 @@ export default async function RootLayout({ children }: LayoutProps) {
 				<body id='root'>
 					<NextIntlClientProvider>
 						<main className={s.main}>{children}</main>
+						<nav className={s.lang}>
+							<ul>
+								{locales.map((l) => (
+									<li key={l}>
+										<Link href={'/'} locale={l}>
+											{l}
+										</Link>
+									</li>
+								))}
+							</ul>
+						</nav>
 					</NextIntlClientProvider>
 				</body>
 			</html>
@@ -25,7 +36,7 @@ export default async function RootLayout({ children }: LayoutProps) {
 	);
 }
 
-export async function generateMetadata({ params }): Promise<Metadata> {
+export async function generateMetadata({ params }: PageProps<'/[locale]'>): Promise<Metadata> {
 	const { locale } = await params;
 	const {
 		site: { globalSeo, faviconMetaTags },
@@ -105,7 +116,7 @@ export async function buildMetadata({
 							height: 627,
 							alt: title,
 						},
-				  ]
+					]
 				: undefined,
 			locale: locale === 'sv' ? 'sv_SE' : 'en_US',
 			type: 'website',
