@@ -13,7 +13,10 @@ export default async function Home({ params }: PageProps<'/[locale]'>) {
 	console.log(locale);
 	setRequestLocale(locale);
 
-	const { start, draftUrl } = await apiQuery(StartDocument, { variables: { locale: locale as SiteLocale } });
+	const { start, draftUrl } = await apiQuery(StartDocument, {
+		variables: { locale: locale as SiteLocale },
+		tags: ['color'],
+	});
 	const { allPosts } = await apiQuery(AllPostsDocument, { variables: { locale: locale as SiteLocale } });
 
 	if (!start) return notFound();

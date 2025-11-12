@@ -63,7 +63,7 @@ export async function generateMetadata({ params }: PageProps<'/[locale]'>): Prom
 			description: globalSeo?.fallbackSeo?.description?.substring(0, 157),
 			pathname: getPathname({ locale, href: '/' }),
 			image: globalSeo?.fallbackSeo?.image as FileField,
-			locale,
+			locale: locale as SiteLocale,
 		})),
 	};
 }
