@@ -15,9 +15,11 @@ export default async function Home({ params }: PageProps<'/[locale]'>) {
 
 	const { start, draftUrl } = await apiQuery(StartDocument, {
 		variables: { locale: locale as SiteLocale },
+	});
+	const { allPosts } = await apiQuery(AllPostsDocument, {
+		variables: { locale: locale as SiteLocale },
 		tags: ['color'],
 	});
-	const { allPosts } = await apiQuery(AllPostsDocument, { variables: { locale: locale as SiteLocale } });
 
 	if (!start) return notFound();
 
@@ -32,7 +34,7 @@ export default async function Home({ params }: PageProps<'/[locale]'>) {
 								locale={locale}
 								href={{
 									pathname: '/posts/[post]',
-									params: { post: post.slug },
+									params: { post: post.slug as string },
 								}}
 							>
 								<div className={s.color} style={{ backgroundColor: post.color?.color?.hex }}></div> {post.title}
