@@ -3,7 +3,7 @@ import { AllPostsDocument, StartDocument } from '@/graphql';
 import { Link } from '@/i18n/routing';
 import { apiQuery } from 'next-dato-utils/api';
 import { DraftMode } from 'next-dato-utils/components';
-import { getTranslations, setRequestLocale } from 'next-intl/server';
+import { setRequestLocale } from 'next-intl/server';
 import { locales } from '@/i18n/routing';
 import { notFound } from 'next/navigation';
 
@@ -28,19 +28,21 @@ export default async function Home({ params }: PageProps<'/[locale]'>) {
 			<article className={s.article}>
 				<h1>{start.headline}</h1>
 				<ul>
-					{allPosts.map((post, idx) => (
-						<li key={idx}>
-							<Link
-								locale={locale}
-								href={{
-									pathname: '/posts/[post]',
-									params: { post: post.slug as string },
-								}}
-							>
-								<div className={s.color} style={{ backgroundColor: post.color?.color?.hex }}></div> {post.title}
-							</Link>
-						</li>
-					))}
+					{allPosts
+						.filter((post) => post.slug)
+						.map((post, idx) => (
+							<li key={idx}>
+								<Link
+									locale={locale}
+									href={{
+										pathname: '/posts/[post]',
+										params: { post: post.slug as string },
+									}}
+								>
+									<div className={s.color} style={{ backgroundColor: post.color?.color?.hex }}></div> {post.title}
+								</Link>
+							</li>
+						))}
 				</ul>
 			</article>
 			<DraftMode url={draftUrl} path={`/`} />

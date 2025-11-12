@@ -6,6 +6,7 @@ import { Metadata } from 'next';
 import { Icon } from 'next/dist/lib/metadata/types/metadata-types';
 import { NextIntlClientProvider } from 'next-intl';
 import { getPathname, Link, locales } from '@/i18n/routing';
+import { LocaleSwitcher } from '@/components/nav/LocaleSwitcher';
 
 export type LayoutProps = {
 	children: React.ReactNode;
@@ -18,17 +19,7 @@ export default async function RootLayout({ children }: LayoutProps) {
 				<body id='root'>
 					<NextIntlClientProvider>
 						<main className={s.main}>{children}</main>
-						<nav className={s.lang}>
-							<ul>
-								{locales.map((l) => (
-									<li key={l}>
-										<Link href={'/'} locale={l}>
-											{l}
-										</Link>
-									</li>
-								))}
-							</ul>
-						</nav>
+						<LocaleSwitcher />
 					</NextIntlClientProvider>
 				</body>
 			</html>

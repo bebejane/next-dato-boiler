@@ -12,7 +12,7 @@ export default {
 	routes: {
 		start: async (record, locale) => [`/${locale}`],
 		post: async ({ slug }, locale) => (slug[locale as string] ? [`/posts/${slug[locale as string]}`] : []),
-		//color: async ({ id }, locale) => [`/`, ...(await getItemReferenceRoutes(id, locales))],
+		color: async ({ id }, locale) => [`/`, ...(await getItemReferenceRoutes(id, locales))],
 		author: async (record, locale) => getItemReferenceRoutes(record.id, locales),
 		upload: async (record, locale) => getUploadReferenceRoutes(record.id, locales),
 	},
