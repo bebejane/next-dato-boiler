@@ -17,11 +17,11 @@ export default async function Post({ params }: PageProps<'/[locale]/posts/[post]
 			slug,
 			locale: locale as SiteLocale,
 		},
-		tags: ['color'],
+		//tags: ['color'],
 	});
 
 	if (!post) return notFound();
-
+	console.log('render post:', slug, locale);
 	return (
 		<>
 			<article style={{ backgroundColor: post.color?.color?.hex }}>
