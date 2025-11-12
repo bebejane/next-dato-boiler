@@ -15,6 +15,7 @@
 		"reset:cache": "rm -rf .next/cache"
 	},
 	"dependencies": {
+		"@auth/core": "^0.34.3",
 		"@datocms/cma-client": "^5.1.24",
 		"@datocms/cma-client-browser": "^5.1.24",
 		"@datocms/cma-client-node": "^5.1.24",
@@ -26,7 +27,7 @@
 		"dotenv": "^17.2.3",
 		"graphql": "^16.11.0",
 		"next": "15.5.6",
-		"next-auth": "^4.24.12",
+		"next-auth": "5.0.0-beta.30",
 		"next-dato-utils": "github:bebejane/next-dato-utils#latest",
 		"next-intl": "^4.4.0",
 		"nuqs": "^2.7.2",
