@@ -8,11 +8,7 @@ import { NextIntlClientProvider } from 'next-intl';
 import { getPathname, Link, locales } from '@/i18n/routing';
 import { LocaleSwitcher } from '@/components/nav/LocaleSwitcher';
 
-export type LayoutProps = {
-	children: React.ReactNode;
-};
-
-export default async function RootLayout({ children }: LayoutProps) {
+export default async function RootLayout({ children, params }: LayoutProps<'/[locale]'>) {
 	return (
 		<>
 			<html lang='en'>
@@ -27,7 +23,7 @@ export default async function RootLayout({ children }: LayoutProps) {
 	);
 }
 
-export async function generateMetadata({ params }: PageProps<'/[locale]'>): Promise<Metadata> {
+export async function generateMetadata({ params }: LayoutProps<'/[locale]'>): Promise<Metadata> {
 	const { locale } = await params;
 	const {
 		site: { globalSeo, faviconMetaTags },
