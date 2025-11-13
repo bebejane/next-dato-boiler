@@ -78,8 +78,8 @@ export const StartFragment: DocumentNode;
 declare module '*/user.gql' {
   import { DocumentNode } from 'graphql';
   const defaultDocument: DocumentNode;
-  export const User: DocumentNode;
-export const AllUsers: DocumentNode;
+  export const AuthUser: DocumentNode;
+export const AllAuthUsers: DocumentNode;
 export const UserFragment: DocumentNode;
 export const UserLightFragment: DocumentNode;
 
