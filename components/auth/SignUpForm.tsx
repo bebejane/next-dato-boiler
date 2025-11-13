@@ -1,5 +1,6 @@
 'use client';
 
+import s from './SignUpForm.module.scss';
 import { authClient } from '@/lib/auth-client';
 import { useState } from 'react';
 
@@ -38,7 +39,7 @@ export function SignUpForm() {
 	};
 
 	return (
-		<>
+		<div className={s.signUp}>
 			<form onSubmit={handleSubmit}>
 				<label htmlFor='email'>Email</label>
 				<input type='email' id='email' value={email} onChange={(e) => setEmail(e.target.value)} />
@@ -51,6 +52,6 @@ export function SignUpForm() {
 			</form>
 			{loading && <p>Loading...</p>}
 			{error && <p>{error}</p>}
-		</>
+		</div>
 	);
 }

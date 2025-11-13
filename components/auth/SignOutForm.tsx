@@ -1,5 +1,6 @@
 'use client';
 
+import s from './SignOutForm.module.scss';
 import { authClient } from '@/lib/auth-client';
 import { useEffect, useState } from 'react';
 
@@ -21,9 +22,9 @@ export function SignOutForm() {
 	}, []);
 
 	return (
-		<>
+		<div className={s.signOut}>
 			{loading && <p>Signing out...</p>}
 			{error && <p>{error}</p>}
-		</>
+		</div>
 	);
 }

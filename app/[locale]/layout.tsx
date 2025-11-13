@@ -8,14 +8,14 @@ import { NextIntlClientProvider } from 'next-intl';
 import { getPathname, Link, locales } from '@/i18n/routing';
 import { LocaleSwitcher } from '@/components/nav/LocaleSwitcher';
 
-export default async function RootLayout({ children, params }: LayoutProps<'/[locale]'>) {
+export default async function RootLayout({ children }: LayoutProps<'/[locale]'>) {
 	return (
 		<>
 			<html lang='en'>
 				<body id='root'>
 					<NextIntlClientProvider>
-						<main className={s.main}>{children}</main>
 						<LocaleSwitcher />
+						<main className={s.main}>{children}</main>
 					</NextIntlClientProvider>
 				</body>
 			</html>
