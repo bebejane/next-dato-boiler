@@ -43,7 +43,6 @@ export function SignUpForm() {
 			<form onSubmit={handleSubmit}>
 				<label htmlFor='email'>Email</label>
 				<input type='email' id='email' value={email} onChange={(e) => setEmail(e.target.value)} />
-				{error && <p>{error}</p>}
 				<label htmlFor='password'>Password</label>
 				<input type='password' id='password' value={password} onChange={(e) => setPassword(e.target.value)} />
 				<label htmlFor='name'>Name</label>

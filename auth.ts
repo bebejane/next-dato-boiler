@@ -9,8 +9,13 @@ export const auth = betterAuth({
 		client: {
 			apiToken: process.env.DATOCMS_API_TOKEN,
 		},
+		itemTypes: {
+			user: 'BmmC_204Q2q80pakRIUNhA',
+			account: 'CANE8qJyT8OmtkreQWhLng',
+			session: 'ddvS6N7lSsao3H2Rw9FJwQ',
+			verification: 'VDNPpHABRT6-EHrYrfQeQQ',
+		},
 		debugLogs: true,
 		usePlural: false,
-		modelPrefix: 'auth_',
 	}),
 });

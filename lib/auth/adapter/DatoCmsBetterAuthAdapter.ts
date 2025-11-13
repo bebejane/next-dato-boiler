@@ -1,11 +1,7 @@
 import { ApiError, buildClient, Client } from '@datocms/cma-client';
-import { ItemTypeInstancesTargetSchema } from '@datocms/cma-client/dist/types/generated/ApiTypes';
 import { createAdapterFactory } from 'better-auth/adapters';
 import type { Where } from 'better-auth';
-
-function camelToSnakeCase(str: string) {
-	return str.replace(/[A-Z]/g, (letter) => `_${letter.toLowerCase()}`);
-}
+import { User } from '@/types/datocms-cma';
 
 export interface DatoCmsAdapterConfig {
 	/**
@@ -16,6 +12,17 @@ export interface DatoCmsAdapterConfig {
 	 * If both token and adminEmail/adminPassword are provided, token is preferred.
 	 */
 	client: Client | { apiToken?: string };
+
+	/**
+	 * DatoCms Item Types Mapping
+	 * @default undefined
+	 */
+	itemTypes: {
+		user: string;
+		session: string;
+		account: string;
+		verification: string;
+	};
 
 	/**
 	 * Enable debug logs for the adapter
@@ -34,96 +41,78 @@ export interface DatoCmsAdapterConfig {
 	 * @default true
 	 */
 	usePlural?: boolean;
-	/**
-	 * Whether to use plural names for the auth tables
-	 * Set to `false` to use singular names: user, session, account, verification
-	 * Set to `true` to use plural names: users, sessions, accounts, verifications
-	 *
-	 * The provided schema in `schema/datocms.collections.json` uses singular names,
-	 * so set this to `false` if using that schema.
-	 *
-	 * @default "auth_"
-	 */
-	modelPrefix?: string;
 }
-
 /**
- * Parse Better Auth where clauses to DatoCms filter strings
+ * Better Auth adapter for DatoCms
  */
-
-/**
- * Create a Better Auth adapter for DatoCms
- */
-export const datoCmsAdapter = ({
-	client,
-	debugLogs = false,
-	usePlural = true,
-	modelPrefix = 'auth_',
-}: DatoCmsAdapterConfig) => {
+export const datoCmsAdapter = ({ client, debugLogs = false, usePlural = false, itemTypes }: DatoCmsAdapterConfig) => {
 	const c = client instanceof Client ? client : buildClient({ apiToken: client.apiToken as string });
 	const pageSize = 100;
 	const version = 'current';
 
-	let itemTypes: ItemTypeInstancesTargetSchema | null = null;
-
-	// Auto-authenticate if credentials or token provided
 	function ensureAuth(): boolean {
 		if (client instanceof Client) return true;
 		return false;
 	}
 
-	async function getItemTypeId(model: string): Promise<string> {
-		itemTypes = !itemTypes ? await c.itemTypes.list() : itemTypes;
-		const itemType = itemTypes.find((item) => item.api_key === `${modelPrefix}${model}`);
-		if (!itemType) throw new Error(`Item type ${model} not found`);
-		return itemType.id;
+	function getItemTypeId(model: string): string {
+		if (!(model in itemTypes)) throw new Error(`Item type ${model} not found`);
+		return itemTypes[model as keyof typeof itemTypes];
 	}
 
-	//TODO: add support for multi Where and operators
-	function buildFilter(where: Where[] | undefined, model: string): any {
-		const filter: any = {
-			type: `${modelPrefix}${model}`,
-		};
+	function buildFilter(where: Where[] | undefined, itemTypeId: string): any {
+		if (!where || where.length === 0) return { type: itemTypeId };
 
-		if (!where || where.length === 0) return filter;
-
-		const fields: any = {};
+		let fields: any = {};
+		const AND = [];
+		const OR = [];
 
 		for (const item of where) {
 			const field = item.field;
 			const value = typeof item.value === 'string' ? `${item.value}` : item.value;
 			const operator = item.operator as string;
+			const connector = item.connector as string;
+			const q: any = {};
+
 			switch (operator) {
 				case 'in':
-					if (Array.isArray(item.value)) {
-						const values = item.value.map((v) => (typeof v === 'string' ? `"${v}"` : v));
-						fields[field] = { [operator]: values };
-					}
+					if (Array.isArray(item.value)) q[field] = { [operator]: item.value };
 					break;
 				case 'contains':
-					fields[field] = { matches: { pattern: value } };
+					q[field] = { matches: { pattern: value } };
 					break;
 				case 'starts_with':
-					fields[field] = { matches: { pattern: `^${value}` } };
+					q[field] = { matches: { pattern: `^${value}` } };
 					break;
 				case 'ends_with':
-					fields[field] = { matches: { pattern: `${value}$` } };
+					q[field] = { matches: { pattern: `${value}$` } };
 					break;
 				default:
-					fields[field] = { [operator]: value };
+					q[field] = { [operator]: value };
 					break;
 			}
+
+			connector === 'AND' && AND.push(q);
+			connector === 'OR' && OR.push(q);
+			!connector && (fields = { ...fields, ...q });
 		}
 
-		return { ...filter, fields };
+		const filter: any = { type: itemTypeId };
+
+		Object.keys(fields).length > 0 && (filter.fields = fields);
+		AND.length > 0 && (filter.AND = AND);
+		OR.length > 0 && (filter.OR = OR);
+
+		//console.log('filter format', JSON.stringify(filter, null, 2));
+
+		return filter;
 	}
 
 	function handleApiError(type: string, error: any, throws: boolean = false) {
 		if (debugLogs) {
 			let message = '';
 			if (error instanceof ApiError) {
-				//const fields = error.errors.map((e) => e.attributes.details).join(',');
-				console.log(JSON.stringify(error, null, 2));
+				//console.log(JSON.stringify(error, null, 2));
 				message = `[DatoCms ApiError] ${type} error: ${error.message}`;
 			} else if (error instanceof Error) message = `[Error] ${type} error: ${error.message}`;
 			else console.error(`[Error] ${type} error:`, error);
@@ -132,7 +121,6 @@ export const datoCmsAdapter = ({
 		}
 		if (throws) throw error;
 	}
-
 	return createAdapterFactory({
 		config: {
 			adapterId: 'datocms',
@@ -198,9 +186,8 @@ export const datoCmsAdapter = ({
 		adapter: ({ getModelName, debugLog }) => {
 			return {
 				async create({ data, model }) {
-					await ensureAuth();
 					debugLog('create', { model, data });
-					const itemTypeId = await getItemTypeId(model);
+					const itemTypeId = getItemTypeId(model);
 
 					try {
 						const record = await c.items.create({
@@ -216,18 +203,19 @@ export const datoCmsAdapter = ({
 					}
 				},
 				async findOne({ model, where }) {
-					await ensureAuth();
 					debugLog('findOne', { model, where });
 
 					const collectionName = getModelName(model);
 					const itemTypeId = await getItemTypeId(collectionName);
-					const filter = buildFilter(where, collectionName);
+					const filter = buildFilter(where, itemTypeId);
 					console.log('filter', filter);
 
 					try {
 						const result = await c.items.list({
 							filter,
-							limit: 1,
+							page: {
+								limit: 1,
+							},
 							version,
 						});
 
@@ -239,12 +227,11 @@ export const datoCmsAdapter = ({
 				},
 
 				async findMany({ model, where, limit, offset: _offset, sortBy }) {
-					await ensureAuth();
 					debugLog('findMany', { model, where, limit, offset: _offset, sortBy });
 
 					const collectionName = getModelName(model);
 					const itemTypeId = await getItemTypeId(collectionName);
-					const filter = buildFilter(where, collectionName);
+					const filter = buildFilter(where, itemTypeId);
 					const order_by = sortBy ? `${sortBy.field}_${sortBy.direction === 'desc' ? 'DESC' : 'ASC'}` : undefined;
 					const offset = _offset ? Math.floor(_offset / (limit || pageSize)) + 1 : 0;
 					const page = {
@@ -271,40 +258,36 @@ export const datoCmsAdapter = ({
 					}
 				},
 				async count({ model, where }) {
-					await ensureAuth();
 					debugLog('count', { model, where });
 
 					const collectionName = getModelName(model);
 					const itemTypeId = await getItemTypeId(collectionName);
-					const filter = buildFilter(where, collectionName);
+					const filter = buildFilter(where, itemTypeId);
 
 					try {
-						const result = await c.items.list({
+						const result = await c.items.rawList<User>({
 							item_type: {
 								id: itemTypeId,
 								type: 'item_type',
 							},
-							limit: 1,
+							page: {
+								limit: 1,
+							},
 							filter,
 							version,
 						});
-
-						if (!result[0]) return 0;
-
-						//@ts-ignore
-						return result[0].meta.total_count as number;
+						return result.meta.total_count;
 					} catch (error) {
 						handleApiError('count', error);
 						return 0;
 					}
 				},
 				async update({ model, where, update }) {
-					await ensureAuth();
 					debugLog('update', { model, where, update });
 
 					const collectionName = getModelName(model);
 					const itemTypeId = await getItemTypeId(collectionName);
-					const filter = buildFilter(where, collectionName);
+					const filter = buildFilter(where, itemTypeId);
 
 					try {
 						const item = (
@@ -336,12 +319,11 @@ export const datoCmsAdapter = ({
 					}
 				},
 				async updateMany({ model, where, update }) {
-					await ensureAuth();
 					debugLog('updateMany', { model, where, update });
 
 					const collectionName = getModelName(model);
 					const itemTypeId = await getItemTypeId(collectionName);
-					const filter = buildFilter(where, collectionName);
+					const filter = buildFilter(where, itemTypeId);
 					let count = 0;
 
 					try {
@@ -367,12 +349,11 @@ export const datoCmsAdapter = ({
 					}
 				},
 				async delete({ model, where }) {
-					await ensureAuth();
 					debugLog('delete', { model, where });
 
 					const collectionName = getModelName(model);
 					const itemTypeId = await getItemTypeId(collectionName);
-					const filter = buildFilter(where, collectionName);
+					const filter = buildFilter(where, itemTypeId);
 
 					try {
 						const item = (
@@ -382,7 +363,9 @@ export const datoCmsAdapter = ({
 									type: 'item_type',
 								},
 								filter,
-								limit: 1,
+								page: {
+									limit: 1,
+								},
 								version,
 							})
 						)[0];
@@ -393,12 +376,11 @@ export const datoCmsAdapter = ({
 					}
 				},
 				async deleteMany({ model, where }) {
-					await ensureAuth();
 					debugLog('deleteMany', { model, where });
 
 					const collectionName = getModelName(model);
 					const itemTypeId = await getItemTypeId(collectionName);
-					const filter = buildFilter(where, collectionName);
+					const filter = buildFilter(where, itemTypeId);
 
 					try {
 						const items = await c.items.list({
