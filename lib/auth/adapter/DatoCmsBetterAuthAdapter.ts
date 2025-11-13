@@ -3,6 +3,10 @@ import { ItemTypeInstancesTargetSchema } from '@datocms/cma-client/dist/types/ge
 import { createAdapterFactory } from 'better-auth/adapters';
 import type { Where } from 'better-auth';
 
+function camelToSnakeCase(str: string) {
+	return str.replace(/[A-Z]/g, (letter) => `_${letter.toLowerCase()}`);
+}
+
 export interface DatoCmsAdapterConfig {
 	/**
 	 * DatoCms instance or configuration
@@ -63,19 +67,20 @@ export const datoCmsAdapter = ({
 	let itemTypes: ItemTypeInstancesTargetSchema | null = null;
 
 	// Auto-authenticate if credentials or token provided
-	const ensureAuth = async () => {
+	function ensureAuth(): boolean {
 		if (client instanceof Client) return true;
 		return false;
-	};
+	}
 
-	const getItemTypeId = async (model: string): Promise<string> => {
+	async function getItemTypeId(model: string): Promise<string> {
 		itemTypes = !itemTypes ? await c.itemTypes.list() : itemTypes;
 		const itemType = itemTypes.find((item) => item.api_key === `${modelPrefix}${model}`);
 		if (!itemType) throw new Error(`Item type ${model} not found`);
 		return itemType.id;
-	};
+	}
 
-	const buildFilter = (where: Where[] | undefined, model: string): any => {
+	//TODO: add support for multi Where and operators
+	function buildFilter(where: Where[] | undefined, model: string): any {
 		const filter: any = {
 			type: `${modelPrefix}${model}`,
 		};
@@ -111,11 +116,9 @@ export const datoCmsAdapter = ({
 		}
 
 		return { ...filter, fields };
-	};
+	}
 
-	const camelToSnakeCase = (str: string) => str.replace(/[A-Z]/g, (letter) => `_${letter.toLowerCase()}`);
-
-	const handleApiError = (type: string, error: any, throws: boolean = false) => {
+	function handleApiError(type: string, error: any, throws: boolean = false) {
 		if (debugLogs) {
 			let message = '';
 			if (error instanceof ApiError) {
@@ -128,7 +131,7 @@ export const datoCmsAdapter = ({
 			console.error(message);
 		}
 		if (throws) throw error;
-	};
+	}
 
 	return createAdapterFactory({
 		config: {
@@ -212,7 +215,6 @@ export const datoCmsAdapter = ({
 						handleApiError('create', error, true);
 					}
 				},
-
 				async findOne({ model, where }) {
 					await ensureAuth();
 					debugLog('findOne', { model, where });
@@ -268,7 +270,6 @@ export const datoCmsAdapter = ({
 						return [];
 					}
 				},
-
 				async count({ model, where }) {
 					await ensureAuth();
 					debugLog('count', { model, where });
@@ -297,7 +298,6 @@ export const datoCmsAdapter = ({
 						return 0;
 					}
 				},
-
 				async update({ model, where, update }) {
 					await ensureAuth();
 					debugLog('update', { model, where, update });
@@ -335,7 +335,6 @@ export const datoCmsAdapter = ({
 						return 0;
 					}
 				},
-
 				async updateMany({ model, where, update }) {
 					await ensureAuth();
 					debugLog('updateMany', { model, where, update });
@@ -367,7 +366,6 @@ export const datoCmsAdapter = ({
 						return 0;
 					}
 				},
-
 				async delete({ model, where }) {
 					await ensureAuth();
 					debugLog('delete', { model, where });
@@ -394,7 +392,6 @@ export const datoCmsAdapter = ({
 						handleApiError('delete', error);
 					}
 				},
-
 				async deleteMany({ model, where }) {
 					await ensureAuth();
 					debugLog('deleteMany', { model, where });
@@ -420,7 +417,6 @@ export const datoCmsAdapter = ({
 						return 0;
 					}
 				},
-
 				options: { usePlural, debugLogs },
 			};
 		},
