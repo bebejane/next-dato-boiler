@@ -7,17 +7,16 @@ export interface DatoCmsAdapterConfig {
 	/**
 	 * DatoCms instance or configuration
 	 * You can provide:
-	 *   - a DatoCms instance
-	 *   - or an object with { url, adminEmail, adminPassword, token }
-	 * If both token and adminEmail/adminPassword are provided, token is preferred.
+	 *   - a DatoCms Client instance
+	 *   - or an object with { apitoken }
 	 */
 	client: Client | { apiToken?: string };
 
 	/**
-	 * DatoCms Item Types Mapping
+	 * DatoCms Item Type Id Mapping
 	 * @default undefined
 	 */
-	itemTypes: {
+	itemTypeId: {
 		user: string;
 		session: string;
 		account: string;
@@ -29,23 +28,12 @@ export interface DatoCmsAdapterConfig {
 	 * @default false
 	 */
 	debugLogs?: boolean;
-
-	/**
-	 * Whether to use plural names for the auth tables
-	 * Set to `false` to use singular names: user, session, account, verification
-	 * Set to `true` to use plural names: users, sessions, accounts, verifications
-	 *
-	 * The provided schema in `schema/datocms.collections.json` uses singular names,
-	 * so set this to `false` if using that schema.
-	 *
-	 * @default true
-	 */
-	usePlural?: boolean;
 }
+
 /**
  * Better Auth adapter for DatoCms
  */
-export const datoCmsAdapter = ({ client, debugLogs = false, usePlural = false, itemTypes }: DatoCmsAdapterConfig) => {
+export const datoCmsAdapter = ({ client, debugLogs = false, itemTypeId }: DatoCmsAdapterConfig) => {
 	const c = client instanceof Client ? client : buildClient({ apiToken: client.apiToken as string });
 	const pageSize = 100;
 	const version = 'current';
@@ -56,8 +44,8 @@ export const datoCmsAdapter = ({ client, debugLogs = false, usePlural = false, i
 	}
 
 	function getItemTypeId(model: string): string {
-		if (!(model in itemTypes)) throw new Error(`Item type ${model} not found`);
-		return itemTypes[model as keyof typeof itemTypes];
+		if (!(model in itemTypeId)) throw new Error(`Item type ${model} not found`);
+		return itemTypeId[model as keyof typeof itemTypeId];
 	}
 
 	function buildFilter(where: Where[] | undefined, itemTypeId: string): any {
@@ -125,8 +113,8 @@ export const datoCmsAdapter = ({ client, debugLogs = false, usePlural = false, i
 		config: {
 			adapterId: 'datocms',
 			adapterName: 'DatoCms Adapter',
-			usePlural,
 			debugLogs,
+			usePlural: false,
 			supportsDates: false,
 			supportsBooleans: true,
 			supportsJSON: false,
@@ -399,7 +387,7 @@ export const datoCmsAdapter = ({ client, debugLogs = false, usePlural = false, i
 						return 0;
 					}
 				},
-				options: { usePlural, debugLogs },
+				options: { debugLogs },
 			};
 		},
 	});
