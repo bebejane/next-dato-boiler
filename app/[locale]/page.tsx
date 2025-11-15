@@ -34,6 +34,7 @@ export default async function Home({ params }: PageProps<'/[locale]'>) {
 							<li key={idx}>
 								<Link
 									locale={locale}
+									prefetch={true}
 									href={{
 										pathname: '/posts/[post]',
 										params: { post: post.slug as string },
