@@ -7,6 +7,8 @@ import { Markdown } from 'next-dato-utils/components';
 import Content from '@/components/content/Content';
 import { Link, locales } from '@/i18n/routing';
 
+export const dynamicParams = true;
+
 export default async function Post({ params }: PageProps<'/[locale]/posts/[post]'>) {
 	const { locale, post: slug } = await params;
 	if (!locales.includes(locale as any)) return notFound();
@@ -37,6 +39,7 @@ export default async function Post({ params }: PageProps<'/[locale]/posts/[post]
 		</>
 	);
 }
+/*
 
 export async function generateStaticParams({ params }: PageProps<'/[locale]/posts/[post]'>) {
 	const { locale } = await params;
@@ -50,3 +53,4 @@ export async function generateStaticParams({ params }: PageProps<'/[locale]/post
 		post: post.slug,
 	}));
 }
+*/

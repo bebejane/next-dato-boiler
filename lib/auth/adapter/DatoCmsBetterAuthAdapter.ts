@@ -213,7 +213,6 @@ export const datoCmsAdapter = ({ client, debugLogs = false, itemTypeId }: DatoCm
 						return null;
 					}
 				},
-
 				async findMany({ model, where, limit, offset: _offset, sortBy }) {
 					debugLog('findMany', { model, where, limit, offset: _offset, sortBy });
 
