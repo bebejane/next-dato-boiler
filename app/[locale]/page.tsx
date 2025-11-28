@@ -10,7 +10,6 @@ import { notFound } from 'next/navigation';
 export default async function Home({ params }: PageProps<'/[locale]'>) {
 	const { locale } = await params;
 	if (!locales.includes(locale as any)) return notFound();
-	console.log(locale);
 	setRequestLocale(locale);
 
 	const { start, draftUrl } = await apiQuery(StartDocument, {
@@ -34,7 +33,7 @@ export default async function Home({ params }: PageProps<'/[locale]'>) {
 							<li key={idx}>
 								<Link
 									locale={locale}
-									prefetch={true}
+									//prefetch={false}
 									href={{
 										pathname: '/posts/[post]',
 										params: { post: post.slug as string },
