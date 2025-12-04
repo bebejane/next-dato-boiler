@@ -21,6 +21,7 @@
 }
 
 body {
+	position: relative;
 	width: 100%;
 	font-size: 100%;
 	line-height: 1em;
@@ -32,6 +33,10 @@ body {
 
 	@include mq($from: desktop) {
 	}
+}
+
+.root {
+	isolation: isolate;
 }
 
 html {

@@ -12,7 +12,7 @@ export default async function RootLayout({ children }: LayoutProps<'/[locale]'>)
 	return (
 		<>
 			<html lang='en'>
-				<body id='root'>
+				<body id='root' className='root'>
 					<NextIntlClientProvider>
 						<LocaleSwitcher />
 						<main className={s.main}>{children}</main>
@@ -70,7 +70,11 @@ export async function buildMetadata({
 	image,
 	locale,
 }: BuildMetadataProps): Promise<Metadata> {
-	description = !description ? '' : description.length > 160 ? `${description.substring(0, 157)}...` : description;
+	description = !description
+		? ''
+		: description.length > 160
+			? `${description.substring(0, 157)}...`
+			: description;
 	const url = pathname ? `${process.env.NEXT_PUBLIC_SITE_URL}${pathname}` : undefined;
 
 	return {
