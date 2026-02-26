@@ -17,7 +17,7 @@ export default async function RootLayout({ children }: LayoutProps<'/[locale]'>)
 		<>
 			<html lang='en'>
 				<body id='root' className='root'>
-					{/* {isDraftModeEnabled && <ContentLink />} */}
+					<ContentLink />
 					<NextIntlClientProvider>
 						<LocaleSwitcher />
 						<main className={s.main}>{children}</main>
