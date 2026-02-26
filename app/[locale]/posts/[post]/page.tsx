@@ -1,11 +1,13 @@
+import s from './page.module.scss';
 import { AllPostsDocument, PostDocument, StartDocument } from '@/graphql';
 import { apiQuery } from 'next-dato-utils/api';
-import { DraftMode } from 'next-dato-utils/components';
+import { DraftMode, StructuredContent } from 'next-dato-utils/components';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { Markdown } from 'next-dato-utils/components';
 import Content from '@/components/content/Content';
 import { Link, locales } from '@/i18n/routing';
+import { Image } from 'react-datocms';
 
 export const dynamicParams = true;
 
@@ -21,19 +23,23 @@ export default async function Post({ params }: PageProps<'/[locale]/posts/[post]
 			locale: locale as SiteLocale,
 		},
 		tags: ['color'],
-		contentLink: 'v1',
-		baseEditingUrl: process.env.NEXT_PUBLIC_SITE_URL,
 	});
 
 	if (!post) return notFound();
 
 	return (
 		<>
-			<article style={{ backgroundColor: post.color?.color?.hex }}>
+			<article className={s.page} style={{ backgroundColor: post.color?.color?.hex }}>
 				<h1>{post.title}</h1>
+				<h3>Markdown</h3>
 				<Markdown content={post.intro ?? ''} />
+				<h3>Structured</h3>
 				<Content content={post.content} />
 				<br />
+				{post.image && <Image imgClassName={s.image} data={post.image.responsiveImage} />}
+				<br />
+				<br />
+
 				<Link href={`/`}>
 					<button>Tillbaka</button>
 				</Link>

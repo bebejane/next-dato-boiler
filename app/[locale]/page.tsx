@@ -15,13 +15,11 @@ export default async function Home({ params }: PageProps<'/[locale]'>) {
 	const { start, draftUrl } = await apiQuery(StartDocument, {
 		variables: { locale: locale as SiteLocale },
 		contentLink: 'v1',
-		baseEditingUrl: process.env.NEXT_PUBLIC_SITE_URL,
 	});
+
 	const { allPosts } = await apiQuery(AllPostsDocument, {
 		variables: { locale: locale as SiteLocale },
 		tags: ['color'],
-		contentLink: 'v1',
-		baseEditingUrl: process.env.NEXT_PUBLIC_SITE_URL,
 	});
 
 	if (!start) return notFound();
