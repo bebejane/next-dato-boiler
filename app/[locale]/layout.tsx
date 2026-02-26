@@ -7,12 +7,14 @@ import { Icon } from 'next/dist/lib/metadata/types/metadata-types';
 import { NextIntlClientProvider } from 'next-intl';
 import { getPathname, Link, locales } from '@/i18n/routing';
 import { LocaleSwitcher } from '@/components/nav/LocaleSwitcher';
+import ContentLink from '@/components/content/ContentLink';
 
 export default async function RootLayout({ children }: LayoutProps<'/[locale]'>) {
 	return (
 		<>
 			<html lang='en'>
 				<body id='root' className='root'>
+					<ContentLink />
 					<NextIntlClientProvider>
 						<LocaleSwitcher />
 						<main className={s.main}>{children}</main>
