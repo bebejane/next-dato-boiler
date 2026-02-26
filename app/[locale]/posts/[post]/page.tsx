@@ -11,6 +11,7 @@ export const dynamicParams = true;
 
 export default async function Post({ params }: PageProps<'/[locale]/posts/[post]'>) {
 	const { locale, post: slug } = await params;
+	console.log(locale, slug);
 	if (!locales.includes(locale as any)) return notFound();
 	setRequestLocale(locale);
 
@@ -23,7 +24,7 @@ export default async function Post({ params }: PageProps<'/[locale]/posts/[post]
 	});
 
 	if (!post) return notFound();
-	console.log('render post:', slug, locale);
+
 	return (
 		<>
 			<article style={{ backgroundColor: post.color?.color?.hex }}>
