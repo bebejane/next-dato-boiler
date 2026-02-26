@@ -21,6 +21,8 @@ export default async function Post({ params }: PageProps<'/[locale]/posts/[post]
 			locale: locale as SiteLocale,
 		},
 		tags: ['color'],
+		contentLink: 'v1',
+		baseEditingUrl: process.env.NEXT_PUBLIC_SITE_URL,
 	});
 
 	if (!post) return notFound();
