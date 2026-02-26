@@ -34,15 +34,15 @@ const nextConfig: NextConfig = {
 
 	async headers() {
 		return [
-			// {
-			// 	source: '/:path*',
-			// 	headers: [
-			// 		{
-			// 			key: 'Content-Security-Policy',
-			// 			value: "frame-ancestors 'self' https://plugins-cdn.datocms.com",
-			// 		},
-			// 	],
-			// },
+			{
+				source: '/:path*',
+				headers: [
+					{
+						key: 'Content-Security-Policy',
+						value: "frame-ancestors 'self' https://plugins-cdn.datocms.com",
+					},
+				],
+			},
 			{
 				source: '/api/web-previews',
 				headers: [
