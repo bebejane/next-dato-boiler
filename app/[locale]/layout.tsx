@@ -11,13 +11,13 @@ import ContentLink from '@/components/content/ContentLink';
 import { draftMode } from 'next/headers';
 
 export default async function RootLayout({ children }: LayoutProps<'/[locale]'>) {
-	const { isEnabled: isDraftModeEnabled } = await draftMode();
+	//const { isEnabled: isDraftModeEnabled } = await draftMode();
 
 	return (
 		<>
 			<html lang='en'>
 				<body id='root' className='root'>
-					{isDraftModeEnabled && <ContentLink />}
+					{/* {isDraftModeEnabled && <ContentLink />} */}
 					<NextIntlClientProvider>
 						<LocaleSwitcher />
 						<main className={s.main}>{children}</main>
