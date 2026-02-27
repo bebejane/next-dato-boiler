@@ -9,7 +9,7 @@ fragment ImageFragment on FileFieldInterface {
 	size
 	title
 	url
-	responsiveImage {
+	responsiveImage(imgixParams: { auto: format }, sizes: "(max-width: 46.24em) 50vw, 25vw") {
 		width
 		height
 		alt
