@@ -14,15 +14,12 @@ export function LocaleSwitcher({ draft }: { draft: boolean }) {
 	return (
 		<nav className={s.locales} key={locale}>
 			<ul>
-				{isDev && (
-					<li>
-						<a
-							href={`/api/draft?secret=99E3GxyXr9pGy1QD&slug=${pathname}${draft ? '&exit=1' : ''}`}
-						>
-							<button aria-pressed={draft}>Draft</button>
-						</a>
-					</li>
-				)}
+				<li>
+					<a href={`/api/draft?secret=99E3GxyXr9pGy1QD&slug=${pathname}${draft ? '&exit=1' : ''}`}>
+						<button aria-pressed={draft}>Draft</button>
+					</a>
+				</li>
+
 				{locales.map((l, i) => (
 					<li key={i} className={locale === l ? s.selected : undefined}>
 						<Link href={'/'} locale={l}>

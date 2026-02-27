@@ -10,12 +10,14 @@ import { LocaleSwitcher } from '@/components/nav/LocaleSwitcher';
 import { draftMode } from 'next/headers';
 
 export default async function RootLayout({ children }: LayoutProps<'/[locale]'>) {
+	const { isEnabled: isDraftModeEnabled } = await draftMode();
+
 	return (
 		<>
 			<html lang='en'>
 				<body id='root' className='root'>
 					<NextIntlClientProvider>
-						<LocaleSwitcher draft={false} />
+						<LocaleSwitcher draft={isDraftModeEnabled} />
 						<main className={s.main}>{children}</main>
 					</NextIntlClientProvider>
 				</body>
