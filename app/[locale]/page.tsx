@@ -51,7 +51,7 @@ export default async function Home({ params }: PageProps<'/[locale]'>) {
 						))}
 				</ul>
 			</article>
-			{/* <DraftMode url={draftUrl} path={`/`} /> */}
+			<DraftMode url={draftUrl} path={`/${locale}`} />
 		</>
 	);
 }

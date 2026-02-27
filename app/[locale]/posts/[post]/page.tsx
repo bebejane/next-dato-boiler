@@ -44,7 +44,7 @@ export default async function Post({ params }: PageProps<'/[locale]/posts/[post]
 					<button>Tillbaka</button>
 				</Link>
 			</article>
-			{/* <DraftMode url={draftUrl} path={`/posts/${slug}`} /> */}
+			<DraftMode url={draftUrl} path={`/${locale}/posts/${slug}`} />
 		</>
 	);
 }
