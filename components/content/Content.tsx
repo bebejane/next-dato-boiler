@@ -16,7 +16,8 @@ export default function Content({ id, content, styles, blocks, className }: Prop
 
 	blocks = { ...Blocks, ...(blocks || {}) };
 
-	console.log(Object.keys(blocks));
+	console.log('blocks', Object.keys(blocks));
+
 	const customMarkRules =
 		(styles &&
 			Object.keys(styles).map((style) =>

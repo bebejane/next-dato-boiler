@@ -10,7 +10,7 @@ export function LocaleSwitcher({ draft }: { draft: boolean }) {
 	const locale = useLocale();
 	const pathname = usePathname();
 	const isDev = process.env.NODE_ENV === 'development';
-	console.log({ isDev });
+
 	return (
 		<nav className={s.locales} key={locale}>
 			<ul>
