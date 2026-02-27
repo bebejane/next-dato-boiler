@@ -4,6 +4,9 @@
 	right: 0;
 	z-index: 1000;
 	margin: var(--outer-margin);
+	a {
+		margin-right: 0.5rem;
+	}
 	ul {
 		list-style: none;
 		display: flex;

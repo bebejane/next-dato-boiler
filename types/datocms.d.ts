@@ -2700,6 +2700,36 @@ type LinkFilter = {
   notIn?: InputMaybe<Array<InputMaybe<Scalars['ItemId']['input']>>>;
 };
 
+/** Block of type Link image (link_image) */
+type LinkImageRecord = RecordInterface & {
+  __typename?: 'LinkImageRecord';
+  _createdAt: Scalars['DateTime']['output'];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars['String']['output']>;
+  _firstPublishedAt: Scalars['DateTime']['output'];
+  _isValid: Scalars['BooleanType']['output'];
+  _modelApiKey: Scalars['String']['output'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _publishedAt: Scalars['DateTime']['output'];
+  /** Generates SEO and Social card meta tags to be used in your frontend */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _updatedAt: Scalars['DateTime']['output'];
+  createdAt: Scalars['DateTime']['output'];
+  id: Scalars['ItemId']['output'];
+  image?: Maybe<FileField>;
+  name?: Maybe<Scalars['String']['output']>;
+  updatedAt: Scalars['DateTime']['output'];
+  url?: Maybe<Scalars['String']['output']>;
+};
+
+
+/** Block of type Link image (link_image) */
+type LinkImageRecord_seoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
 /** Specifies how to filter Multiple-links fields */
 type LinksFilter = {
   /** Filter records linked to all of the specified records. The specified values must be Record IDs */
@@ -2773,9 +2803,11 @@ type PageRecordintroArgs = {
   markdown?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
+type PostModelContentBlocksField = LinkImageRecord | PageRecord;
+
 type PostModelContentField = {
   __typename?: 'PostModelContentField';
-  blocks: Array<PageRecord>;
+  blocks: Array<PostModelContentBlocksField>;
   links: Array<Scalars['String']['output']>;
   value: Scalars['JsonField']['output'];
 };
@@ -3917,7 +3949,10 @@ type PostQueryVariables = Exact<{
 }>;
 
 
-type PostQuery = { __typename?: 'Query', post?: { __typename?: 'PostRecord', intro?: string | null, slug?: string | null, title?: string | null, _updatedAt: any, image?: { __typename?: 'ImageFileField', id: any, width: any, height: any, alt?: string | null, basename: string, format: string, mimeType: string, size: any, title?: string | null, url: string, focalPoint: { __typename?: 'focalPoint', x: any, y: any }, responsiveImage: { __typename?: 'ResponsiveImage', width: any, height: any, alt?: string | null, aspectRatio: any, base64?: string | null, bgColor?: string | null, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null } } | null, color?: { __typename?: 'ColorRecord', color?: { __typename?: 'ColorField', hex: string } | null } | null, content?: { __typename?: 'PostModelContentField', value: any, links: Array<string>, blocks: Array<{ __typename: 'PageRecord' }> } | null, author?: { __typename?: 'AuthorRecord', name?: string | null } | null } | null };
+type PostQuery = { __typename?: 'Query', post?: { __typename?: 'PostRecord', intro?: string | null, slug?: string | null, title?: string | null, _updatedAt: any, image?: { __typename?: 'ImageFileField', id: any, width: any, height: any, alt?: string | null, basename: string, format: string, mimeType: string, size: any, title?: string | null, url: string, focalPoint: { __typename?: 'focalPoint', x: any, y: any }, responsiveImage: { __typename?: 'ResponsiveImage', width: any, height: any, alt?: string | null, aspectRatio: any, base64?: string | null, bgColor?: string | null, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null } } | null, color?: { __typename?: 'ColorRecord', color?: { __typename?: 'ColorField', hex: string } | null } | null, content?: { __typename?: 'PostModelContentField', value: any, links: Array<string>, blocks: Array<
+        | { __typename: 'LinkImageRecord', id: any, name?: string | null, url?: string | null, image?: { __typename?: 'FileField', id: any, width?: any | null, height?: any | null, alt?: string | null, basename: string, format: string, mimeType: string, size: any, title?: string | null, url: string, focalPoint?: { __typename?: 'focalPoint', x: any, y: any } | null, responsiveImage?: { __typename?: 'ResponsiveImage', width: any, height: any, alt?: string | null, aspectRatio: any, base64?: string | null, bgColor?: string | null, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null } | null } | null }
+        | { __typename: 'PageRecord' }
+      > } | null, author?: { __typename?: 'AuthorRecord', name?: string | null } | null } | null };
 
 type AllPostsQueryVariables = Exact<{
   locale?: InputMaybe<SiteLocale>;
@@ -3926,9 +3961,15 @@ type AllPostsQueryVariables = Exact<{
 }>;
 
 
-type AllPostsQuery = { __typename?: 'Query', allPosts: Array<{ __typename?: 'PostRecord', intro?: string | null, slug?: string | null, title?: string | null, _updatedAt: any, image?: { __typename?: 'ImageFileField', id: any, width: any, height: any, alt?: string | null, basename: string, format: string, mimeType: string, size: any, title?: string | null, url: string, focalPoint: { __typename?: 'focalPoint', x: any, y: any }, responsiveImage: { __typename?: 'ResponsiveImage', width: any, height: any, alt?: string | null, aspectRatio: any, base64?: string | null, bgColor?: string | null, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null } } | null, color?: { __typename?: 'ColorRecord', color?: { __typename?: 'ColorField', hex: string } | null } | null, content?: { __typename?: 'PostModelContentField', value: any, links: Array<string>, blocks: Array<{ __typename: 'PageRecord' }> } | null, author?: { __typename?: 'AuthorRecord', name?: string | null } | null }>, _allPostsMeta: { __typename?: 'CollectionMetadata', count: any } };
+type AllPostsQuery = { __typename?: 'Query', allPosts: Array<{ __typename?: 'PostRecord', intro?: string | null, slug?: string | null, title?: string | null, _updatedAt: any, image?: { __typename?: 'ImageFileField', id: any, width: any, height: any, alt?: string | null, basename: string, format: string, mimeType: string, size: any, title?: string | null, url: string, focalPoint: { __typename?: 'focalPoint', x: any, y: any }, responsiveImage: { __typename?: 'ResponsiveImage', width: any, height: any, alt?: string | null, aspectRatio: any, base64?: string | null, bgColor?: string | null, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null } } | null, color?: { __typename?: 'ColorRecord', color?: { __typename?: 'ColorField', hex: string } | null } | null, content?: { __typename?: 'PostModelContentField', value: any, links: Array<string>, blocks: Array<
+        | { __typename: 'LinkImageRecord', id: any, name?: string | null, url?: string | null, image?: { __typename?: 'FileField', id: any, width?: any | null, height?: any | null, alt?: string | null, basename: string, format: string, mimeType: string, size: any, title?: string | null, url: string, focalPoint?: { __typename?: 'focalPoint', x: any, y: any } | null, responsiveImage?: { __typename?: 'ResponsiveImage', width: any, height: any, alt?: string | null, aspectRatio: any, base64?: string | null, bgColor?: string | null, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null } | null } | null }
+        | { __typename: 'PageRecord' }
+      > } | null, author?: { __typename?: 'AuthorRecord', name?: string | null } | null }>, _allPostsMeta: { __typename?: 'CollectionMetadata', count: any } };
 
-type PostFragment = { __typename?: 'PostRecord', intro?: string | null, slug?: string | null, title?: string | null, _updatedAt: any, image?: { __typename?: 'ImageFileField', id: any, width: any, height: any, alt?: string | null, basename: string, format: string, mimeType: string, size: any, title?: string | null, url: string, focalPoint: { __typename?: 'focalPoint', x: any, y: any }, responsiveImage: { __typename?: 'ResponsiveImage', width: any, height: any, alt?: string | null, aspectRatio: any, base64?: string | null, bgColor?: string | null, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null } } | null, color?: { __typename?: 'ColorRecord', color?: { __typename?: 'ColorField', hex: string } | null } | null, content?: { __typename?: 'PostModelContentField', value: any, links: Array<string>, blocks: Array<{ __typename: 'PageRecord' }> } | null, author?: { __typename?: 'AuthorRecord', name?: string | null } | null };
+type PostFragment = { __typename?: 'PostRecord', intro?: string | null, slug?: string | null, title?: string | null, _updatedAt: any, image?: { __typename?: 'ImageFileField', id: any, width: any, height: any, alt?: string | null, basename: string, format: string, mimeType: string, size: any, title?: string | null, url: string, focalPoint: { __typename?: 'focalPoint', x: any, y: any }, responsiveImage: { __typename?: 'ResponsiveImage', width: any, height: any, alt?: string | null, aspectRatio: any, base64?: string | null, bgColor?: string | null, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null } } | null, color?: { __typename?: 'ColorRecord', color?: { __typename?: 'ColorField', hex: string } | null } | null, content?: { __typename?: 'PostModelContentField', value: any, links: Array<string>, blocks: Array<
+      | { __typename: 'LinkImageRecord', id: any, name?: string | null, url?: string | null, image?: { __typename?: 'FileField', id: any, width?: any | null, height?: any | null, alt?: string | null, basename: string, format: string, mimeType: string, size: any, title?: string | null, url: string, focalPoint?: { __typename?: 'focalPoint', x: any, y: any } | null, responsiveImage?: { __typename?: 'ResponsiveImage', width: any, height: any, alt?: string | null, aspectRatio: any, base64?: string | null, bgColor?: string | null, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null } | null } | null }
+      | { __typename: 'PageRecord' }
+    > } | null, author?: { __typename?: 'AuthorRecord', name?: string | null } | null };
 
 type PostLightFragment = { __typename?: 'PostRecord', intro?: string | null, slug?: string | null, title?: string | null, _updatedAt: any, image?: { __typename?: 'ImageFileField', id: any, width: any, height: any, alt?: string | null, basename: string, format: string, mimeType: string, size: any, title?: string | null, url: string, focalPoint: { __typename?: 'focalPoint', x: any, y: any }, responsiveImage: { __typename?: 'ResponsiveImage', width: any, height: any, alt?: string | null, aspectRatio: any, base64?: string | null, bgColor?: string | null, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null } } | null, author?: { __typename?: 'AuthorRecord', name?: string | null } | null, color?: { __typename?: 'ColorRecord', color?: { __typename?: 'ColorField', hex: string } | null } | null };
 

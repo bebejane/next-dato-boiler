@@ -28,6 +28,14 @@ fragment PostFragment on PostRecord {
 	content {
 		blocks {
 			__typename
+			... on LinkImageRecord {
+				id
+				name
+				url
+				image {
+					...ImageFragment
+				}
+			}
 		}
 		value
 		links

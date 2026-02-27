@@ -1,4 +1,4 @@
-import { ItemTypeDefinition } from '@datocms/cma-client';
+import type { ItemTypeDefinition } from '@datocms/cma-client';
 type EnvironmentSettings = {
   locales: 'sv' | 'en';
 };
@@ -19,6 +19,7 @@ export type Post = ItemTypeDefinition<
     };
     content: {
       type: 'structured_text';
+      blocks: LinkImage;
       localized: true;
     };
     image: {
@@ -45,21 +46,18 @@ export type Page = ItemTypeDefinition<
     };
   }
 >;
-export type User = ItemTypeDefinition<
+export type AuthUser = ItemTypeDefinition<
   EnvironmentSettings,
   'BmmC_204Q2q80pakRIUNhA',
   {
-    user_id: {
+    name: {
       type: 'string';
     };
     email: {
       type: 'string';
     };
     email_verified: {
-      type: 'date_time';
-    };
-    name: {
-      type: 'string';
+      type: 'boolean';
     };
     image: {
       type: 'file';
@@ -75,44 +73,38 @@ export type User = ItemTypeDefinition<
     };
   }
 >;
-export type UserAccount = ItemTypeDefinition<
+export type AuthAccount = ItemTypeDefinition<
   EnvironmentSettings,
   'CANE8qJyT8OmtkreQWhLng',
   {
     account_id: {
       type: 'string';
     };
+    provider_id: {
+      type: 'string';
+    };
     user_id: {
-      type: 'string';
+      type: 'link';
     };
-    account_type: {
-      type: 'string';
-    };
-    provider: {
-      type: 'string';
-    };
-    provider_account_id: {
+    access_token: {
       type: 'string';
     };
     refresh_token: {
       type: 'string';
     };
-    access_token: {
+    id_token: {
       type: 'string';
     };
-    expires_at: {
-      type: 'integer';
+    access_token_expires_at: {
+      type: 'date_time';
     };
-    token_type: {
-      type: 'string';
+    refresh_token_expires_at: {
+      type: 'date_time';
     };
     scope: {
       type: 'string';
     };
-    id_token: {
-      type: 'string';
-    };
-    session_state: {
+    password: {
       type: 'string';
     };
   }
@@ -142,6 +134,21 @@ export type Author = ItemTypeDefinition<
     };
   }
 >;
+export type LinkImage = ItemTypeDefinition<
+  EnvironmentSettings,
+  'OsBAsjykQKGEZclBbIeMxA',
+  {
+    name: {
+      type: 'string';
+    };
+    url: {
+      type: 'string';
+    };
+    image: {
+      type: 'file';
+    };
+  }
+>;
 export type Color = ItemTypeDefinition<
   EnvironmentSettings,
   'SvgIE1bUSaiQEmf-iBbczQ',
@@ -154,47 +161,47 @@ export type Color = ItemTypeDefinition<
     };
   }
 >;
-export type UserVerificationToken = ItemTypeDefinition<
+export type AuthVerification = ItemTypeDefinition<
   EnvironmentSettings,
   'VDNPpHABRT6-EHrYrfQeQQ',
   {
     identifier: {
       type: 'string';
     };
-    token: {
+    value: {
       type: 'string';
-    };
-    timestamp: {
-      type: 'integer';
     };
   }
 >;
-export type UserSession = ItemTypeDefinition<
+export type AuthSession = ItemTypeDefinition<
   EnvironmentSettings,
   'ddvS6N7lSsao3H2Rw9FJwQ',
   {
+    expires_at: {
+      type: 'date_time';
+    };
+    token: {
+      type: 'string';
+    };
+    user_agent: {
+      type: 'string';
+    };
+    ip_address: {
+      type: 'string';
+    };
     user_id: {
-      type: 'string';
-    };
-    session_id: {
-      type: 'string';
-    };
-    session_token: {
-      type: 'string';
-    };
-    timestamp: {
-      type: 'integer';
+      type: 'link';
     };
   }
 >;
-export type AnyBlock = Page;
+export type AnyBlock = Page | LinkImage;
 export type AnyModel =
   | Post
-  | User
-  | UserAccount
+  | AuthUser
+  | AuthAccount
   | Start
   | Author
   | Color
-  | UserVerificationToken
-  | UserSession;
+  | AuthVerification
+  | AuthSession;
 export type AnyBlockOrModel = AnyBlock | AnyModel;
