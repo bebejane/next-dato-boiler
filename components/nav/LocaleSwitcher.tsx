@@ -4,22 +4,22 @@ import s from './LocaleSwitcher.module.scss';
 import { useLocale } from 'next-intl';
 import { Link, locales } from '@/i18n/routing';
 import { usePathname } from 'next/navigation';
+import { useContentLink } from 'react-datocms';
 
-export function LocaleSwitcher() {
+export function LocaleSwitcher({ draft }: { draft: boolean }) {
 	const locale = useLocale();
 	const pathname = usePathname();
 	const isDev = process.env.NODE_ENV === 'development';
-
+	console.log({ isDev });
 	return (
 		<nav className={s.locales} key={locale}>
 			<ul>
 				{isDev && (
 					<li>
-						<a href={`/api/draft?secret=99E3GxyXr9pGy1QD&slug=${pathname}`}>
-							<button>Draft</button>
-						</a>
-						<a href={`/api/draft?secret=99E3GxyXr9pGy1QD&exit=1&slug=${pathname}`}>
-							<button>Exit Draft</button>
+						<a
+							href={`/api/draft?secret=99E3GxyXr9pGy1QD&slug=${pathname}${draft ? '&exit=1' : ''}`}
+						>
+							<button aria-pressed={draft}>Draft</button>
 						</a>
 					</li>
 				)}

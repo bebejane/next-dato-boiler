@@ -7,19 +7,17 @@ import { Icon } from 'next/dist/lib/metadata/types/metadata-types';
 import { NextIntlClientProvider } from 'next-intl';
 import { getPathname, Link, locales } from '@/i18n/routing';
 import { LocaleSwitcher } from '@/components/nav/LocaleSwitcher';
-import ContentLink from '@/components/content/ContentLink';
 import { draftMode } from 'next/headers';
 
 export default async function RootLayout({ children }: LayoutProps<'/[locale]'>) {
-	//const { isEnabled: isDraftModeEnabled } = await draftMode();
+	const { isEnabled: isDraftModeEnabled } = await draftMode();
 
 	return (
 		<>
 			<html lang='en'>
 				<body id='root' className='root'>
-					{/* <ContentLink /> */}
 					<NextIntlClientProvider>
-						<LocaleSwitcher />
+						<LocaleSwitcher draft={isDraftModeEnabled} />
 						<main className={s.main}>{children}</main>
 					</NextIntlClientProvider>
 				</body>
