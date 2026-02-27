@@ -31,7 +31,7 @@ export default async function Post({ params }: PageProps<'/[locale]/posts/[post]
 			<article className={s.page} style={{ backgroundColor: post.color?.color?.hex }}>
 				<h1>{post.title}</h1>
 				<h3>Markdown</h3>
-				<div data-datocms-content-link-group>
+				<div className={s.markdown} data-datocms-content-link-group>
 					<Markdown content={post.intro ?? ''} />
 				</div>
 				<h3>Structured</h3>
