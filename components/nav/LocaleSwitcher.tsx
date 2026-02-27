@@ -21,7 +21,11 @@ export function LocaleSwitcher({ draft }: { draft: boolean }) {
 				</li>
 
 				{locales.map((l, i) => (
-					<li key={i} className={locale === l ? s.selected : undefined}>
+					<li
+						key={i}
+						className={locale === l ? s.selected : undefined}
+						data-datocms-content-link-url={`${process.env.NEXT_PUBLIC_DATOCMS_BASE_EDITING_URL}/configuration/locales-and-timezone`}
+					>
 						<Link href={'/'} locale={l}>
 							{l}
 						</Link>
