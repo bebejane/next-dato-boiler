@@ -6,7 +6,11 @@ query Start($locale: SiteLocale) {
 
 fragment StartFragment on StartRecord {
 	headline
-	intro
+	content {
+		blocks
+		links
+		value
+	}
 	posts {
 		...PostLightFragment
 	}

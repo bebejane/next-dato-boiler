@@ -3435,6 +3435,13 @@ type SlugFilter = {
   notIn?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
+type StartModelContentField = {
+  __typename?: 'StartModelContentField';
+  blocks: Array<Scalars['String']['output']>;
+  links: Array<Scalars['String']['output']>;
+  value: Scalars['JsonField']['output'];
+};
+
 /** Record of type Start (start) */
 type StartRecord = RecordInterface & {
   __typename?: 'StartRecord';
@@ -3453,10 +3460,10 @@ type StartRecord = RecordInterface & {
   _status: ItemStatus;
   _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
   _updatedAt: Scalars['DateTime']['output'];
+  content?: Maybe<StartModelContentField>;
   createdAt: Scalars['DateTime']['output'];
   headline: Scalars['String']['output'];
   id: Scalars['ItemId']['output'];
-  intro?: Maybe<Scalars['String']['output']>;
   posts: Array<PostRecord>;
   updatedAt: Scalars['DateTime']['output'];
 };
@@ -3478,12 +3485,6 @@ type StartRecord_seoMetaTagsArgs = {
 type StartRecordheadlineArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
   locale?: InputMaybe<SiteLocale>;
-};
-
-
-/** Record of type Start (start) */
-type StartRecordintroArgs = {
-  markdown?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 /** Specifies how to filter by status */
@@ -4047,9 +4048,9 @@ type StartQueryVariables = Exact<{
 }>;
 
 
-type StartQuery = { __typename?: 'Query', start?: { __typename?: 'StartRecord', headline: string, intro?: string | null, posts: Array<{ __typename?: 'PostRecord', intro?: string | null, slug?: string | null, title?: string | null, _updatedAt: any, image?: { __typename?: 'ImageFileField', id: any, width: any, height: any, alt?: string | null, basename: string, format: string, mimeType: string, size: any, title?: string | null, url: string, focalPoint: { __typename?: 'focalPoint', x: any, y: any }, responsiveImage: { __typename?: 'ResponsiveImage', width: any, height: any, alt?: string | null, aspectRatio: any, base64?: string | null, bgColor?: string | null, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null } } | null, author?: { __typename?: 'AuthorRecord', name?: string | null } | null, color?: { __typename?: 'ColorRecord', color?: { __typename?: 'ColorField', hex: string } | null } | null }> } | null };
+type StartQuery = { __typename?: 'Query', start?: { __typename?: 'StartRecord', headline: string, content?: { __typename?: 'StartModelContentField', blocks: Array<string>, links: Array<string>, value: any } | null, posts: Array<{ __typename?: 'PostRecord', intro?: string | null, slug?: string | null, title?: string | null, _updatedAt: any, image?: { __typename?: 'ImageFileField', id: any, width: any, height: any, alt?: string | null, basename: string, format: string, mimeType: string, size: any, title?: string | null, url: string, focalPoint: { __typename?: 'focalPoint', x: any, y: any }, responsiveImage: { __typename?: 'ResponsiveImage', width: any, height: any, alt?: string | null, aspectRatio: any, base64?: string | null, bgColor?: string | null, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null } } | null, author?: { __typename?: 'AuthorRecord', name?: string | null } | null, color?: { __typename?: 'ColorRecord', color?: { __typename?: 'ColorField', hex: string } | null } | null }> } | null };
 
-type StartFragment = { __typename?: 'StartRecord', headline: string, intro?: string | null, posts: Array<{ __typename?: 'PostRecord', intro?: string | null, slug?: string | null, title?: string | null, _updatedAt: any, image?: { __typename?: 'ImageFileField', id: any, width: any, height: any, alt?: string | null, basename: string, format: string, mimeType: string, size: any, title?: string | null, url: string, focalPoint: { __typename?: 'focalPoint', x: any, y: any }, responsiveImage: { __typename?: 'ResponsiveImage', width: any, height: any, alt?: string | null, aspectRatio: any, base64?: string | null, bgColor?: string | null, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null } } | null, author?: { __typename?: 'AuthorRecord', name?: string | null } | null, color?: { __typename?: 'ColorRecord', color?: { __typename?: 'ColorField', hex: string } | null } | null }> };
+type StartFragment = { __typename?: 'StartRecord', headline: string, content?: { __typename?: 'StartModelContentField', blocks: Array<string>, links: Array<string>, value: any } | null, posts: Array<{ __typename?: 'PostRecord', intro?: string | null, slug?: string | null, title?: string | null, _updatedAt: any, image?: { __typename?: 'ImageFileField', id: any, width: any, height: any, alt?: string | null, basename: string, format: string, mimeType: string, size: any, title?: string | null, url: string, focalPoint: { __typename?: 'focalPoint', x: any, y: any }, responsiveImage: { __typename?: 'ResponsiveImage', width: any, height: any, alt?: string | null, aspectRatio: any, base64?: string | null, bgColor?: string | null, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null } } | null, author?: { __typename?: 'AuthorRecord', name?: string | null } | null, color?: { __typename?: 'ColorRecord', color?: { __typename?: 'ColorField', hex: string } | null } | null }> };
 
 type AuthUserQueryVariables = Exact<{ [key: string]: never; }>;
 

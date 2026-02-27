@@ -16,6 +16,9 @@ export const routing = defineRouting({
 		'/posts/[post]': {
 			sv: '/poster/[post]',
 		},
+		'/api/draft': {
+			sv: '/api/utkast',
+		},
 	},
 });
 
