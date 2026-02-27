@@ -15,12 +15,10 @@ export default function Content({ id, content, styles, blocks, className }: Prop
 	return (
 		<div data-datocms-content-link-group>
 			<StructuredContent
+				content={content}
 				blocks={{ ...Blocks, ...blocks }}
 				className={className}
-				styles={{
-					...styles,
-				}}
-				content={content}
+				styles={styles}
 			/>
 		</div>
 	);

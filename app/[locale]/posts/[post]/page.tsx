@@ -1,13 +1,13 @@
 import s from './page.module.scss';
-import { AllPostsDocument, PostDocument, StartDocument } from '@/graphql';
+import { PostDocument } from '@/graphql';
 import { apiQuery } from 'next-dato-utils/api';
-import { DraftMode, StructuredContent } from 'next-dato-utils/components';
-import { getTranslations, setRequestLocale } from 'next-intl/server';
+import { DraftMode } from 'next-dato-utils/components';
+import { setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { Markdown } from 'next-dato-utils/components';
-import Content from '@/components/content/Content';
 import { Link, locales } from '@/i18n/routing';
 import { Image } from 'react-datocms';
+import Content from '@/components/content/Content';
 
 export const dynamicParams = true;
 
