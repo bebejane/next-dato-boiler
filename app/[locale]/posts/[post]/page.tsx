@@ -39,6 +39,7 @@ export default async function Post({ params }: PageProps<'/[locale]/posts/[post]
 				<br />
 				{post.image && <Image imgClassName={s.image} data={post.image.responsiveImage} />}
 				<br />
+				<br />
 				<Link href={`/`}>
 					<button>Tillbaka</button>
 				</Link>

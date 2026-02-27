@@ -1,13 +1,13 @@
 .title {
 	margin-top: 1rem;
-	margin-bottom: 0rem;
+	padding-bottom: 0rem;
 }
 
 .list {
 	list-style: none;
 	display: flex;
 	flex-direction: column;
-	margin-top: 1rem;
+	margin-top: 0.3rem;
 	margin-bottom: 1rem;
 
 	li {
@@ -18,8 +18,12 @@
 		flex-direction: row;
 		align-items: center;
 
+		* {
+			font-size: 0.8rem;
+		}
 		> div {
 			margin-right: 1rem;
+
 			&.label {
 				font-weight: bold;
 			}
