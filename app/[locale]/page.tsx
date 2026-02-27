@@ -44,7 +44,7 @@ export default async function Home({ params }: PageProps<'/[locale]'>) {
 										className={s.color}
 										style={{ backgroundColor: post.color?.color?.hex }}
 									></div>{' '}
-									{post.title}
+									<span>{post.title}</span>
 								</Link>
 							</li>
 						))}

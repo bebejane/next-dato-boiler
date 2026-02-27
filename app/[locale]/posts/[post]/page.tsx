@@ -13,7 +13,6 @@ export const dynamicParams = true;
 
 export default async function Post({ params }: PageProps<'/[locale]/posts/[post]'>) {
 	const { locale, post: slug } = await params;
-	console.log(locale, slug);
 	if (!locales.includes(locale as any)) return notFound();
 	setRequestLocale(locale);
 
