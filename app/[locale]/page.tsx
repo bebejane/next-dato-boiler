@@ -12,12 +12,12 @@ export default async function Home({ params }: PageProps<'/[locale]'>) {
 	if (!locales.includes(locale as any)) return notFound();
 	setRequestLocale(locale);
 
-	const { start } = await apiQuery(StartDocument, {
+	const { start, draftUrl } = await apiQuery(StartDocument, {
 		variables: { locale: locale as SiteLocale },
 		contentLink: 'v1',
 	});
 
-	const { allPosts, draftUrl } = await apiQuery(AllPostsDocument, {
+	const { allPosts, draftUrl: postsDraftUrl } = await apiQuery(AllPostsDocument, {
 		variables: { locale: locale as SiteLocale },
 		tags: ['color'],
 	});
@@ -35,7 +35,6 @@ export default async function Home({ params }: PageProps<'/[locale]'>) {
 							<li key={idx}>
 								<Link
 									locale={locale}
-									//prefetch={false}
 									href={{
 										pathname: '/posts/[post]',
 										params: { post: post.slug as string },
@@ -51,7 +50,7 @@ export default async function Home({ params }: PageProps<'/[locale]'>) {
 						))}
 				</ul>
 			</article>
-			<DraftMode url={draftUrl} path={`/${locale}`} />
+			<DraftMode url={[draftUrl, postsDraftUrl]} path={`/${locale}`} />
 		</>
 	);
 }
