@@ -1,6 +1,7 @@
 import s from './LinkImage.module.scss';
 import Link from 'next/link';
 import { Image } from 'react-datocms';
+
 export type LinkImageProps = {
 	data: LinkImageRecord;
 };

@@ -36,6 +36,23 @@ fragment PostFragment on PostRecord {
 					...ImageFragment
 				}
 			}
+			... on ListRecord {
+				id
+				title
+				items {
+					__typename
+					... on ListItemRecord {
+						id
+						label
+						value
+						content {
+							blocks
+							links
+							value
+						}
+					}
+				}
+			}
 		}
 		value
 		links

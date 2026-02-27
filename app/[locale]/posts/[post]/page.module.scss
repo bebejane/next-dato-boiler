@@ -8,4 +8,13 @@
 		height: 400px;
 		object-fit: cover;
 	}
+	ul {
+		margin-bottom: 1rem;
+	}
+	> li {
+		margin-left: 1.5em;
+	}
+	p {
+		// /margin-bottom: 1rem;
+	}
 }
