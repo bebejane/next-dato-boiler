@@ -5,24 +5,19 @@ import { GlobalDocument } from '@/graphql';
 import { Metadata } from 'next';
 import { Icon } from 'next/dist/lib/metadata/types/metadata-types';
 import { NextIntlClientProvider } from 'next-intl';
-import { getPathname, Link, locales } from '@/i18n/routing';
+import { getPathname } from '@/i18n/routing';
 import { LocaleSwitcher } from '@/components/nav/LocaleSwitcher';
-import { draftMode } from 'next/headers';
 
 export default async function RootLayout({ children }: LayoutProps<'/[locale]'>) {
-	const { isEnabled: isDraftModeEnabled } = await draftMode();
-
 	return (
-		<>
-			<html lang='en'>
-				<body id='root' className='root'>
-					<NextIntlClientProvider>
-						<LocaleSwitcher draft={isDraftModeEnabled} />
-						<main className={s.main}>{children}</main>
-					</NextIntlClientProvider>
-				</body>
-			</html>
-		</>
+		<html lang='en'>
+			<body id='root' className='root'>
+				<NextIntlClientProvider>
+					<LocaleSwitcher />
+					<main className={s.main}>{children}</main>
+				</NextIntlClientProvider>
+			</body>
+		</html>
 	);
 }
 
