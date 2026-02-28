@@ -9,11 +9,17 @@
 			margin-left: 2rem;
 		}
 	}
+
 	.image {
-		width: 200px;
-		height: 400px;
-		object-fit: cover;
+		width: 100vw !important;
+		height: 24vh;
+		margin-left: calc(-1 * var(--outer-margin));
+		margin-right: calc(-1 * var(--outer-margin));
+		img {
+			object-fit: cover;
+		}
 	}
+
 	ul {
 		margin-bottom: 1rem;
 	}
