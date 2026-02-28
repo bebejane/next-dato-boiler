@@ -15,23 +15,28 @@ const nextConfig: NextConfig = {
 	typescript: {
 		ignoreBuildErrors: true,
 	},
+	devIndicators: false,
+	logging: {
+		fetches: {
+			fullUrl: false,
+		},
+	},
+	transpilePackages: ['next-dato-utils'],
+	turbopack: {
+		root: path.join(__dirname, '..'),
+		resolveAlias: {
+			'datocms.config': './datocms.config.ts',
+			'next-dato-utils/*':
+				process.env.NODE_ENV === 'development'
+					? '../next-dato-utils/*'
+					: 'git+https://github.com/bebejane/next-dato-utils.git#latest',
+		},
+	},
 	webpack: (config) => {
 		config.module.exprContextCritical = false;
 		config.resolve.alias['datocms.config'] = path.join(__dirname, 'datocms.config.ts');
 		return config;
 	},
-	turbopack: {
-		resolveAlias: {
-			'datocms.config': './datocms.config.ts',
-		},
-	},
-	devIndicators: false,
-	logging: {
-		fetches: {
-			fullUrl: true,
-		},
-	},
-
 	async headers() {
 		return [
 			{

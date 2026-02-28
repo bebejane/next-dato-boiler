@@ -7,7 +7,7 @@ export default function Space({ data }: SpaceProps) {
 	console.log({ insideIframe });
 	return (
 		<div
-			data-datocms-content-link-source={data.id}
+			data-datocms-content-link-url={data._editingUrl}
 			style={{
 				height: `${data.height}vh`,
 				width: '100%',

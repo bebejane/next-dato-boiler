@@ -28,7 +28,10 @@
       ],
       "datocms.config": [
         "./datocms.config.ts"
-      ]
+      ],
+      "next-dato-utils/*": [
+        "../next-dato-utils/*"
+      ],
     }
   },
   "include": [
@@ -36,7 +39,9 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    ".next/dev/types/**/*.ts"
+    ".next/dev/types/**/*.ts",
+    // "../next-dato-utils/src/**/*.ts",
+    // "../next-dato-utils/src/**/*.tsx",
   ],
   "exclude": [
     "node_modules"

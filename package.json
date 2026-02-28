@@ -3,16 +3,17 @@
 	"version": "0.1.0",
 	"private": true,
 	"scripts": {
-		"dev": "next dev --turbo & npm run codegen",
+		"dev": "next dev --turbo & pnpm run codegen",
 		"start": "next start",
-		"preview": "npm run build && npm run start",
+		"preview": "pnpm run build && pnpm run start",
 		"build": "next build",
 		"dev:email": "PORT=4000 email dev",
 		"codegen": "graphql-codegen --watch",
 		"codegen:datocms": "pnpx @datocms/cli schema:generate ./types/datocms-cma.ts",
 		"lint": "next lint",
 		"reset": "rm -rf ./node_modules && rm -rf pnpm-lock.yaml && rm -rf .next && pnpm i",
-		"reset:cache": "rm -rf .next/cache"
+		"reset:cache": "rm -rf .next/cache",
+		"open": "open http://localhost:3000"
 	},
 	"dependencies": {
 		"@base-ui-components/react": "1.0.0-rc.0",

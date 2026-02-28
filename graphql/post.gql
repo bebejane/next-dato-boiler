@@ -21,6 +21,7 @@ fragment PostFragment on PostRecord {
 	slug
 	title
 	color {
+		_editingUrl
 		color {
 			hex
 		}
@@ -28,7 +29,9 @@ fragment PostFragment on PostRecord {
 	content {
 		blocks {
 			__typename
+
 			... on SpaceRecord {
+				_editingUrl
 				id
 				height
 			}

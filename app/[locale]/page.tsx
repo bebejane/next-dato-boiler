@@ -37,6 +37,7 @@ export default async function Home({ params }: PageProps<'/[locale]'>) {
 							<li key={idx}>
 								<Link
 									locale={locale}
+									data-datocms-content-link-group
 									href={{
 										pathname: '/posts/[post]',
 										params: { post: post.slug as string },
@@ -45,6 +46,7 @@ export default async function Home({ params }: PageProps<'/[locale]'>) {
 									<div
 										className={s.color}
 										style={{ backgroundColor: post.color?.color?.hex }}
+										data-datocms-content-link-url={post.color?._editingUrl}
 									></div>{' '}
 									<span>{post.title}</span>
 								</Link>
