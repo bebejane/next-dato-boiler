@@ -6,6 +6,7 @@ import { DraftMode } from 'next-dato-utils/components';
 import { setRequestLocale } from 'next-intl/server';
 import { locales } from '@/i18n/routing';
 import { notFound } from 'next/navigation';
+import Content from '@/components/content/Content';
 
 export default async function Home({ params }: PageProps<'/[locale]'>) {
 	const { locale } = await params;
@@ -28,6 +29,7 @@ export default async function Home({ params }: PageProps<'/[locale]'>) {
 		<>
 			<article className={s.article}>
 				<h1>{start.headline}</h1>
+				<Content content={start.content} />
 				<ul>
 					{allPosts
 						.filter((post) => post.slug)

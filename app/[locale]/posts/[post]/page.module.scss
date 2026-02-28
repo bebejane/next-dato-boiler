@@ -12,9 +12,10 @@
 
 	.image {
 		width: 100vw !important;
-		height: 24vh;
+		height: 30vh;
 		margin-left: calc(-1 * var(--outer-margin));
 		margin-right: calc(-1 * var(--outer-margin));
+
 		img {
 			object-fit: cover;
 		}

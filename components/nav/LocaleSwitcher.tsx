@@ -13,6 +13,7 @@ export function LocaleSwitcher({ draft }: { draft: boolean }) {
 	const router = useRouter();
 	const isDev = process.env.NODE_ENV === 'development';
 	const [mounted, setMounted] = useState(false);
+
 	useEffect(() => {
 		setMounted(true);
 	}, []);
@@ -21,11 +22,15 @@ export function LocaleSwitcher({ draft }: { draft: boolean }) {
 	return (
 		<nav className={s.locales} key={locale}>
 			<ul>
-				<li>
-					<a href={`/api/draft?secret=99E3GxyXr9pGy1QD&slug=${pathname}${draft ? '&exit=1' : ''}`}>
-						<button aria-pressed={draft}>Draft</button>
-					</a>
-				</li>
+				{isDev && (
+					<li>
+						<a
+							href={`/api/draft?secret=99E3GxyXr9pGy1QD&slug=${pathname}${draft ? '&exit=1' : ''}`}
+						>
+							<button aria-pressed={draft}>Draft</button>
+						</a>
+					</li>
+				)}
 
 				{locales.map((l, i) => (
 					<li key={i} className={locale === l ? s.selected : undefined}>

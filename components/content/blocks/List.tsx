@@ -11,9 +11,9 @@ export default function List({ data }: ListProps) {
 	return (
 		<>
 			{data.title && <h3 className={s.title}>{data.title}</h3>}
-			<ul className={s.list} data-datocms-content-link-boundary>
+			<ul className={s.list}>
 				{data.items.map((item, i) => (
-					<li key={i}>
+					<li key={i} data-datocms-content-link-group>
 						<div className={s.label}>{item.label}</div>
 						<div className={s.value}>{item.value}</div>
 						<div className={s.content}>

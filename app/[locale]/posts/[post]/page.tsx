@@ -1,5 +1,5 @@
 import s from './page.module.scss';
-import { PostDocument } from '@/graphql';
+import { AllPostsDocument, PostDocument } from '@/graphql';
 import { apiQuery } from 'next-dato-utils/api';
 import { DraftMode } from 'next-dato-utils/components';
 import { setRequestLocale } from 'next-intl/server';
@@ -48,7 +48,6 @@ export default async function Post({ params }: PageProps<'/[locale]/posts/[post]
 		</>
 	);
 }
-/*
 
 export async function generateStaticParams({ params }: PageProps<'/[locale]/posts/[post]'>) {
 	const { locale } = await params;
@@ -62,4 +61,3 @@ export async function generateStaticParams({ params }: PageProps<'/[locale]/post
 		post: post.slug,
 	}));
 }
-*/

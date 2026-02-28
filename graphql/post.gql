@@ -28,6 +28,10 @@ fragment PostFragment on PostRecord {
 	content {
 		blocks {
 			__typename
+			... on SpaceRecord {
+				id
+				height
+			}
 			... on LinkImageRecord {
 				id
 				name

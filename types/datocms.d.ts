@@ -2869,7 +2869,7 @@ type PageRecordintroArgs = {
   markdown?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
-type PostModelContentBlocksField = LinkImageRecord | ListRecord | PageRecord;
+type PostModelContentBlocksField = LinkImageRecord | ListRecord | PageRecord | SpaceRecord;
 
 type PostModelContentField = {
   __typename?: 'PostModelContentField';
@@ -3433,6 +3433,34 @@ type SlugFilter = {
   neq?: InputMaybe<Scalars['String']['input']>;
   /** Filter records that do have one of the specified slugs */
   notIn?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+/** Block of type Space (space) */
+type SpaceRecord = RecordInterface & {
+  __typename?: 'SpaceRecord';
+  _createdAt: Scalars['DateTime']['output'];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars['String']['output']>;
+  _firstPublishedAt: Scalars['DateTime']['output'];
+  _isValid: Scalars['BooleanType']['output'];
+  _modelApiKey: Scalars['String']['output'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _publishedAt: Scalars['DateTime']['output'];
+  /** Generates SEO and Social card meta tags to be used in your frontend */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _updatedAt: Scalars['DateTime']['output'];
+  createdAt: Scalars['DateTime']['output'];
+  height?: Maybe<Scalars['IntType']['output']>;
+  id: Scalars['ItemId']['output'];
+  updatedAt: Scalars['DateTime']['output'];
+};
+
+
+/** Block of type Space (space) */
+type SpaceRecord_seoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
 };
 
 type StartModelContentField = {
@@ -4020,6 +4048,7 @@ type PostQuery = { __typename?: 'Query', post?: { __typename?: 'PostRecord', int
         | { __typename: 'LinkImageRecord', id: any, name?: string | null, url?: string | null, image?: { __typename?: 'FileField', id: any, width?: any | null, height?: any | null, alt?: string | null, basename: string, format: string, mimeType: string, size: any, title?: string | null, url: string, focalPoint?: { __typename?: 'focalPoint', x: any, y: any } | null, responsiveImage?: { __typename?: 'ResponsiveImage', width: any, height: any, alt?: string | null, aspectRatio: any, base64?: string | null, bgColor?: string | null, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null } | null } | null }
         | { __typename: 'ListRecord', id: any, title?: string | null, items: Array<{ __typename: 'ListItemRecord', id: any, label?: string | null, value?: string | null, content?: { __typename?: 'ListItemModelContentField', blocks: Array<string>, links: Array<string>, value: any } | null }> }
         | { __typename: 'PageRecord' }
+        | { __typename: 'SpaceRecord', id: any, height?: any | null }
       > } | null, author?: { __typename?: 'AuthorRecord', name?: string | null } | null } | null };
 
 type AllPostsQueryVariables = Exact<{
@@ -4033,12 +4062,14 @@ type AllPostsQuery = { __typename?: 'Query', allPosts: Array<{ __typename?: 'Pos
         | { __typename: 'LinkImageRecord', id: any, name?: string | null, url?: string | null, image?: { __typename?: 'FileField', id: any, width?: any | null, height?: any | null, alt?: string | null, basename: string, format: string, mimeType: string, size: any, title?: string | null, url: string, focalPoint?: { __typename?: 'focalPoint', x: any, y: any } | null, responsiveImage?: { __typename?: 'ResponsiveImage', width: any, height: any, alt?: string | null, aspectRatio: any, base64?: string | null, bgColor?: string | null, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null } | null } | null }
         | { __typename: 'ListRecord', id: any, title?: string | null, items: Array<{ __typename: 'ListItemRecord', id: any, label?: string | null, value?: string | null, content?: { __typename?: 'ListItemModelContentField', blocks: Array<string>, links: Array<string>, value: any } | null }> }
         | { __typename: 'PageRecord' }
+        | { __typename: 'SpaceRecord', id: any, height?: any | null }
       > } | null, author?: { __typename?: 'AuthorRecord', name?: string | null } | null }>, _allPostsMeta: { __typename?: 'CollectionMetadata', count: any } };
 
 type PostFragment = { __typename?: 'PostRecord', intro?: string | null, slug?: string | null, title?: string | null, _updatedAt: any, image?: { __typename?: 'ImageFileField', id: any, width: any, height: any, alt?: string | null, basename: string, format: string, mimeType: string, size: any, title?: string | null, url: string, focalPoint: { __typename?: 'focalPoint', x: any, y: any }, responsiveImage: { __typename?: 'ResponsiveImage', width: any, height: any, alt?: string | null, aspectRatio: any, base64?: string | null, bgColor?: string | null, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null } } | null, color?: { __typename?: 'ColorRecord', color?: { __typename?: 'ColorField', hex: string } | null } | null, content?: { __typename?: 'PostModelContentField', value: any, links: Array<string>, blocks: Array<
       | { __typename: 'LinkImageRecord', id: any, name?: string | null, url?: string | null, image?: { __typename?: 'FileField', id: any, width?: any | null, height?: any | null, alt?: string | null, basename: string, format: string, mimeType: string, size: any, title?: string | null, url: string, focalPoint?: { __typename?: 'focalPoint', x: any, y: any } | null, responsiveImage?: { __typename?: 'ResponsiveImage', width: any, height: any, alt?: string | null, aspectRatio: any, base64?: string | null, bgColor?: string | null, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null } | null } | null }
       | { __typename: 'ListRecord', id: any, title?: string | null, items: Array<{ __typename: 'ListItemRecord', id: any, label?: string | null, value?: string | null, content?: { __typename?: 'ListItemModelContentField', blocks: Array<string>, links: Array<string>, value: any } | null }> }
       | { __typename: 'PageRecord' }
+      | { __typename: 'SpaceRecord', id: any, height?: any | null }
     > } | null, author?: { __typename?: 'AuthorRecord', name?: string | null } | null };
 
 type PostLightFragment = { __typename?: 'PostRecord', intro?: string | null, slug?: string | null, title?: string | null, _updatedAt: any, image?: { __typename?: 'ImageFileField', id: any, width: any, height: any, alt?: string | null, basename: string, format: string, mimeType: string, size: any, title?: string | null, url: string, focalPoint: { __typename?: 'focalPoint', x: any, y: any }, responsiveImage: { __typename?: 'ResponsiveImage', width: any, height: any, alt?: string | null, aspectRatio: any, base64?: string | null, bgColor?: string | null, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null } } | null, author?: { __typename?: 'AuthorRecord', name?: string | null } | null, color?: { __typename?: 'ColorRecord', color?: { __typename?: 'ColorField', hex: string } | null } | null };
