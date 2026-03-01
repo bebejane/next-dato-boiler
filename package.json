@@ -6,7 +6,7 @@
 		"dev": "next dev --turbo & pnpm run codegen",
 		"start": "next start",
 		"preview": "pnpm run build && pnpm run start",
-		"build": "next build",
+		"build": "pnpm i github:bebejane/next-dato-utils && next build",
 		"dev:email": "PORT=4000 email dev",
 		"codegen": "graphql-codegen --watch",
 		"codegen:datocms": "pnpx @datocms/cli schema:generate ./types/datocms-cma.ts",
