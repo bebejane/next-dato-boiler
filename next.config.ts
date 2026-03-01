@@ -3,7 +3,7 @@ import createNextIntlPlugin from 'next-intl/plugin';
 import path from 'path';
 
 const withNextIntl = createNextIntlPlugin();
-
+console.log(process.env.NODE_ENV);
 const nextConfig: NextConfig = {
 	sassOptions: {
 		includePaths: ['./components', './app'],
