@@ -21,6 +21,9 @@ const nextConfig: NextConfig = {
 			fullUrl: false,
 		},
 	},
+	// experimental: {
+	// 	turbopackFileSystemCacheForBuild: true,
+	// },
 	transpilePackages: ['next-dato-utils'],
 	turbopack: {
 		root: path.join(__dirname, '..'),
