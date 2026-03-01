@@ -154,8 +154,8 @@ importers:
         specifier: ^11.1.0
         version: 11.1.0
       datocms-listen:
-        specifier: ^0.1.15
-        version: 0.1.15(graphql@16.13.0)
+        specifier: ^1.0.2
+        version: 1.0.2(graphql@16.13.0)
       datocms-structured-text-utils:
         specifier: ^5.0.0
         version: 5.1.7
@@ -174,9 +174,6 @@ importers:
       pluralize:
         specifier: ^8.0.0
         version: 8.0.0
-      postmark:
-        specifier: '>=4.0.0'
-        version: 4.0.7
       prettier:
         specifier: ^3.5.3
         version: 3.8.1
@@ -200,20 +197,20 @@ importers:
         version: 6.9.0
     devDependencies:
       '@datocms/cda-client':
-        specifier: ^0.2.7
+        specifier: ^0.2.10
         version: 0.2.10(graphql@16.13.0)
       '@datocms/cma-client':
         specifier: 5.2.0
         version: 5.2.0
       '@datocms/cma-client-browser':
-        specifier: ^5.2.0
+        specifier: ^5.3.0
         version: 5.3.0
       '@datocms/cma-client-node':
-        specifier: ^5.2.0
+        specifier: ^5.3.0
         version: 5.3.0
       '@types/node':
-        specifier: ^22.18.13
-        version: 22.19.13
+        specifier: ^25.3.3
+        version: 25.3.3
       '@types/pluralize':
         specifier: ^0.0.33
         version: 0.0.33
@@ -235,6 +232,9 @@ importers:
       nodemon:
         specifier: ^3.0.3
         version: 3.1.14
+      postmark:
+        specifier: ^4.0.7
+        version: 4.0.7
       react:
         specifier: ^19.2.0
         version: 19.2.3
@@ -2734,6 +2734,9 @@ packages:
   '@types/node@22.19.13':
     resolution: {integrity: sha512-akNQMv0wW5uyRpD2v2IEyRSZiR+BeGuoB6L310EgGObO44HSMNT8z1xzio28V8qOrgYaopIDNA18YgdXd+qTiw==}
 
+  '@types/node@25.3.3':
+    resolution: {integrity: sha512-DpzbrH7wIcBaJibpKo9nnSQL0MTRdnWttGyE5haGwK86xgMOkFLp7vEyfQPGLOJh5wNYiJ3V9PmUMDhV9u8kkQ==}
+
   '@types/normalize-path@3.0.2':
     resolution: {integrity: sha512-DO++toKYPaFn0Z8hQ7Tx+3iT9t77IJo/nDiqTXilgEP+kPNIYdpS9kh3fXuc53ugqwp9pxC1PVjCpV1tQDyqMA==}
 
@@ -3335,9 +3338,6 @@ packages:
 
   dataloader@2.2.3:
     resolution: {integrity: sha512-y2krtASINtPFS1rSDjacrFgn1dcUuoREVabwlOGOe4SdxenREqwjwjElAdwvbGM7kgZz9a3KVicWR7vcz8rnzA==}
-
-  datocms-listen@0.1.15:
-    resolution: {integrity: sha512-0LcdKYW/ilWdyrRzQ+YbkAk4r2dge63vzHtfv19L8pfbfYurQgXP9/ck703QZL//YqBoc0OKBS4BP4WUQ6JDKA==}
 
   datocms-listen@1.0.2:
     resolution: {integrity: sha512-7E1VFqd6/DEZAgfr9GtVFPPgI6xzIKOHR4Iths9FrjEKiE85rK9lzHhgPOTUiQJFALu1KNyARJUsL8Uj8iehxw==}
@@ -5539,6 +5539,9 @@ packages:
 
   undici-types@6.21.0:
     resolution: {integrity: sha512-iwDZqg0QAGrg9Rav5H4n0M64c3mkR59cJ6wQp+7C4nI0gsmExaedaYLNO44eT4AtBBwjbTiGPMlt2Md0T9H9JQ==}
+
+  undici-types@7.18.2:
+    resolution: {integrity: sha512-AsuCzffGHJybSaRrmr5eHr81mwJU3kjw6M+uprWvCXiNeN9SOGwQ3Jn8jb8m3Z6izVgknn1R0FTCEAP2QrLY/w==}
 
   unified@11.0.5:
     resolution: {integrity: sha512-xKvGhPWw3k84Qjh8bI3ZeJjqnyadK+GEFtazSfZv/rKeTkTjOJho6mFqh2SM96iIcZokxiOpg78GazTSg8+KHA==}
@@ -8237,6 +8240,10 @@ snapshots:
     dependencies:
       undici-types: 6.21.0
 
+  '@types/node@25.3.3':
+    dependencies:
+      undici-types: 7.18.2
+
   '@types/normalize-path@3.0.2': {}
 
   '@types/pluralize@0.0.33': {}
@@ -8832,12 +8839,6 @@ snapshots:
   data-uri-to-buffer@4.0.1: {}
 
   dataloader@2.2.3: {}
-
-  datocms-listen@0.1.15(graphql@16.13.0):
-    dependencies:
-      '@0no-co/graphql.web': 1.2.0(graphql@16.13.0)
-    transitivePeerDependencies:
-      - graphql
 
   datocms-listen@1.0.2(graphql@16.13.0):
     dependencies:
@@ -11315,6 +11316,8 @@ snapshots:
   undefsafe@2.0.5: {}
 
   undici-types@6.21.0: {}
+
+  undici-types@7.18.2: {}
 
   unified@11.0.5:
     dependencies:
