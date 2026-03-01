@@ -46,7 +46,7 @@ const nextConfig: NextConfig = {
 					{
 						key: 'Content-Security-Policy',
 						value:
-							"frame-ancestors 'self' https://plugins-cdn.datocms.com/ https://blrplate.admin.datocms.com/",
+							"frame-ancestors 'self' https://plugins-cdn.datocms.com/ https://blrplate.admin.datocms.com/ http://localhost:3000/",
 					},
 				],
 			},
