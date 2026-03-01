@@ -45,7 +45,7 @@ export default async function Home({ params }: PageProps<'/[locale]'>) {
 								>
 									<div
 										className={s.color}
-										style={{ backgroundColor: post.color?.color?.hex }}
+										style={{ backgroundColor: post.background?.color?.hex }}
 										data-datocms-content-link-url={post.color?._editingUrl}
 									></div>{' '}
 									<span>{post.title}</span>
