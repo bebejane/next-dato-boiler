@@ -26,6 +26,12 @@ fragment PostFragment on PostRecord {
 			hex
 		}
 	}
+	background {
+		_editingUrl
+		color {
+			hex
+		}
+	}
 	content {
 		blocks {
 			__typename
