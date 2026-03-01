@@ -29,13 +29,13 @@ fragment PostFragment on PostRecord {
 	content {
 		blocks {
 			__typename
-
 			... on SpaceRecord {
 				_editingUrl
 				id
 				height
 			}
 			... on LinkImageRecord {
+				_editingUrl
 				id
 				name
 				url
@@ -44,11 +44,14 @@ fragment PostFragment on PostRecord {
 				}
 			}
 			... on ListRecord {
+				_editingUrl
 				id
 				title
 				items {
 					__typename
+					_editingUrl
 					... on ListItemRecord {
+						_editingUrl
 						id
 						label
 						value

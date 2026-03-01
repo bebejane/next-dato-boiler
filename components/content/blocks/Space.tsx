@@ -3,15 +3,12 @@ export type SpaceProps = {
 };
 
 export default function Space({ data }: SpaceProps) {
-	const insideIframe = typeof window !== 'undefined' && window.parent !== window;
-	console.log({ insideIframe });
 	return (
 		<div
 			data-datocms-content-link-url={data._editingUrl}
 			style={{
 				height: `${data.height}vh`,
 				width: '100%',
-				backgroundColor: insideIframe ? 'rgba(0,0,0,0.4)' : 'transparent',
 			}}
 		/>
 	);
