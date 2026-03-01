@@ -24,6 +24,7 @@ export default async function Post({ params }: PageProps<'/[locale]/posts/[post]
 		tags: ['color'],
 	});
 
+	console.log(draftUrl);
 	if (!post) return notFound();
 
 	return (
