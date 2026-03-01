@@ -1,6 +1,0 @@
-# packages:
-#   - /Users/bebejane/Work/konstochteknik/next-dato/next-dato-utils
-#   - app
-
-# overrides:
-#   next-dato-utils: link:../next-dato-utils

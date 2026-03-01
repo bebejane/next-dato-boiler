@@ -3,10 +3,12 @@
 kt-websites-next.md
 package-lock.json
 yarn.lock
+
 # dependencies
 /node_modules
 /.pnp
 .pnp.js
+pnpm-workspace.yaml
 
 # testing
 /coverage
