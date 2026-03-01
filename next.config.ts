@@ -27,9 +27,7 @@ const nextConfig: NextConfig = {
 		resolveAlias: {
 			'datocms.config': './datocms.config.ts',
 			'next-dato-utils/*':
-				process.env.NODE_ENV === 'development'
-					? '../next-dato-utils/*'
-					: 'github:bebejane/next-dato-utils#latest',
+				process.env.NODE_ENV === 'development' ? '../next-dato-utils/*' : 'next-dato-utils/*',
 		},
 	},
 	webpack: (config) => {
