@@ -29,7 +29,7 @@ const nextConfig: NextConfig = {
 			'next-dato-utils/*':
 				process.env.NODE_ENV === 'development'
 					? '../next-dato-utils/*'
-					: 'git+https://github.com/bebejane/next-dato-utils.git#latest',
+					: 'github:bebejane/next-dato-utils#latest',
 		},
 	},
 	webpack: (config) => {
