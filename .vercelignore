@@ -1,1 +1,2 @@
-next-dato-utils/
+# Ignore local workspace packages for Vercel
+../next-dato-utils/
