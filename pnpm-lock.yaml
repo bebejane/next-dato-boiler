@@ -4,9 +4,6 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
-overrides:
-  next-dato-utils: link:../next-dato-utils
-
 importers:
 
   .:
@@ -63,8 +60,8 @@ importers:
         specifier: 15.5.12
         version: 15.5.12(@babel/core@7.26.10)(@opentelemetry/api@1.9.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(sass@1.93.2)
       next-dato-utils:
-        specifier: link:../next-dato-utils
-        version: link:../next-dato-utils
+        specifier: github:bebejane/next-dato-utils
+        version: https://codeload.github.com/bebejane/next-dato-utils/tar.gz/6bb3b1ccf6bd0faad70c17de9fcbbd9d5e562bbd(@datocms/cda-client@0.2.10(graphql@16.13.0))(@datocms/cma-client-browser@5.3.0)(@datocms/cma-client-node@5.3.0)(@datocms/cma-client@5.3.0)(@types/react@19.2.14)(datocms-structured-text-utils@5.1.7)(graphql@16.13.0)(next@15.5.12(@babel/core@7.26.10)(@opentelemetry/api@1.9.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(sass@1.93.2))(postmark@4.0.7)(react-datocms@8.0.0(@mux/mux-player-react@3.11.5(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(graphql@16.13.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(sass@1.93.2)(zod@4.3.6)
       next-intl:
         specifier: ^4.8.3
         version: 4.8.3(next@15.5.12(@babel/core@7.26.10)(@opentelemetry/api@1.9.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(sass@1.93.2))(react@19.2.3)(typescript@5.9.3)
@@ -4499,6 +4496,26 @@ packages:
 
   neo-async@2.6.2:
     resolution: {integrity: sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==}
+
+  next-dato-utils@https://codeload.github.com/bebejane/next-dato-utils/tar.gz/6bb3b1ccf6bd0faad70c17de9fcbbd9d5e562bbd:
+    resolution: {tarball: https://codeload.github.com/bebejane/next-dato-utils/tar.gz/6bb3b1ccf6bd0faad70c17de9fcbbd9d5e562bbd}
+    version: 2.0.170
+    engines: {node: '>=0.18'}
+    hasBin: true
+    peerDependencies:
+      '@datocms/cda-client': '>=0.2.7'
+      '@datocms/cma-client': '>=5.0.0'
+      '@datocms/cma-client-browser': '>=5.0.0'
+      '@datocms/cma-client-node': '>=5.0.0'
+      datocms-structured-text-utils: '>=2.0.0'
+      graphql: '>=16.0.0'
+      next: '>=15.0.0'
+      postmark: '>=4.0.0'
+      react: 19.x
+      react-datocms: '>=8.0.0'
+      react-dom: 19.x
+      sass: '>=1.69.0'
+      zod: '>=3.0.0'
 
   next-intl-swc-plugin-extractor@4.8.3:
     resolution: {integrity: sha512-YcaT+R9z69XkGhpDarVFWUprrCMbxgIQYPUaXoE6LGVnLjGdo8hu3gL6bramDVjNKViYY8a/pXPy7Bna0mXORg==}
@@ -10137,6 +10154,39 @@ snapshots:
   negotiator@1.0.0: {}
 
   neo-async@2.6.2: {}
+
+  next-dato-utils@https://codeload.github.com/bebejane/next-dato-utils/tar.gz/6bb3b1ccf6bd0faad70c17de9fcbbd9d5e562bbd(@datocms/cda-client@0.2.10(graphql@16.13.0))(@datocms/cma-client-browser@5.3.0)(@datocms/cma-client-node@5.3.0)(@datocms/cma-client@5.3.0)(@types/react@19.2.14)(datocms-structured-text-utils@5.1.7)(graphql@16.13.0)(next@15.5.12(@babel/core@7.26.10)(@opentelemetry/api@1.9.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(sass@1.93.2))(postmark@4.0.7)(react-datocms@8.0.0(@mux/mux-player-react@3.11.5(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(graphql@16.13.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(sass@1.93.2)(zod@4.3.6):
+    dependencies:
+      '@datocms/cda-client': 0.2.10(graphql@16.13.0)
+      '@datocms/cma-client': 5.3.0
+      '@datocms/cma-client-browser': 5.3.0
+      '@datocms/cma-client-node': 5.3.0
+      '@opentelemetry/api': 1.9.0
+      commander: 11.1.0
+      datocms-listen: 1.0.2(graphql@16.13.0)
+      datocms-structured-text-utils: 5.1.7
+      dedent-js: 1.0.1
+      dotenv: 16.6.1
+      get-tsconfig: 4.13.6
+      graphql: 16.13.0
+      ico-utils: 0.1.5
+      next: 15.5.12(@babel/core@7.26.10)(@opentelemetry/api@1.9.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(sass@1.93.2)
+      pluralize: 8.0.0
+      postmark: 4.0.7
+      prettier: 3.8.1
+      pretty-bytes: 6.1.1
+      react: 19.2.3
+      react-datocms: 8.0.0(@mux/mux-player-react@3.11.5(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(graphql@16.13.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
+      react-dom: 19.2.3(react@19.2.3)
+      react-markdown: 9.1.0(@types/react@19.2.14)(react@19.2.3)
+      remark-breaks: 4.0.0
+      remark-gfm: 4.0.1
+      sass: 1.93.2
+      table: 6.9.0
+      zod: 4.3.6
+    transitivePeerDependencies:
+      - '@types/react'
+      - supports-color
 
   next-intl-swc-plugin-extractor@4.8.3: {}
 
