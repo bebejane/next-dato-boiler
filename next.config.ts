@@ -15,18 +15,15 @@ const nextConfig: NextConfig = {
 	typescript: {
 		ignoreBuildErrors: true,
 	},
-	eslint: {
-		ignoreDuringBuilds: true,
-	},
 	devIndicators: false,
 	logging: {
 		fetches: {
 			fullUrl: false,
 		},
 	},
-	// experimental: {
-	// 	turbopackFileSystemCacheForBuild: true,
-	// },
+	experimental: {
+		turbopackFileSystemCacheForBuild: true,
+	},
 	//transpilePackages: ['next-dato-utils'],
 	turbopack: {
 		root: path.join(__dirname, '..'),
