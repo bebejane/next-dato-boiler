@@ -31,7 +31,8 @@ export default async function Post({ params }: PageProps<'/[locale]/posts/[post]
 		<>
 			<article
 				className={s.page}
-				style={{ backgroundColor: post.background?.color?.hex, color: post.color?.color?.hex }}
+				data-color={post.color?.color?.hex}
+				data-background={post.background?.color?.hex}
 			>
 				<h1>{post.title}</h1>
 				<h3>Markdown</h3>
