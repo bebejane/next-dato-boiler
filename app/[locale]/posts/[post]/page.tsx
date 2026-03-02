@@ -41,10 +41,10 @@ export default async function Post({ params }: PageProps<'/[locale]/posts/[post]
 				<h3>Structured</h3>
 				<Content content={post.content} />
 				<br />
+				<br />
 				{post.image && (
 					<Image className={s.wrap} imgClassName={s.image} data={post.image.responsiveImage} />
 				)}
-				<br />
 				<br />
 				<Link href={`/`}>
 					<button>Tillbaka</button>

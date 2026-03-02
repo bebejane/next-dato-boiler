@@ -33,25 +33,23 @@ export default async function Home({ params }: PageProps<'/[locale]'>) {
 					{allPosts
 						.filter((post) => post.slug)
 						.map((post, idx) => (
-							<>
-								<li key={idx}>
-									<Link
-										locale={locale}
-										data-datocms-content-link-group
-										href={{
-											pathname: '/posts/[post]',
-											params: { post: post.slug as string },
-										}}
-									>
-										<div
-											className={s.color}
-											style={{ backgroundColor: post.background?.color?.hex }}
-											data-datocms-content-link-url={post.color?._editingUrl}
-										></div>{' '}
-										<span>{post.title}</span>
-									</Link>
-								</li>
-							</>
+							<li key={idx}>
+								<Link
+									locale={locale}
+									data-datocms-content-link-group
+									href={{
+										pathname: '/posts/[post]',
+										params: { post: post.slug as string },
+									}}
+								>
+									<div
+										className={s.color}
+										style={{ backgroundColor: post.background?.color?.hex }}
+										data-datocms-content-link-url={post.color?._editingUrl}
+									></div>{' '}
+									<span>{post.title}</span>
+								</Link>
+							</li>
 						))}
 				</ul>
 			</article>
