@@ -80,6 +80,10 @@ a {
 	color: var(--foreground);
 }
 
+p {
+	margin-bottom: 1.5rem;
+}
+
 article p a {
 	text-decoration: underline 1px !important;
 	text-underline-offset: 0.15em;
