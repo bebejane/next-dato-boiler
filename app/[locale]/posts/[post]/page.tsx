@@ -15,6 +15,7 @@ export default async function Post({ params }: PageProps<'/[locale]/posts/[post]
 	const { locale, post: slug } = await params;
 	if (!locales.includes(locale as any)) return notFound();
 	setRequestLocale(locale);
+	console.log(locale);
 
 	const { post, draftUrl } = await apiQuery(PostDocument, {
 		variables: {

@@ -15,7 +15,6 @@ export default async function Home({ params }: PageProps<'/[locale]'>) {
 
 	const { start, draftUrl } = await apiQuery(StartDocument, {
 		variables: { locale: locale as SiteLocale },
-		contentLink: 'v1',
 	});
 
 	const { allPosts, draftUrl: postsDraftUrl } = await apiQuery(AllPostsDocument, {
