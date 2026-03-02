@@ -1,6 +1,7 @@
-import { StructuredText, renderNodeRule, renderMarkRule } from 'react-datocms';
+'use client';
+
+import { StructuredText, renderNodeRule, renderMarkRule, decodeStega } from 'react-datocms';
 import { isParagraph, isHeading, isRoot, isInlineBlock } from 'datocms-structured-text-utils';
-import React from 'react';
 import * as Blocks from './blocks';
 
 export type Props = {
@@ -15,8 +16,6 @@ export default function Content({ id, content, styles, blocks, className }: Prop
 	if (!content) return null;
 
 	blocks = { ...Blocks, ...(blocks || {}) };
-
-	//console.log('blocks', Object.keys(blocks));
 
 	const customMarkRules =
 		(styles &&
@@ -136,6 +135,7 @@ export default function Content({ id, content, styles, blocks, className }: Prop
 								'p',
 								{
 									key,
+									//'data-datocms-content-link-boundary': true,
 									className: classNames.length ? classNames.join(' ') : undefined,
 								},
 								children,

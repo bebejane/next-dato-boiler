@@ -25,6 +25,7 @@
 		"@libsql/client": "^0.15.15",
 		"@mux/mux-player-react": "^3.11.5",
 		"@react-email/components": "1.0.1",
+		"@vercel/stega": "^1.0.0",
 		"better-auth": "^1.4.19",
 		"change-case": "^5.4.4",
 		"classnames": "^2.5.1",
