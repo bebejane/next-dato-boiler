@@ -26,12 +26,16 @@ export default async function Post({ params }: PageProps<'/[locale]/posts/[post]
 
 	if (!post) return notFound();
 
+	console.log(post);
 	return (
 		<>
 			<article
 				className={s.page}
-				data-color={post.color?.color?.hex}
-				data-background={post.background?.color?.hex}
+				style={{
+					//@ts-ignore
+					'--background-color': post.background?.color?.hex,
+					'--color': post.color?.color?.hex,
+				}}
 			>
 				<h1>{post.title}</h1>
 				<h3>Markdown</h3>

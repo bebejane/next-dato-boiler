@@ -1,6 +1,7 @@
 .page {
-	background-color: attr(data-background);
-	color: attr(data-color);
+	color: var(--color);
+	background-color: var(--background-color);
+
 	a {
 		color: attr(data-color);
 	}
