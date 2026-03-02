@@ -15,7 +15,7 @@
     "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "preserve",
+    "jsx": "react-jsx",
     "incremental": true,
     "plugins": [
       {
@@ -31,7 +31,7 @@
       ],
       "next-dato-utils/*": [
         "../next-dato-utils/*"
-      ],
+      ]
     }
   },
   "include": [
@@ -39,7 +39,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    ".next/dev/types/**/*.ts",
+    ".next/dev/types/**/*.ts"
     // "../next-dato-utils/src/**/*.ts",
     // "../next-dato-utils/src/**/*.tsx",
   ],
