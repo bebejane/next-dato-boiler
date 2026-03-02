@@ -35,7 +35,7 @@
 		"extended-eventsource": "^2.1.0",
 		"graphql": "^16.10.0",
 		"js-cookie": "^3.0.5",
-		"next": "16.2.0-canary.70",
+		"next": "16.1.6",
 		"next-dato-utils": "github:bebejane/next-dato-utils",
 		"next-intl": "^4.8.3",
 		"nuqs": "^2.8.8",
