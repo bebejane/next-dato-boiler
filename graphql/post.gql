@@ -19,6 +19,10 @@ fragment PostFragment on PostRecord {
 	}
 	intro
 	slug
+	slugs: _allSlugLocales {
+		locale
+		value
+	}
 	title
 	color {
 		_editingUrl

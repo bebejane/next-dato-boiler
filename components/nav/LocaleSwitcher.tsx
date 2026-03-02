@@ -2,11 +2,12 @@
 
 import s from './LocaleSwitcher.module.scss';
 import { useLocale } from 'next-intl';
-import { Link, locales } from '@/i18n/routing';
+import { Link, locales, usePathname } from '@/i18n/routing';
 import { useEffect, useState } from 'react';
 
 export function LocaleSwitcher() {
 	const locale = useLocale();
+	const pathname = usePathname();
 	const [mounted, setMounted] = useState(false);
 
 	useEffect(() => {
