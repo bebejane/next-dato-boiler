@@ -2,7 +2,7 @@ import s from './page.module.scss';
 import { AllPostsDocument, StartDocument } from '@/graphql';
 import { Link } from '@/i18n/routing';
 import { apiQuery } from 'next-dato-utils/api';
-import { DraftMode } from 'next-dato-utils/components';
+import { DraftMode, Markdown } from 'next-dato-utils/components';
 import { setRequestLocale } from 'next-intl/server';
 import { locales } from '@/i18n/routing';
 import { notFound } from 'next/navigation';
@@ -33,23 +33,25 @@ export default async function Home({ params }: PageProps<'/[locale]'>) {
 					{allPosts
 						.filter((post) => post.slug)
 						.map((post, idx) => (
-							<li key={idx}>
-								<Link
-									locale={locale}
-									data-datocms-content-link-group
-									href={{
-										pathname: '/posts/[post]',
-										params: { post: post.slug as string },
-									}}
-								>
-									<div
-										className={s.color}
-										style={{ backgroundColor: post.background?.color?.hex }}
-										data-datocms-content-link-url={post.color?._editingUrl}
-									></div>{' '}
-									<span>{post.title}</span>
-								</Link>
-							</li>
+							<>
+								<li key={idx}>
+									<Link
+										locale={locale}
+										data-datocms-content-link-group
+										href={{
+											pathname: '/posts/[post]',
+											params: { post: post.slug as string },
+										}}
+									>
+										<div
+											className={s.color}
+											style={{ backgroundColor: post.background?.color?.hex }}
+											data-datocms-content-link-url={post.color?._editingUrl}
+										></div>{' '}
+										<span>{post.title}</span>
+									</Link>
+								</li>
+							</>
 						))}
 				</ul>
 			</article>

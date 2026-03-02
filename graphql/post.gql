@@ -14,6 +14,7 @@ query AllPosts($locale: SiteLocale, $first: IntType = 500, $skip: IntType = 0) {
 }
 
 fragment PostFragment on PostRecord {
+	id
 	image {
 		...ImageFragment
 	}
@@ -84,6 +85,7 @@ fragment PostFragment on PostRecord {
 }
 
 fragment PostLightFragment on PostRecord {
+	id
 	image {
 		...ImageFragment
 	}

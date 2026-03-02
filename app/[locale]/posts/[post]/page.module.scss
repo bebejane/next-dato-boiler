@@ -16,14 +16,16 @@
 		}
 	}
 
-	.image {
-		width: 100vw !important;
-		height: 30vh;
+	.wrap {
+		width: 100% !important;
+		max-width: 100% !important;
 		margin-left: calc(-1 * var(--outer-margin));
 		margin-right: calc(-1 * var(--outer-margin));
 
-		img {
+		.image {
 			object-fit: cover;
+			//width: 100vw !important;
+			height: 30vh;
 		}
 	}
 

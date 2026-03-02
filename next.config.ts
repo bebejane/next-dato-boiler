@@ -22,7 +22,7 @@ const nextConfig: NextConfig = {
 		},
 	},
 	experimental: {
-		//turbopackFileSystemCacheForBuild: true,
+		turbopackFileSystemCacheForBuild: true,
 	},
 	transpilePackages: ['next-dato-utils'],
 	turbopack: {
