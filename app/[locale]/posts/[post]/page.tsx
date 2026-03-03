@@ -26,7 +26,6 @@ export default async function Post({ params }: PageProps<'/[locale]/posts/[post]
 
 	if (!post) return notFound();
 
-	console.log(post);
 	return (
 		<>
 			<article
