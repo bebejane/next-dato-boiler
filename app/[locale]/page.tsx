@@ -8,6 +8,8 @@ import { locales } from '@/i18n/routing';
 import { notFound } from 'next/navigation';
 import Content from '@/components/content/Content';
 
+export const dynamic = 'force-static';
+
 export default async function Home({ params }: PageProps<'/[locale]'>) {
 	const { locale } = await params;
 	if (!locales.includes(locale as any)) return notFound();
