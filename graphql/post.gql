@@ -38,6 +38,7 @@ fragment PostFragment on PostRecord {
 		}
 	}
 	content {
+		__typename
 		blocks {
 			__typename
 			... on SpaceRecord {
@@ -55,6 +56,7 @@ fragment PostFragment on PostRecord {
 				}
 			}
 			... on ListRecord {
+				_editingUrl
 				id
 				title
 				items {

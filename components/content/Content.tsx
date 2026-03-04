@@ -1,6 +1,5 @@
 import { StructuredContent } from 'next-dato-utils/components';
 import * as Blocks from './blocks/index';
-import cn from 'classnames';
 
 export type Props = {
 	id?: string;
@@ -17,10 +16,8 @@ export default function Content({ id, content, styles, blocks, className }: Prop
 		<div data-datocms-content-link-group>
 			<StructuredContent
 				blocks={{ ...Blocks, ...blocks }}
-				className={cn(className)}
-				styles={{
-					...styles,
-				}}
+				className={className}
+				styles={{ ...styles }}
 				content={content}
 			/>
 		</div>
