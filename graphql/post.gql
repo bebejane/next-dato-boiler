@@ -55,7 +55,6 @@ fragment PostFragment on PostRecord {
 				}
 			}
 			... on ListRecord {
-				_editingUrl
 				id
 				title
 				items {

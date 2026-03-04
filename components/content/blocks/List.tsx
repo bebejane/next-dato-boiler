@@ -1,13 +1,5 @@
 import Content from '@/components/content/Content';
 import s from './List.module.scss';
-import Link from 'next/link';
-import { Image } from 'react-datocms';
-import {
-	VERCEL_STEGA_REGEX,
-	vercelStegaClean,
-	vercelStegaDecode,
-	vercelStegaSplit,
-} from '@vercel/stega';
 
 export type ListProps = {
 	data: ListRecord;
