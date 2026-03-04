@@ -12,7 +12,7 @@ import { draftMode } from 'next/headers';
 
 export default async function RootLayout({ children }: LayoutProps<'/[locale]'>) {
 	const isDraftModeEnabled = (await draftMode()).isEnabled;
-
+	console.log('layout');
 	return (
 		<html lang='en'>
 			<body id='root' className='root'>
