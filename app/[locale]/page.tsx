@@ -39,7 +39,6 @@ export default async function Home({ params }: PageProps<'/[locale]'>) {
 								<Link
 									locale={locale}
 									data-datocms-content-link-group
-									prefetch={false}
 									href={{
 										pathname: '/posts/[post]',
 										params: { post: post.slug as string },
