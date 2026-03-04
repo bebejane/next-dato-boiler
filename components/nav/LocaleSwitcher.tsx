@@ -15,7 +15,7 @@ export function LocaleSwitcher() {
 	}, []);
 
 	if (!mounted) return null;
-
+	console.log({ locale, pathname });
 	return (
 		<nav className={s.locales} key={locale}>
 			<ul>

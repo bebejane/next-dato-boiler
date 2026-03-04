@@ -9,8 +9,6 @@ import { Link, locales } from '@/i18n/routing';
 import { Image } from 'react-datocms';
 import Content from '@/components/content/Content';
 
-export const dynamic = 'force-static';
-
 export default async function Post({ params }: PageProps<'/[locale]/posts/[post]'>) {
 	const { locale, post: slug } = await params;
 	if (!locales.includes(locale as any)) return notFound();

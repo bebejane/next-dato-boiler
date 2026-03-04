@@ -9,8 +9,6 @@ import { getPathname } from '@/i18n/routing';
 import { LocaleSwitcher } from '@/components/nav/LocaleSwitcher';
 import { DraftModeContentLink } from 'next-dato-utils/components';
 
-export const dynamic = 'force-static';
-
 export default async function RootLayout({ children }: LayoutProps<'/[locale]'>) {
 	return (
 		<html lang='en'>
