@@ -59,11 +59,12 @@ export default async function Post({ params }: PageProps<'/[locale]/posts/[post]
 export async function generateStaticParams({ params }: PageProps<'/[locale]/posts/[post]'>) {
 	const { locale } = await params;
 	const { allPosts } = await apiQuery(AllPostsDocument, {
-		all: true,
 		variables: {
 			locale: locale as SiteLocale,
 		},
+		all: true,
 	});
+
 	return allPosts.map((post) => ({
 		post: post.slug,
 	}));
