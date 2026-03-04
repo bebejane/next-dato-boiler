@@ -19,7 +19,7 @@ export default async function RootLayout({ children }: LayoutProps<'/[locale]'>)
 					<LocaleSwitcher />
 					<main className={s.main}>{children}</main>
 				</NextIntlClientProvider>
-				{/* <DraftModeContentLink /> */}
+				<DraftModeContentLink />
 			</body>
 		</html>
 	);
