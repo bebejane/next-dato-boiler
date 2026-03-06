@@ -48,7 +48,14 @@ export default async function Post({ params }: PageProps<'/[locale]/posts/[post]
 				)}
 				<br />
 				<Link href={`/`}>
-					<button>Tillbaka</button>
+					<button
+						style={{
+							backgroundColor: 'var(--black)',
+							color: 'var(--white)',
+						}}
+					>
+						Tillbaka
+					</button>
 				</Link>
 			</article>
 			<DraftMode url={draftUrl} path={`/${locale}/posts/${slug}`} />
