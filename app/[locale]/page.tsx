@@ -1,6 +1,6 @@
 import s from './page.module.scss';
 import { AllPostsDocument, StartDocument } from '@/graphql';
-import { Link } from '@/i18n/routing';
+import { defaultLocale, Link } from '@/i18n/routing';
 import { apiQuery } from 'next-dato-utils/api';
 import { DraftMode, Markdown } from 'next-dato-utils/components';
 import { setRequestLocale } from 'next-intl/server';
@@ -53,7 +53,10 @@ export default async function Home({ params }: PageProps<'/[locale]'>) {
 						))}
 				</ul>
 			</article>
-			<DraftMode url={[draftUrl, postsDraftUrl]} path={`/${locale}`} />
+			<DraftMode
+				url={[draftUrl, postsDraftUrl]}
+				path={`/${locale === defaultLocale ? '' : locale}`}
+			/>
 		</>
 	);
 }
