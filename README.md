@@ -1,1 +1,0 @@
-## Nextjs DatoCMS Boilerplate
