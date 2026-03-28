@@ -3,7 +3,8 @@
 	"version": "0.1.0",
 	"private": true,
 	"scripts": {
-		"dev": "next dev --turbo & pnpm run codegen",
+		"dev": "next dev --turbo & pnpm run codegen & pnpm workslocal",
+		"workslocal": "workslocal http 3000 --name bebejane",
 		"start": "next start",
 		"preview": "pnpm run build && pnpm run start",
 		"build": "pnpm i github:bebejane/next-dato-utils && next build",
