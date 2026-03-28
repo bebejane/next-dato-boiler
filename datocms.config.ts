@@ -1,7 +1,11 @@
 import { apiQuery } from 'next-dato-utils/api';
 import { AllPostsDocument } from '@/graphql';
 import { locales, defaultLocale } from '@/i18n/routing';
-import { DatoCmsConfig, getUploadReferenceRoutes, getItemReferenceRoutes } from 'next-dato-utils/config';
+import {
+	DatoCmsConfig,
+	getUploadReferenceRoutes,
+	getItemReferenceRoutes,
+} from 'next-dato-utils/config';
 import { MetadataRoute } from 'next';
 
 export default {
@@ -11,10 +15,11 @@ export default {
 	},
 	routes: {
 		start: async (record, locale) => [`/${locale}`],
-		post: async ({ slug }, locale) => (slug[locale as string] ? [`/${locale}/posts/${slug[locale as string]}`] : []),
+		post: async ({ slug }, locale) =>
+			slug[locale as string] ? [`/${locale}/posts/${slug[locale as string]}`] : [],
 		color: async ({ id }, locale) => [`/${locale}`, ...(await getItemReferenceRoutes(id, locales))],
 		author: async (record, locale) => getItemReferenceRoutes(record.id, locales),
-		upload: async (record, locale) => getUploadReferenceRoutes(record.id, locales),
+		upload: async (record) => getUploadReferenceRoutes(record.id, locales),
 	},
 	sitemap: async () => {
 		const { allPosts } = await apiQuery(AllPostsDocument, { all: true });
@@ -31,7 +36,7 @@ export default {
 				lastModified: new Date(post._updatedAt),
 				changeFrequency: 'daily',
 				priority: 0.8,
-			}))
+			})),
 		) as MetadataRoute.Sitemap;
 	},
 	manifest: async () => {
