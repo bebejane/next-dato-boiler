@@ -22,7 +22,7 @@ importers:
         version: 5.3.0
       '@datocms/content-link':
         specifier: ^0.3.18
-        version: 0.3.18
+        version: 0.3.19
       '@graphql-typed-document-node/core':
         specifier: ^3.2.0
         version: 3.2.0(graphql@16.13.0)
@@ -76,7 +76,7 @@ importers:
         version: 2.1.0(next@16.1.6(@babel/core@7.26.10)(@opentelemetry/api@1.9.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(sass@1.93.2))(react@19.2.3)
       next-dato-utils:
         specifier: github:bebejane/next-dato-utils
-        version: https://codeload.github.com/bebejane/next-dato-utils/tar.gz/42daad5f6691d020a54238006de2d097aa025651(@datocms/cda-client@0.2.10(graphql@16.13.0))(@datocms/cma-client-browser@5.3.0)(@datocms/cma-client-node@5.3.0)(@datocms/cma-client@5.3.0)(@datocms/content-link@0.3.18)(@types/react@19.2.14)(datocms-structured-text-utils@5.1.7)(graphql@16.13.0)(next@16.1.6(@babel/core@7.26.10)(@opentelemetry/api@1.9.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(sass@1.93.2))(postmark@4.0.7)(react-datocms@8.0.0(@mux/mux-player-react@3.11.5(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(graphql@16.13.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(sass@1.93.2)(zod@4.3.6)
+        version: https://codeload.github.com/bebejane/next-dato-utils/tar.gz/7e77e9b50be818aafcd2b3c2d8792d61a18eb18c(@datocms/cda-client@0.2.10(graphql@16.13.0))(@datocms/cma-client-browser@5.3.0)(@datocms/cma-client-node@5.3.0)(@datocms/cma-client@5.3.0)(@datocms/content-link@0.3.19)(@types/react@19.2.14)(datocms-structured-text-utils@5.1.7)(graphql@16.13.0)(next@16.1.6(@babel/core@7.26.10)(@opentelemetry/api@1.9.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(sass@1.93.2))(postmark@4.0.7)(react-datocms@8.0.0(@mux/mux-player-react@3.11.5(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(graphql@16.13.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(sass@1.93.2)(zod@4.3.6)
       next-intl:
         specifier: ^4.8.3
         version: 4.8.3(next@16.1.6(@babel/core@7.26.10)(@opentelemetry/api@1.9.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(sass@1.93.2))(react@19.2.3)(typescript@5.9.3)
@@ -156,9 +156,6 @@ importers:
       react-email:
         specifier: 5.0.1
         version: 5.0.1
-      typescript:
-        specifier: 5.9.3
-        version: 5.9.3
 
   ../next-dato-utils:
     dependencies:
@@ -205,7 +202,7 @@ importers:
         specifier: ^4.0.0
         version: 4.0.1
       sass:
-        specifier: ^1.86.3
+        specifier: '>=1.69.0'
         version: 1.93.2
       table:
         specifier: ^6.8.1
@@ -224,8 +221,11 @@ importers:
         specifier: ^5.3.0
         version: 5.3.0
       '@datocms/content-link':
-        specifier: ^0.3.18
-        version: 0.3.18
+        specifier: ^0.3.19
+        version: 0.3.19
+      '@types/glob':
+        specifier: ^9.0.0
+        version: 9.0.0
       '@types/node':
         specifier: ^25.3.3
         version: 25.3.3
@@ -242,8 +242,8 @@ importers:
         specifier: ^1.0.2
         version: 1.0.2(graphql@16.13.0)
       glob:
-        specifier: ^11.0.3
-        version: 11.1.0
+        specifier: ^13.0.6
+        version: 13.0.6
       graphql:
         specifier: ^16.10.0
         version: 16.13.0
@@ -257,8 +257,8 @@ importers:
         specifier: ^19.2.0
         version: 19.2.3
       react-datocms:
-        specifier: ^8.0.0
-        version: 8.0.0(@mux/mux-player-react@3.11.5(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(graphql@16.13.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
+        specifier: ^8.0.2
+        version: 8.0.2(@mux/mux-player-react@3.11.5(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(graphql@16.13.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       react-dom:
         specifier: ^19.2.0
         version: 19.2.3(react@19.2.3)
@@ -495,8 +495,8 @@ packages:
   '@datocms/cma-client@5.3.0':
     resolution: {integrity: sha512-aKezzQ2ViWSLz39hdf+EU4tE2cqme+UwRp2fAr20i4NkeZOPmPBmiiFLPJ2lMrVCKl7eeN2Jd5Zz5oqqPYtgQA==}
 
-  '@datocms/content-link@0.3.18':
-    resolution: {integrity: sha512-bBiZgvJYWcR6Q0XyeV9zV9BBxbqi2UIDexqkUy9aKJ7qPN6cVzkk6SWQox3o51tJ/R4JlPnVpCraGedsj2LeLA==}
+  '@datocms/content-link@0.3.19':
+    resolution: {integrity: sha512-5k2UWDzxMwscwZNy5vQur3sDKq850LJhSXEeE+bhAvjDw+xAgxWp528ODfaTNCZS0ld/Mu3h790qvuaRUeQFxw==}
     engines: {node: '>=18'}
 
   '@datocms/rest-client-utils@5.2.8':
@@ -2798,6 +2798,10 @@ packages:
   '@types/estree@1.0.8':
     resolution: {integrity: sha512-dWHzHa2WqEXI/O1E9OjrocMTKJl2mSrEolh1Iomrv6U+JuNwaHXsXx9bLu5gG7BUWFIN0skIQJQ/L1rIex4X6w==}
 
+  '@types/glob@9.0.0':
+    resolution: {integrity: sha512-00UxlRaIUvYm4R4W9WYkN8/J+kV8fmOQ7okeH6YFtGWFMt3odD45tpG5yA5wnL7HE6lLgjaTW5n14ju2hl2NNA==}
+    deprecated: This is a stub types definition. glob provides its own type definitions, so you do not need this installed.
+
   '@types/hast@3.0.4':
     resolution: {integrity: sha512-WPs+bbQw5aCj+x6laNGWLH3wviHtoCv/P3+otBhbOhJgG8qtpdAMlTCxLtsTWA7LH1Oh/bFCHsBn0TPS5m30EQ==}
 
@@ -3989,6 +3993,10 @@ packages:
     deprecated: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
     hasBin: true
 
+  glob@13.0.6:
+    resolution: {integrity: sha512-Wjlyrolmm8uDpm/ogGyXZXb1Z+Ca2B8NbJwqBVg0axK9GbBeoS7yGV6vjXnYdGm6X53iehEuxxbyiKp8QmN4Vw==}
+    engines: {node: 18 || 20 || >=22}
+
   glob@7.2.3:
     resolution: {integrity: sha512-nFR0zLpU2YCaRxwoCJvL6UvCH2JFyFVIvwTLsIf21AuHlMskA1hhTdk+LlYJtOlYt9v6dvszD2BGRqBL+iQK9Q==}
     deprecated: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
@@ -4729,9 +4737,9 @@ packages:
       next: '>= 15.0.0'
       react: '>= 16.8.0'
 
-  next-dato-utils@https://codeload.github.com/bebejane/next-dato-utils/tar.gz/42daad5f6691d020a54238006de2d097aa025651:
-    resolution: {tarball: https://codeload.github.com/bebejane/next-dato-utils/tar.gz/42daad5f6691d020a54238006de2d097aa025651}
-    version: 2.0.276
+  next-dato-utils@https://codeload.github.com/bebejane/next-dato-utils/tar.gz/7e77e9b50be818aafcd2b3c2d8792d61a18eb18c:
+    resolution: {tarball: https://codeload.github.com/bebejane/next-dato-utils/tar.gz/7e77e9b50be818aafcd2b3c2d8792d61a18eb18c}
+    version: 2.0.284
     engines: {node: '>=0.22'}
     hasBin: true
     peerDependencies:
@@ -5182,6 +5190,16 @@ packages:
 
   react-datocms@8.0.0:
     resolution: {integrity: sha512-NgfvvyebtP8BCqDV3cbgc/C6dwSco0tp2WF+M3SPz2p+gbcxLe5mAVgORA5EwGrjB2tlZGY/bZZW9c1VkveBDQ==}
+    engines: {node: '>=8.0.0'}
+    peerDependencies:
+      '@mux/mux-player-react': '>=2.5.0'
+      react: '>= 16.12.0'
+    peerDependenciesMeta:
+      '@mux/mux-player-react':
+        optional: true
+
+  react-datocms@8.0.2:
+    resolution: {integrity: sha512-tZhQbsbB/7TOa6D5N5rhL+d84A6OylFDI4NUTsMFoUDrHE4kp40lvychz42ZpngnrTJkpuJr+dMZvpux4Yryag==}
     engines: {node: '>=8.0.0'}
     peerDependencies:
       '@mux/mux-player-react': '>=2.5.0'
@@ -6172,7 +6190,7 @@ snapshots:
       '@babel/traverse': 7.27.0
       '@babel/types': 7.29.0
       convert-source-map: 2.0.0
-      debug: 4.4.3
+      debug: 4.4.3(supports-color@5.5.0)
       gensync: 1.0.0-beta.2
       json5: 2.2.3
       semver: 6.3.1
@@ -6192,7 +6210,7 @@ snapshots:
       '@babel/types': 7.29.0
       '@jridgewell/remapping': 2.3.5
       convert-source-map: 2.0.0
-      debug: 4.4.3
+      debug: 4.4.3(supports-color@5.5.0)
       gensync: 1.0.0-beta.2
       json5: 2.2.3
       semver: 6.3.1
@@ -6283,7 +6301,7 @@ snapshots:
       '@babel/parser': 7.27.0
       '@babel/template': 7.28.6
       '@babel/types': 7.29.0
-      debug: 4.4.3
+      debug: 4.4.3(supports-color@5.5.0)
       globals: 11.12.0
     transitivePeerDependencies:
       - supports-color
@@ -6296,7 +6314,7 @@ snapshots:
       '@babel/parser': 7.29.0
       '@babel/template': 7.28.6
       '@babel/types': 7.29.0
-      debug: 4.4.3
+      debug: 4.4.3(supports-color@5.5.0)
     transitivePeerDependencies:
       - supports-color
 
@@ -6426,7 +6444,7 @@ snapshots:
       datocms-structured-text-utils: 5.1.7
       uuid: 9.0.1
 
-  '@datocms/content-link@0.3.18': {}
+  '@datocms/content-link@0.3.19': {}
 
   '@datocms/rest-client-utils@5.2.8':
     dependencies:
@@ -8604,7 +8622,7 @@ snapshots:
   '@theguild/federation-composition@0.21.3(graphql@16.13.0)':
     dependencies:
       constant-case: 3.0.4
-      debug: 4.4.3
+      debug: 4.4.3(supports-color@5.5.0)
       graphql: 16.13.0
       json5: 2.2.3
       lodash.sortby: 4.7.0
@@ -8634,6 +8652,10 @@ snapshots:
       '@types/estree': 1.0.8
 
   '@types/estree@1.0.8': {}
+
+  '@types/glob@9.0.0':
+    dependencies:
+      glob: 13.0.6
 
   '@types/hast@3.0.4':
     dependencies:
@@ -9327,10 +9349,6 @@ snapshots:
     dependencies:
       ms: 2.1.3
 
-  debug@4.4.3:
-    dependencies:
-      ms: 2.1.3
-
   debug@4.4.3(supports-color@5.5.0):
     dependencies:
       ms: 2.1.3
@@ -9462,7 +9480,7 @@ snapshots:
   engine.io-client@6.6.4:
     dependencies:
       '@socket.io/component-emitter': 3.1.2
-      debug: 4.4.3
+      debug: 4.4.3(supports-color@5.5.0)
       engine.io-parser: 5.2.3
       ws: 8.18.3
       xmlhttprequest-ssl: 2.1.2
@@ -9481,7 +9499,7 @@ snapshots:
       base64id: 2.0.0
       cookie: 0.7.2
       cors: 2.8.6
-      debug: 4.4.3
+      debug: 4.4.3(supports-color@5.5.0)
       engine.io-parser: 5.2.3
       ws: 8.18.3
     transitivePeerDependencies:
@@ -9527,7 +9545,7 @@ snapshots:
 
   esbuild-register@3.6.0(esbuild@0.25.12):
     dependencies:
-      debug: 4.4.3
+      debug: 4.4.3(supports-color@5.5.0)
       esbuild: 0.25.12
     transitivePeerDependencies:
       - supports-color
@@ -9814,6 +9832,12 @@ snapshots:
       minimatch: 10.2.4
       minipass: 7.1.3
       package-json-from-dist: 1.0.1
+      path-scurry: 2.0.2
+
+  glob@13.0.6:
+    dependencies:
+      minimatch: 10.2.4
+      minipass: 7.1.3
       path-scurry: 2.0.2
 
   glob@7.2.3:
@@ -10581,7 +10605,7 @@ snapshots:
   micromark@4.0.2:
     dependencies:
       '@types/debug': 4.1.12
-      debug: 4.4.3
+      debug: 4.4.3(supports-color@5.5.0)
       decode-named-character-reference: 1.3.0
       devlop: 1.1.0
       micromark-core-commonmark: 2.0.3
@@ -10700,13 +10724,13 @@ snapshots:
       next: 16.1.6(@babel/core@7.26.10)(@opentelemetry/api@1.9.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(sass@1.93.2)
       react: 19.2.3
 
-  next-dato-utils@https://codeload.github.com/bebejane/next-dato-utils/tar.gz/42daad5f6691d020a54238006de2d097aa025651(@datocms/cda-client@0.2.10(graphql@16.13.0))(@datocms/cma-client-browser@5.3.0)(@datocms/cma-client-node@5.3.0)(@datocms/cma-client@5.3.0)(@datocms/content-link@0.3.18)(@types/react@19.2.14)(datocms-structured-text-utils@5.1.7)(graphql@16.13.0)(next@16.1.6(@babel/core@7.26.10)(@opentelemetry/api@1.9.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(sass@1.93.2))(postmark@4.0.7)(react-datocms@8.0.0(@mux/mux-player-react@3.11.5(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(graphql@16.13.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(sass@1.93.2)(zod@4.3.6):
+  next-dato-utils@https://codeload.github.com/bebejane/next-dato-utils/tar.gz/7e77e9b50be818aafcd2b3c2d8792d61a18eb18c(@datocms/cda-client@0.2.10(graphql@16.13.0))(@datocms/cma-client-browser@5.3.0)(@datocms/cma-client-node@5.3.0)(@datocms/cma-client@5.3.0)(@datocms/content-link@0.3.19)(@types/react@19.2.14)(datocms-structured-text-utils@5.1.7)(graphql@16.13.0)(next@16.1.6(@babel/core@7.26.10)(@opentelemetry/api@1.9.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(sass@1.93.2))(postmark@4.0.7)(react-datocms@8.0.0(@mux/mux-player-react@3.11.5(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(graphql@16.13.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(sass@1.93.2)(zod@4.3.6):
     dependencies:
       '@datocms/cda-client': 0.2.10(graphql@16.13.0)
       '@datocms/cma-client': 5.3.0
       '@datocms/cma-client-browser': 5.3.0
       '@datocms/cma-client-node': 5.3.0
-      '@datocms/content-link': 0.3.18
+      '@datocms/content-link': 0.3.19
       '@opentelemetry/api': 1.9.0
       commander: 11.1.0
       datocms-structured-text-utils: 5.1.7
@@ -11177,7 +11201,23 @@ snapshots:
 
   react-datocms@8.0.0(@mux/mux-player-react@3.11.5(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(graphql@16.13.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3):
     dependencies:
-      '@datocms/content-link': 0.3.18
+      '@datocms/content-link': 0.3.19
+      datocms-listen: 1.0.2(graphql@16.13.0)
+      datocms-structured-text-generic-html-renderer: 5.1.7
+      datocms-structured-text-utils: 5.1.7
+      react: 19.2.3
+      react-intersection-observer: 9.16.0(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
+      react-string-replace: 1.1.1
+      use-deep-compare-effect: 1.8.1(react@19.2.3)
+    optionalDependencies:
+      '@mux/mux-player-react': 3.11.5(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
+    transitivePeerDependencies:
+      - graphql
+      - react-dom
+
+  react-datocms@8.0.2(@mux/mux-player-react@3.11.5(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(graphql@16.13.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3):
+    dependencies:
+      '@datocms/content-link': 0.3.19
       datocms-listen: 1.0.2(graphql@16.13.0)
       datocms-structured-text-generic-html-renderer: 5.1.7
       datocms-structured-text-utils: 5.1.7
@@ -11584,7 +11624,7 @@ snapshots:
 
   socket.io-adapter@2.5.6:
     dependencies:
-      debug: 4.4.3
+      debug: 4.4.3(supports-color@5.5.0)
       ws: 8.18.3
     transitivePeerDependencies:
       - bufferutil
@@ -11605,7 +11645,7 @@ snapshots:
   socket.io-parser@4.2.5:
     dependencies:
       '@socket.io/component-emitter': 3.1.2
-      debug: 4.4.3
+      debug: 4.4.3(supports-color@5.5.0)
     transitivePeerDependencies:
       - supports-color
 
@@ -11614,7 +11654,7 @@ snapshots:
       accepts: 1.3.8
       base64id: 2.0.0
       cors: 2.8.6
-      debug: 4.4.3
+      debug: 4.4.3(supports-color@5.5.0)
       engine.io: 6.6.5
       socket.io-adapter: 2.5.6
       socket.io-parser: 4.2.5
