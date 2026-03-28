@@ -16,11 +16,7 @@ const nextConfig: NextConfig = {
 		ignoreBuildErrors: true,
 	},
 	devIndicators: false,
-	logging: {
-		fetches: {
-			fullUrl: false,
-		},
-	},
+	logging: false,
 	// experimental: {
 	// 	turbopackFileSystemCacheForBuild: true,
 	// },
