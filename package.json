@@ -4,7 +4,7 @@
 	"private": true,
 	"scripts": {
 		"dev": "next dev --turbo & pnpm run codegen",
-		"dev:https": "next dev --turbo --experimental-https & pnpm workslocal:https",
+		"dev:https": "next dev --turbo & pnpm workslocal",
 		"workslocal": "workslocal http 3000 --name bebejane",
 		"workslocal:https": "workslocal http 3000 --name bebejane",
 		"start": "next start",
