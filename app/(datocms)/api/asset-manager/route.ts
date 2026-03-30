@@ -12,6 +12,8 @@ const client = buildClient({
 	environment: process.env.DATOCMS_ENVIRONMENT!,
 });
 
+export const maxDuration = 60;
+
 export async function POST(req: Request) {
 	return basicAuth(req, async (req: Request) => {
 		try {
@@ -35,15 +37,18 @@ export async function POST(req: Request) {
 			else if (size <= MAX_SIZE) message = 'Asset size is below limit';
 			else if (width <= MAX_WIDTH) message = 'Asset width is below limit';
 			else {
+				console.log('fetch image');
 				const response = await fetch(asset.url);
+				console.log('image to buffer');
 				const imageBuffer = Buffer.from(await response.arrayBuffer());
+				console.log('resize image');
 				const buffer = await sharp(imageBuffer)
 					.resize({
 						width: width > height ? MAX_WIDTH : undefined,
 						height: height > width ? MAX_HEIGHT : undefined,
 					})
 					.toBuffer();
-
+				console.log('write file');
 				const filePath = `/tmp/${filename}`;
 				fs.writeFileSync(filePath, buffer);
 
@@ -51,9 +56,11 @@ export async function POST(req: Request) {
 					filename,
 				});
 				size = buffer.byteLength;
+				console.log('upload image', size);
 				await client.uploads.update(id, { path: newFilePath }, { replace_strategy: 'keep_url' });
 				message = 'Image resized and uploaded';
 			}
+			console.log('done', filename);
 			return new Response(JSON.stringify({ success: true, id, message, size, filename }), {
 				status: 200,
 				headers: { 'content-type': 'application/json' },
