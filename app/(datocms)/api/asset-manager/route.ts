@@ -4,6 +4,7 @@ import fs from 'fs';
 import sharp from 'sharp';
 
 const MAX_WIDTH = 3000;
+const MAX_HEIGHT = 3000;
 const MAX_SIZE = 1024 * 1024 * 5;
 
 const client = buildClient({
@@ -28,7 +29,7 @@ export async function POST(req: Request) {
 			let message: string = '';
 			let size = asset.size;
 
-			const { filename, is_image, width } = asset;
+			const { filename, is_image, width, height } = asset;
 
 			if (!is_image || filename.endsWith('.svg')) message = 'Asset is not an image';
 			else if (size <= MAX_SIZE) message = 'Asset size is below limit';
@@ -36,7 +37,13 @@ export async function POST(req: Request) {
 			else {
 				const response = await fetch(asset.url);
 				const imageBuffer = Buffer.from(await response.arrayBuffer());
-				const buffer = await sharp(imageBuffer).resize({ width: MAX_WIDTH }).toBuffer();
+				const buffer = await sharp(imageBuffer)
+					.resize({
+						width: width > height ? MAX_WIDTH : undefined,
+						height: height > width ? MAX_HEIGHT : undefined,
+					})
+					.toBuffer();
+
 				const filePath = `/tmp/${filename}`;
 				fs.writeFileSync(filePath, buffer);
 
