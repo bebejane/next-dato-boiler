@@ -34,7 +34,9 @@ export async function POST(req: Request) {
 			else if (size <= MAX_SIZE) message = 'Asset size is below limit';
 			else if (width <= MAX_WIDTH) message = 'Asset width is below limit';
 			else {
-				const buffer = await sharp(asset.url).resize({ width: MAX_WIDTH }).toBuffer();
+				const response = await fetch(asset.url);
+				const imageBuffer = Buffer.from(await response.arrayBuffer());
+				const buffer = await sharp(imageBuffer).resize({ width: MAX_WIDTH }).toBuffer();
 				const filePath = `/tmp/${filename}`;
 				fs.writeFileSync(filePath, buffer);
 
