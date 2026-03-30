@@ -35,7 +35,7 @@ export async function POST(req: Request) {
 
 			if (!is_image || filename.endsWith('.svg')) message = 'Asset is not an image';
 			else if (size <= MAX_SIZE) message = 'Asset size is below limit';
-			else if (width <= MAX_WIDTH) message = 'Asset width is below limit';
+			else if (width <= MAX_WIDTH && height <= MAX_HEIGHT) message = 'Asset width is below limit';
 			else {
 				console.log('fetch image');
 				const response = await fetch(asset.url);
