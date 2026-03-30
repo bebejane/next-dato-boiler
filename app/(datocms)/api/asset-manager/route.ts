@@ -1,5 +1,5 @@
 import { buildClient, uploadLocalFileAndReturnPath } from '@datocms/cma-client-node';
-import basicAuth from 'next-dato-utils/route-handlers/basic-auth';
+import { basicAuth } from 'next-dato-utils/route-handlers';
 import fs from 'fs';
 import sharp from 'sharp';
 
