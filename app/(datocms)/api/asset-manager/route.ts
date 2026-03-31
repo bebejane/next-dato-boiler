@@ -30,41 +30,54 @@ export async function POST(req: Request) {
 
 			let message: string = '';
 			let size = asset.size;
-
+			let newSize = 0;
+			const start = Date.now();
 			const { filename, is_image, width, height } = asset;
 
 			if (!is_image || filename.endsWith('.svg')) message = 'Asset is not an image';
 			else if (size <= MAX_SIZE) message = 'Asset size is below limit';
-			else if (width <= MAX_WIDTH && height <= MAX_HEIGHT) message = 'Asset width is below limit';
+			else if (width <= MAX_WIDTH && height <= MAX_HEIGHT)
+				message = 'Asset width/height is below limit';
 			else {
-				console.log('fetch image');
 				const response = await fetch(asset.url);
-				console.log('image to buffer');
 				const imageBuffer = Buffer.from(await response.arrayBuffer());
-				console.log('resize image');
 				const buffer = await sharp(imageBuffer)
 					.resize({
-						width: width > height ? MAX_WIDTH : undefined,
-						height: height > width ? MAX_HEIGHT : undefined,
+						width: width >= height ? MAX_WIDTH : undefined,
+						height: height >= width ? MAX_HEIGHT : undefined,
 					})
 					.toBuffer();
-				console.log('write file');
+
 				const filePath = `/tmp/${filename}`;
 				fs.writeFileSync(filePath, buffer);
 
 				const newFilePath = await uploadLocalFileAndReturnPath(client, filePath, {
 					filename,
 				});
-				size = buffer.byteLength;
-				console.log('upload image', size);
+
+				newSize = buffer.byteLength;
+
 				await client.uploads.update(id, { path: newFilePath }, { replace_strategy: 'keep_url' });
+				fs.rmSync(filePath);
 				message = 'Image resized and uploaded';
 			}
-			console.log('done', filename);
-			return new Response(JSON.stringify({ success: true, id, message, size, filename }), {
-				status: 200,
-				headers: { 'content-type': 'application/json' },
-			});
+
+			return new Response(
+				JSON.stringify({
+					success: true,
+					id,
+					message,
+					size: formatBytes(size),
+					newSize: formatBytes(newSize),
+					reduction: formatBytes(size - newSize),
+					filename,
+					duration: Date.now() - start,
+				}),
+				{
+					status: 200,
+					headers: { 'content-type': 'application/json' },
+				},
+			);
 		} catch (error) {
 			const message = (error as Error).message;
 			return new Response(
@@ -76,6 +89,18 @@ export async function POST(req: Request) {
 			);
 		}
 	});
+}
+
+function formatBytes(bytes: number, decimals = 2): string {
+	if (!+bytes) return '0 Bytes';
+
+	const k = 1024;
+	const dm = decimals < 0 ? 0 : decimals;
+	const sizes = ['Bytes', 'KiB', 'MiB', 'GiB', 'TiB', 'PiB', 'EiB', 'ZiB', 'YiB'];
+
+	const i = Math.floor(Math.log(bytes) / Math.log(k));
+
+	return `${parseFloat((bytes / Math.pow(k, i)).toFixed(dm))} ${sizes[i]}`;
 }
 
 export type WebookEvent = {
