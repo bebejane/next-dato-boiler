@@ -5,7 +5,7 @@
 	"scripts": {
 		"dev": "next dev --turbo & pnpm run codegen",
 		"dev:https": "next dev --turbo & pnpm workslocal",
-		"workslocal": "workslocal http 3000 --name bebejane",
+		"workslocal": "workslocal http 3000 --name bebedigital",
 		"workslocal:https": "workslocal http 3000 --name bebejane",
 		"start": "next start",
 		"preview": "pnpm run build && pnpm run start",
@@ -29,6 +29,7 @@
 		"@libsql/client": "^0.15.15",
 		"@mux/mux-player-react": "^3.11.7",
 		"@react-email/components": "1.0.1",
+		"@vercel/functions": "^3.4.3",
 		"@vercel/stega": "^1.1.0",
 		"better-auth": "^1.5.1",
 		"change-case": "^5.4.4",
