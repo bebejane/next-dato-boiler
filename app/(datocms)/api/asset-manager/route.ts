@@ -1,11 +1,19 @@
+//import config from '@/datocms.config';
 import { buildClient, uploadLocalFileAndReturnPath } from '@datocms/cma-client-node';
 import { basicAuth } from 'next-dato-utils/route-handlers';
 import fs from 'fs';
 import sharp from 'sharp';
+import { NextResponse } from 'next/server';
 
-const MAX_WIDTH = 3000;
-const MAX_HEIGHT = 3000;
-const MAX_SIZE = 1024 * 1024 * 5;
+const config = {
+	assets: {
+		maxWidth: 3000,
+		maxHeight: 3000,
+		maxSize: 1024 * 1024 * 5,
+	},
+};
+
+const formats = ['jpg', 'jpeg', 'tiff', 'tif'];
 
 const client = buildClient({
 	apiToken: process.env.DATOCMS_API_TOKEN!,
@@ -22,85 +30,62 @@ export async function POST(req: Request) {
 			if (!entity || !entity_type || !event_type)
 				throw new Error('Missing entity, entity_type or event_type');
 			if (entity_type !== 'upload') throw new Error('Invalid entity type: ' + entity_type);
-
 			const { id } = entity;
 			const asset = entity.attributes;
-
 			if (!asset || !id) throw new Error('Missing asset data');
 
-			let message: string = '';
-			let size = asset.size;
-			let newSize = 0;
 			const start = Date.now();
-			const { filename, is_image, width, height } = asset;
+			const newFilePath = await resize(asset);
 
-			if (!is_image || filename.endsWith('.svg')) message = 'Asset is not an image';
-			else if (size <= MAX_SIZE) message = 'Asset size is below limit';
-			else if (width <= MAX_WIDTH && height <= MAX_HEIGHT)
-				message = 'Asset width/height is below limit';
-			else {
-				const response = await fetch(asset.url);
-				const imageBuffer = Buffer.from(await response.arrayBuffer());
-				const buffer = await sharp(imageBuffer)
-					.resize({
-						width: width >= height ? MAX_WIDTH : undefined,
-						height: height >= width ? MAX_HEIGHT : undefined,
-					})
-					.toBuffer();
-
-				const filePath = `/tmp/${filename}`;
-				fs.writeFileSync(filePath, buffer);
-
-				const newFilePath = await uploadLocalFileAndReturnPath(client, filePath, {
-					filename,
+			if (!newFilePath)
+				return NextResponse.json({
+					success: true,
+					message: 'Asset below limit',
+					duration: Date.now() - start,
 				});
 
-				newSize = buffer.byteLength;
-
-				await client.uploads.update(id, { path: newFilePath }, { replace_strategy: 'keep_url' });
-				fs.rmSync(filePath);
-				message = 'Image resized and uploaded';
-			}
-
-			return new Response(
-				JSON.stringify({
-					success: true,
-					id,
-					message,
-					size: formatBytes(size),
-					newSize: formatBytes(newSize),
-					reduction: formatBytes(size - newSize),
-					filename,
-					duration: Date.now() - start,
-				}),
-				{
-					status: 200,
-					headers: { 'content-type': 'application/json' },
-				},
+			const upload = await client.uploads.update(
+				id,
+				{ path: newFilePath },
+				{ replace_strategy: 'keep_url' },
 			);
+
+			return NextResponse.json({
+				success: true,
+				id,
+				size: formatBytes(upload.size),
+				reduction: formatBytes(asset.size - upload.size),
+				newFilePath,
+				duration: Date.now() - start,
+			});
 		} catch (error) {
-			const message = (error as Error).message;
-			return new Response(
-				JSON.stringify({ success: false, message, error: JSON.stringify(error) }),
-				{
-					status: 500,
-					headers: { 'content-type': 'application/json' },
-				},
-			);
+			const message = typeof error === 'string' ? error : (error as Error).message;
+			return NextResponse.json({ success: false, message, error: JSON.stringify(error) });
 		}
 	});
 }
 
-function formatBytes(bytes: number, decimals = 2): string {
-	if (!+bytes) return '0 Bytes';
+async function resize(asset: Asset): Promise<string | null> {
+	const { url, filename, is_image, width, height } = asset;
+	if (!is_image || filename.endsWith('.svg')) return null;
 
-	const k = 1024;
-	const dm = decimals < 0 ? 0 : decimals;
-	const sizes = ['Bytes', 'KiB', 'MiB', 'GiB', 'TiB', 'PiB', 'EiB', 'ZiB', 'YiB'];
+	const response = await fetch(url);
+	const imageBuffer = Buffer.from(await response.arrayBuffer());
+	const buffer = await sharp(imageBuffer)
+		.resize({
+			width: width >= height ? config.assets.maxWidth : undefined,
+			height: height >= width ? config.assets.maxHeight : undefined,
+		})
+		.toBuffer();
 
-	const i = Math.floor(Math.log(bytes) / Math.log(k));
+	const filePath = `/tmp/${filename}`;
+	fs.writeFileSync(filePath, buffer);
 
-	return `${parseFloat((bytes / Math.pow(k, i)).toFixed(dm))} ${sizes[i]}`;
+	const newFilePath = await uploadLocalFileAndReturnPath(client, filePath, {
+		filename,
+	});
+	fs.rmSync(filePath);
+	return newFilePath;
 }
 
 export type WebookEvent = {
@@ -116,53 +101,7 @@ export type WebookEvent = {
 	entity: {
 		id: string;
 		type: string;
-		attributes: {
-			size: number;
-			width: number;
-			height: number;
-			path: string;
-			format: string;
-			author: any;
-			notes: any;
-			copyright: any;
-			default_field_metadata: {
-				sv: {
-					alt: any;
-					title: string;
-					custom_data: {};
-					focal_point: any;
-				};
-				en: {
-					alt: any;
-					title: any;
-					custom_data: {};
-					focal_point: any;
-				};
-			};
-			is_image: boolean;
-			created_at: string;
-			updated_at: string;
-			url: string;
-			tags: Array<any>;
-			filename: string;
-			basename: string;
-			exif_info: {};
-			mime_type: string;
-			colors: Array<{
-				red: number;
-				green: number;
-				blue: number;
-				alpha: number;
-			}>;
-			smart_tags: Array<string>;
-			duration: any;
-			frame_rate: any;
-			mux_playback_id: any;
-			blurhash: string;
-			thumbhash: string;
-			mux_mp4_highest_res: any;
-			md5: string;
-		};
+		attributes: Asset;
 		relationships: {
 			creator: {
 				data: {
@@ -176,4 +115,52 @@ export type WebookEvent = {
 		};
 	};
 	related_entities: Array<any>;
+};
+
+export type Asset = {
+	size: number;
+	width: number;
+	height: number;
+	path: string;
+	format: string;
+	author: any;
+	notes: any;
+	copyright: any;
+	default_field_metadata: {
+		sv: {
+			alt: any;
+			title: string;
+			custom_data: {};
+			focal_point: any;
+		};
+		en: {
+			alt: any;
+			title: any;
+			custom_data: {};
+			focal_point: any;
+		};
+	};
+	is_image: boolean;
+	created_at: string;
+	updated_at: string;
+	url: string;
+	tags: Array<any>;
+	filename: string;
+	basename: string;
+	exif_info: {};
+	mime_type: string;
+	colors: Array<{
+		red: number;
+		green: number;
+		blue: number;
+		alpha: number;
+	}>;
+	smart_tags: Array<string>;
+	duration: any;
+	frame_rate: any;
+	mux_playback_id: any;
+	blurhash: string;
+	thumbhash: string;
+	mux_mp4_highest_res: any;
+	md5: string;
 };
