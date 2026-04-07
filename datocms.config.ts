@@ -13,6 +13,11 @@ export default {
 		locales,
 		defaultLocale,
 	},
+	assets: {
+		maxWidth: 3000,
+		maxHeight: 3000,
+		quality: 80,
+	},
 	routes: {
 		start: async (record, locale) => [`/${locale}`],
 		post: async ({ slug }, locale) =>

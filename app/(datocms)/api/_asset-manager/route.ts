@@ -14,15 +14,6 @@ const client = buildClient({
 	environment: process.env.DATOCMS_ENVIRONMENT!,
 });
 
-const config = {
-	assets: {
-		maxWidth: 3000,
-		maxHeight: 3000,
-		quality: 80,
-		maxSize: 1024 * 1024 * 5,
-	} as AssetConfig,
-};
-
 export async function POST(req: Request) {
 	return basicAuth(req, async (req: Request) => {
 		try {
